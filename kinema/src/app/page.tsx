@@ -1,10 +1,12 @@
 import Image from 'next/image'
 import logo from './img/logo.png'
+import background from './img/collage.jpg'
+import Example from './components/hero'
 
 export default function Home() {
   return (
     <main className="">
-      <div className='flex w-screen h-16 bg-slate-100 flex-row justify-between px-3 items-center py-auto'>
+      <div className='flex w-screen h-16 bg-slate-100 flex-row justify-between px-3 items-center py-auto flex-wrap'>
       <Image
       src={logo}
       alt="kinema logo"
@@ -17,10 +19,7 @@ export default function Home() {
         <span>Misc</span>
       </div>
       </div>
-      <div>
-        <div>Some subtext goes here</div>
-        <div>Searchbar goes here</div>
-      </div>
+      <Example></Example>
     </main>
   )
 }
