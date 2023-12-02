@@ -18,11 +18,11 @@ export default function Home() {
         <a>Home</a>
         <a>Movies</a>
         <a>Shows</a>
-        <a>Misc</a>
+        <a>About</a>
       </div>
       </div>
       <Hero image={background}></Hero>
-      <Card Title="Breaking Bad" Img={walter} Type="HD" Date="2023" RunTime="196m"></Card>
+      <Card Title="Breaking Bad" Img={walter} Type="Series" Date="2023" RunTime="196m"></Card>
 
     </main>
   )
