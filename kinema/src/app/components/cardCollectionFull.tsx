@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./card";
-import walter from "../../../public/brbad.jpg";
 
 const CardsFullDiv = (props: {
   data: any;

@@ -1,11 +1,13 @@
 import bg from "../../../public/collage.jpg";
 
-
-export default function Hero(props) {
+export default function Hero() {
   return (
-    <section className={`relative  bg-cover bg-center bg-no-repeat w-screen font-medium   h-full pb-0 items-center justify-center`} style={{ backgroundImage: `url(${bg.src})`}}>
-      <div className={  `absolute inset-0 bg-white/80`}></div>
-    
+    <section
+      className={`relative  bg-cover bg-center bg-no-repeat w-screen font-medium   h-full pb-0 items-center justify-center`}
+      style={{ backgroundImage: `url(${bg.src})` }}
+    >
+      <div className={`absolute inset-0 bg-white/80`}></div>
+
       <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-fit lg:items-center lg:px-8 ">
         <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
           <h1 className="text-3xl font-extrabold sm:text-5xl text-black">

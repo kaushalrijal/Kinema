@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="w-screen h-lg justify-center items-center">
-      Footer Goes Here
+      Kinema | &copy;Kaushal Rijal 2023
     </div>
   );
 };
