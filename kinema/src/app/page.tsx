@@ -5,7 +5,6 @@ import walter from "../../public/brbad.jpg";
 import Hero from "./components/hero";
 import CardsFullDiv from "./components/cardCollectionFull";
 import Footer from "./components/footer";
-import Test from "./components/labalaba";
 import { Fab } from "@mui/material";
 
 const data = [
