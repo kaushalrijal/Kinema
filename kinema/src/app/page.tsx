@@ -1,11 +1,8 @@
 import Image from "next/image";
 import logo from "./img/logo.png";
-import background from "../../public/collage.jpg";
-import walter from "../../public/brbad.jpg";
 import Hero from "./components/hero";
 import CardsFullDiv from "./components/cardCollectionFull";
 import Footer from "./components/footer";
-import { Fab } from "@mui/material";
 
 const data = [
   {
@@ -86,7 +83,7 @@ export default function Home() {
           <a>About</a>
         </div>
       </div>
-      <Hero image={background}></Hero>
+      <Hero></Hero>
       <CardsFullDiv section="Trending" data={data}></CardsFullDiv>
       <CardsFullDiv section="Latest Movies" data={data}></CardsFullDiv>
       <CardsFullDiv section="Latest Shows" data={data}></CardsFullDiv>
