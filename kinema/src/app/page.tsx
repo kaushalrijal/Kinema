@@ -10,6 +10,7 @@ import { Fab } from "@mui/material";
 
 const data = [
   {
+    key: "1",
     title: "Oppenheimer",
     year: "2023",
     type: "Movie",
@@ -17,6 +18,7 @@ const data = [
     img: "/posters/oppenheimer.jpg",
   },
   {
+    key: "2",
     title: "Tenet",
     year: "2020",
     type: "Movie",
@@ -24,6 +26,7 @@ const data = [
     img: "/posters/tenet.jpg",
   },
   {
+    key: "3",
     title: "Dunkirk",
     year: "2017",
     type: "Movie",
@@ -31,6 +34,7 @@ const data = [
     img: "/posters/dunkirk.jpg",
   },
   {
+    key: "4",
     title: "Interstellar",
     year: "2014",
     type: "Movie",
@@ -38,6 +42,7 @@ const data = [
     img: "/posters/interstellar.jpg",
   },
   {
+    key: "5",
     title: "The Dark Knight Rises",
     year: "2012",
     type: "Movie",
@@ -45,6 +50,7 @@ const data = [
     img: "/posters/darkknightrises.jpg",
   },
   {
+    key: "6",
     title: "Inception",
     year: "2010",
     type: "Movie",
@@ -52,6 +58,7 @@ const data = [
     img: "/posters/inception.jpg",
   },
   {
+    key: "7",
     title: "The Dark Knight",
     year: "2008",
     type: "Movie",
@@ -59,6 +66,7 @@ const data = [
     img: "/posters/darkknight.jpg",
   },
   {
+    key: "8",
     title: "Batman Begins",
     year: "2005",
     type: "Movie",
