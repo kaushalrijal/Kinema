@@ -49,12 +49,6 @@ const Card = (props: {
     <>
       <div className="bg-slate-100 md:h-md md:w-56 rounded-md m-2 p-1.5 flex shadow-md flex-col flex-initial gap-1 shadow-black group text-black transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 duration-150">
         <div className="overflow-hidden max-w-80 relative">
-          {/* <div className="hidden absolute max-h-[250px] md:max-h-[318px] max-w-[212px] h-full w-full mx-0 bg-white/70 items-center justify-center group-hover:flex rounded-md">
-          <PlayCircleFilledIcon
-            sx={{ color: [`#1000b3`] }}
-            className="w-[48px] h-[48px]"
-          ></PlayCircleFilledIcon>
-        </div> */}
           <Image
             src="/overlay.png"
             width={196}
