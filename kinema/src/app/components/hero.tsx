@@ -18,11 +18,11 @@ export default function Hero() {
           </h1>
 
           <p className="mt-4 max-w-lg sm:text-xl/relaxed text-center mx-auto text-black">
-            Kinema has a large collection of Movies and Web Series with limited
-            ads and clean and simple UI.
+            Kinema has a large collection of Movies and Web Series available in
+            various qualities with subtitles.
           </p>
 
-          <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center flex-wrap">
+          <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center py-auto flex-wrap">
             <input
               type="search"
               className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-slate-100"

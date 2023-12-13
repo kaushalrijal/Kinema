@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
+import VCard from "./vCard";
 
-const vCardDiv = () => {
+const VCardDiv = async () => {
   return (
-    <div>vCardDiv</div>
-  )
-}
+    <div className="p-4">
+      <span className="m-3 font-extrabold font-serif text-2xl">
+        Recently Added
+      </span>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+      <VCard></VCard>
+    </div>
+  );
+};
 
-export default vCardDiv
+export default VCardDiv;

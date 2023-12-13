@@ -4,6 +4,9 @@ import Hero from "./components/hero";
 import CardsFullDiv from "./components/cardCollectionFull";
 import HCardDiv from "./components/cardCollectionH";
 import Footer from "./components/footer";
+import VCardDiv from "./components/cardCollectionV";
+import Link from "next/link";
+// import ViewAPI from "./components/api";
 
 const data = [
   {
@@ -75,17 +78,8 @@ const data = [
 export default function Home() {
   return (
     <main className="overflow-hidden bg-white pr-5">
-      <div className="flex flex-col w-screen md:h-16 h-auto bg-slate-100 md:flex-row justify-between px-8 items-center py-auto flex-wrap">
-        <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
-        <div className="justify-between text-black gap-4 hidden md:flex">
-          <a>Home</a>
-          <a>Movies</a>
-          <a>Shows</a>
-          <a>About</a>
-        </div>
-      </div>
       <div
-        className="p-2 text-sm w-screen text-slate-100 rounded-sm bg-[#1000b3]"
+        className="p-2 text-sm w-screen text-yellow-200 rounded-sm bg-[#1000b3]"
         role="alert"
       >
         <span className="font-medium">ATTENTION PLEASE!</span> This site is
@@ -94,9 +88,16 @@ export default function Home() {
       </div>
       <Hero></Hero>
       <HCardDiv></HCardDiv>
-      <CardsFullDiv section="New Releases" data={data}></CardsFullDiv>
-      <CardsFullDiv section="Movies" data={data}></CardsFullDiv>
-      <CardsFullDiv section="Shows" data={data}></CardsFullDiv>
+      <div className="flex">
+        <div>
+          <CardsFullDiv section="New Releases" data={data}></CardsFullDiv>
+          <CardsFullDiv section="Movies" data={data}></CardsFullDiv>
+          <CardsFullDiv section="Shows" data={data}></CardsFullDiv>
+        </div>
+        <div className="hidden lg:flex">
+          <VCardDiv></VCardDiv>
+        </div>
+      </div>
       <Footer></Footer>
     </main>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "./card";
 
-const CardsFullDiv = (props: {
+const CardsFullDiv = async (props: {
   data: any;
   section:
     | string
@@ -20,7 +20,7 @@ const CardsFullDiv = (props: {
       <span className="m-3 font-extrabold font-serif text-3xl">
         {props.section}
       </span>
-      <div className="grid lg:grid-cols-4 xl:grid-cols-5 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0">
+      <div className="grid 2xl:grid-cols-8 lg:grid-cols-4 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0">
         {elements.map(
           (item: {
             title: any;
