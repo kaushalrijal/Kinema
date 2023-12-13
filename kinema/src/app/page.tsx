@@ -79,12 +79,12 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-white pr-5">
       <div
-        className="p-2 text-sm w-screen text-yellow-200 rounded-sm bg-[#1000b3]"
+        className="p-2 text-sm w-screen text-yellow-200  bg-[#1000b3]"
         role="alert"
       >
         <span className="font-medium">ATTENTION PLEASE!</span> This site is
-        currently under development, so most features aren't working, check back
-        soon :)
+        currently under development, so most features aren&apos;t working, check
+        back soon :)
       </div>
       <Hero></Hero>
       <HCardDiv></HCardDiv>

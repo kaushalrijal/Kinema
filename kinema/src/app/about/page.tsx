@@ -42,17 +42,18 @@ const Page = () => {
             </div>
             <p className="text-lg text-justify my-8">
               Meet Kaushal Rijal, a creative mind who wears many hats. Whether
-              he's simplifying your note-taking experience with Kodepad,
+              he&apos;s simplifying your note-taking experience with Kodepad,
               automating your WhatsApp messages for convenience, or bringing
-              people together through his Android chatting app, Khat, Kaushal's
-              knack for practical solutions shines through. Not stopping there,
-              he introduces you to Matthew, a digital assistant that not only
-              understands what you're saying but also tackles those tricky math
-              problems. And if that weren't enough, Kaushal flexes his artistic
-              muscles with a flair for Photoshop. From coding to design,
-              Kaushal's all about making things work seamlessly, adding a touch
-              of innovation to your day-to-day. Stick around as he keeps
-              bringing fresh ideas to life, one project at a time.
+              people together through his Android chatting app, Khat,
+              Kaushal&apos;s knack for practical solutions shines through. Not
+              stopping there, he introduces you to Matthew, a digital assistant
+              that not only understands what you&apos;re saying but also tackles
+              those tricky math problems. And if that weren&apos;t enough,
+              Kaushal flexes his artistic muscles with a flair for Photoshop.
+              From coding to design, Kaushal&apos;s all about making things work
+              seamlessly, adding a touch of innovation to your day-to-day. Stick
+              around as he keeps bringing fresh ideas to life, one project at a
+              time.
             </p>
           </div>
           <div className="border p-4 rounded-md">
