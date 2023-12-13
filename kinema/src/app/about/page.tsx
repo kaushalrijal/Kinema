@@ -15,7 +15,7 @@ const Page = () => {
             subtitles for a multitude of languages ensure everyone can connect
             with the rich narratives. Our user-friendly platform is designed for
             seamless navigation, making the exploration of hidden gems a
-            delightful experience. Kinema is not just a destination; it's a
+            delightful experience. Kinema is not just a destination; it&apos;s a
             vibrant community where movie enthusiasts converge, sharing
             recommendations and engaging in discussions. Join us in celebrating
             the diverse and enchanting world of cinema – your ticket to the
