@@ -65,10 +65,10 @@ const Card = (props: {
             className="w-80 rounded-md flex"
           ></Image>
         </div>
-        <span className="border p-0.5 rounded-md group-hover:bg-[#1000b3] group-hover:text-teal-100 w-fit">
+        <span className="border p-0.5 rounded-md group-hover:bg-primary group-hover:text-teal-100 w-fit">
           {props.Type}
         </span>
-        <strong className="group-hover:text-[#1000b3]">{props.Title}</strong>
+        <strong className="group-hover:text-primary">{props.Title}</strong>
         <div className="flex justify-between">
           <span key="date">{props.Date}</span>
           <span key="runtime">{props.RunTime}</span>

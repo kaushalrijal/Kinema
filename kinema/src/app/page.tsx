@@ -79,7 +79,7 @@ export default function Home() {
   return (
     <main className="overflow-hidden bg-white pr-5">
       <div
-        className="p-2 text-sm w-screen text-yellow-200  bg-[#1000b3]"
+        className="p-2 text-sm w-screen text-yellow-200  bg-primary"
         role="alert"
       >
         <span className="font-medium">ATTENTION PLEASE!</span> This site is

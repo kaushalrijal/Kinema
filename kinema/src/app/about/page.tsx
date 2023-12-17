@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Page = () => {
   return (
     <>
       <div className="w-full h-auto bg-white flex justify-center flex-col p-8 mx-4">
-        <div className="justify-center items-center flex flex-col">
+        <div className="items-center justify-center flex flex-col h-screen">
           <h1 className="font-bold text-5xl">About</h1>
           <p className="text-xl p-8 text-center text-[#6b788b]">
             Welcome to Kinema, your ultimate cinematic escape where the magic of
@@ -23,23 +24,25 @@ const Page = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 w-fit justify-between gap-2 p-6">
-          <div className="border p-4 rounded-md ">
+          <div className="border py-4 px-8 rounded-md ">
             <h1 className="text-2xl font-semibold text-center my-8">
               About the Creator
             </h1>
-            <div className="flex items-center gap-4">
-              <Image
-                src="/profile.png"
-                alt="Image of Kaushal The Great"
-                height={48}
-                width={48}
-                className="bg-slate-100 contents-center rounded-full border-slate-500 border-2"
-              ></Image>
-              <div>
-                <h1 className="text-xl font-medium">Kaushal Rijal</h1>
-                <h2 className="text-md">Founder, Kinema</h2>
+            <Link href="https://kaushalrijal.com.np" target="none">
+              <div className="flex items-center gap-4 group">
+                <Image
+                  src="/profile.png"
+                  alt="Image of Kaushal The Great"
+                  height={48}
+                  width={48}
+                  className="bg-slate-100 contents-center rounded-full border-slate-500 border-2 group-hover:border-primary"
+                ></Image>
+                <div>
+                  <h1 className="text-xl font-medium">Kaushal Rijal</h1>
+                  <h2 className="text-md text-[#6b788b]">Founder, Kinema</h2>
+                </div>
               </div>
-            </div>
+            </Link>
             <p className="text-lg text-justify my-8">
               Meet Kaushal Rijal, a creative mind who wears many hats. Whether
               he&apos;s simplifying your note-taking experience with Kodepad,
@@ -56,7 +59,7 @@ const Page = () => {
               time.
             </p>
           </div>
-          <div className="border p-4 rounded-md">
+          <div className="border py-4 px-8 rounded-md">
             <h1 className="text-2xl font-semibold text-center my-8">
               Get in Touch
             </h1>

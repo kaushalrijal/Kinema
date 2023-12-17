@@ -19,12 +19,12 @@ const VCard = () => {
         <div className="flex flex-col">
           <div className="flex justify-between items-center">
             <span>2025</span>
-            <span className="border rounded-lg px-0.5 p-0.5 group-hover:bg-[#1000b3] group-hover:text-white">
+            <span className="border rounded-lg px-0.5 p-0.5 group-hover:bg-primary group-hover:text-white">
               Series
             </span>
           </div>
           <span>5 Seasons</span>
-          <button className="bg-[#1000b3] text-white rounded-lg m-1 p-1 text-sm transition delay-75 hover:scale-105 duration-75">
+          <button className="bg-primary text-white rounded-lg m-1 p-1 text-sm transition delay-75 hover:scale-105 duration-75">
             Watch Now
           </button>
         </div>
