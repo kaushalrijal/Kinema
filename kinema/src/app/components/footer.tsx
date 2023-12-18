@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="w-screen h-lg justify-center items-center p-4 pr-8">
+    <div className="w-full h-lg justify-center items-center p-4 pr-8">
       <b>Disclaimer</b>
       <p className="text-justify">
         Kinema operates strictly within the bounds of legality, serving solely

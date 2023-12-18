@@ -6,7 +6,7 @@ const Page = () => {
   return (
     <>
       <div className="w-full h-auto bg-white flex justify-center flex-col p-8 mx-4">
-        <div className="items-center justify-center flex flex-col h-screen">
+        <div className="items-center justify-center flex flex-col my-24">
           <h1 className="font-bold text-5xl">About</h1>
           <p className="text-xl p-8 text-center text-[#6b788b]">
             Welcome to Kinema, your ultimate cinematic escape where the magic of

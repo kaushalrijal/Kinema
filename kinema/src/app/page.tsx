@@ -77,14 +77,16 @@ const data = [
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-white pr-5">
-      <div
-        className="p-2 text-sm w-screen text-yellow-200  bg-primary"
-        role="alert"
-      >
-        <span className="font-medium">ATTENTION PLEASE!</span> This site is
-        currently under development, so most features aren&apos;t working, check
-        back soon :)
+    <main className="">
+      <div className="flex items-center justify-between p-2 text-sm w-full text-yellow-200  bg-primary">
+        <div className="" role="alert">
+          <span className="font-medium">ATTENTION PLEASE!</span> This site is
+          currently under development, so most features aren&apos;t working,
+          check back soon :)
+        </div>
+        <div className="text-white px-1 border-2 rounded-full border-white">
+          X
+        </div>
       </div>
       <Hero></Hero>
       <HCardDiv></HCardDiv>

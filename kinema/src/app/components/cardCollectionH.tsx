@@ -19,7 +19,7 @@ const HCardDiv = () => {
   return (
     <div className="m-4 pr-15 hidden md:flex flex-col">
       <span className="m-3 font-extrabold font-serif text-3xl">Trending</span>
-      <div className="h-fit w-screen overflow-x-scroll no-scrollbar flex pr-6">
+      <div className="h-fit w-full overflow-x-scroll no-scrollbar flex pr-6">
         <VCard></VCard>
         <VCard></VCard>
         <VCard></VCard>

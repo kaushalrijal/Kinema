@@ -16,7 +16,7 @@ const navLinks = [
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <div className="flex flex-col w-screen md:h-16 h-auto bg-slate-100 md:flex-row justify-between px-8 items-center py-auto flex-wrap">
+    <div className="flex flex-col w-full md:h-16 h-auto bg-slate-100 md:flex-row justify-between px-8 items-center py-auto flex-wrap">
       <Link href="/">
         <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
       </Link>
