@@ -94,7 +94,7 @@ export default function Home() {
           <CardsFullDiv section="Shows" data={data} cols={4}></CardsFullDiv>
         </div>
         <div className="hidden lg:flex">
-          <VCardDiv></VCardDiv>
+          <VCardDiv customStyle=""></VCardDiv>
         </div>
       </div>
       <Footer></Footer>
