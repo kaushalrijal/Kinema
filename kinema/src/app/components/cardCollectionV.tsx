@@ -1,7 +1,7 @@
 import React from "react";
 import VCard from "./vCard";
 
-const VCardDiv = (props) => {
+const VCardDiv = (props: { customStyle: any }) => {
   return (
     <div className={`p-4 ${props.customStyle}`}>
       <span className="m-3 font-extrabold font-serif text-2xl">

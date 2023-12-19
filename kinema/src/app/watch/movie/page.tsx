@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import SubDetails from "./subdetails";
 import CardsFullDiv from "@/app/components/cardCollectionFull";
@@ -87,6 +87,7 @@ const data = [
 ];
 
 const Movie = () => {
+  const [visible, setVisible] = useState(false);
   return (
     <div>
       <div className="w-full h-60 md:h-96 flex items-center justify-center bg-primary p-0 relative overflow-hidden">
@@ -98,15 +99,20 @@ const Movie = () => {
           className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
         ></Image>
         <iframe
-          src="https://vidsrc.to/movie/tt199635"
-          className={`w-full h-full hidden`}
+          src="https://vidsrc.to/embed/movie/tt0111161"
+          className={`w-full h-full z-50 ${visible ? "block" : "hidden"}`}
         />
         <Image
           src="/play.png"
           alt="play icon"
           width={64}
           height={64}
-          className="cursor-pointer z-10 hover:scale-125 duration-75 transition ease-in-out bg-white/75 border-2 m-0 border-primary rounded-full"
+          className={`cursor-pointer z-10 hover:scale-125 duration-75 transition ease-in-out bg-white/75 border-2 m-0 border-primary rounded-full ${
+            visible ? "hidden" : "block"
+          }`}
+          onClick={() => {
+            setVisible(true);
+          }}
         ></Image>
       </div>
       <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
@@ -142,7 +148,7 @@ const Movie = () => {
             admired by the other inmates -- including an older prisoner named
             Red -- for his integrity and unquenchable sense of hope.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 justify-between">
             {subdetails.map((detail) => {
               return (
                 <SubDetails
