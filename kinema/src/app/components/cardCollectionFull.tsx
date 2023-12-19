@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./card";
+import Link from "next/link";
 
 const CardsFullDiv = (props: {
   data: any;
@@ -32,14 +33,16 @@ const CardsFullDiv = (props: {
             runtime: any;
             key: any;
           }) => (
-            <Card
-              Title={item.title}
-              Img={item.img}
-              Type={item.type}
-              Date={item.year}
-              RunTime={item.runtime}
-              key={item.key}
-            ></Card>
+            <Link key={item.key} href="/watch/movie">
+              <Card
+                Title={item.title}
+                Img={item.img}
+                Type={item.type}
+                Date={item.year}
+                RunTime={item.runtime}
+                key={item.key}
+              ></Card>
+            </Link>
           )
         )}
       </div>

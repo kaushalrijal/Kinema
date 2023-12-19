@@ -101,6 +101,7 @@ const Movie = () => {
         <iframe
           src="https://vidsrc.to/embed/movie/tt0111161"
           className={`w-full h-full z-50 ${visible ? "block" : "hidden"}`}
+          allow="fullscreen"
         />
         <Image
           src="/play.png"

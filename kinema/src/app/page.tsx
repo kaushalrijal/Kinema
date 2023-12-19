@@ -7,7 +7,6 @@ import CardsFullDiv from "./components/cardCollectionFull";
 import HCardDiv from "./components/cardCollectionH";
 import Footer from "./components/footer";
 import VCardDiv from "./components/cardCollectionV";
-import Link from "next/link";
 import Warning from "./components/warning";
 
 const data = [
