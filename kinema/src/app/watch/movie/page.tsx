@@ -170,11 +170,7 @@ const Movie = () => {
         </div>
       </div>
       <div className="flex">
-        <CardsFullDiv
-          section="You may also like"
-          data={data}
-          cols="4"
-        ></CardsFullDiv>
+        <CardsFullDiv section="You may also like" data={data}></CardsFullDiv>
         <VCardDiv customStyle="hidden md:block float-left"></VCardDiv>
       </div>
     </div>

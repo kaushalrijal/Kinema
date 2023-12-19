@@ -85,13 +85,9 @@ export default function Home() {
       <HCardDiv></HCardDiv>
       <div className="flex">
         <div>
-          <CardsFullDiv
-            section="New Releases"
-            data={data}
-            cols={4}
-          ></CardsFullDiv>
-          <CardsFullDiv section="Movies" data={data} cols={4}></CardsFullDiv>
-          <CardsFullDiv section="Shows" data={data} cols={4}></CardsFullDiv>
+          <CardsFullDiv section="New Releases" data={data}></CardsFullDiv>
+          <CardsFullDiv section="Movies" data={data}></CardsFullDiv>
+          <CardsFullDiv section="Shows" data={data}></CardsFullDiv>
         </div>
         <div className="hidden lg:flex">
           <VCardDiv customStyle=""></VCardDiv>
