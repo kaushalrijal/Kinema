@@ -95,7 +95,7 @@ const Movie = () => {
           alt="cover"
           height={512}
           width={512}
-          className="md:w-full h-full md:h-auto object-cover absolute -z-0"
+          className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
         ></Image>
         <iframe
           src="https://vidsrc.to/movie/tt199635"
@@ -106,7 +106,7 @@ const Movie = () => {
           alt="play icon"
           width={64}
           height={64}
-          className="cursor-pointer z-10 hover:scale-125 duration-75 transition ease-in-out"
+          className="cursor-pointer z-10 hover:scale-125 duration-75 transition ease-in-out bg-white/75 border-2 m-0 border-primary rounded-full"
         ></Image>
       </div>
       <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
@@ -130,7 +130,7 @@ const Movie = () => {
             <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
               R
             </span>
-            <span className="px-3 py-1 rounded-md bg-primary text-white">
+            <span className="px-3 py-1 rounded-md bg-primary text-white items-center justify-center">
               IMDB: 9.3
             </span>
           </div>
@@ -169,7 +169,7 @@ const Movie = () => {
           data={data}
           cols="4"
         ></CardsFullDiv>
-        <VCardDiv></VCardDiv>
+        <VCardDiv customStyle="hidden md:block float-left"></VCardDiv>
       </div>
     </div>
   );
