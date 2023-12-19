@@ -4,7 +4,7 @@ import React from "react";
 
 const VCard = () => {
   return (
-    <div className="flex flex-nowrap m-2 h-[140px] min-w-[220px] bg-slate-100 rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300">
+    <div className="flex flex-nowrap m-2 h-[140px] min-w-[220px] bg-slate-100 rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer">
       <div className="static group">
         <Image
           src="/brbad.jpg"

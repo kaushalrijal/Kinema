@@ -1,7 +1,8 @@
 import React from "react";
 import Card from "./card";
 
-const CardsFullDiv = async (props: {
+const CardsFullDiv = (props: {
+  cols: any;
   data: any;
   section:
     | string
@@ -16,11 +17,13 @@ const CardsFullDiv = async (props: {
 }) => {
   let elements = props.data;
   return (
-    <div className="p-3 mt-2">
-      <span className="m-3 font-extrabold font-serif text-3xl">
+    <div className="p-3 ">
+      <span className="mx-3 font-extrabold font-serif text-3xl">
         {props.section}
       </span>
-      <div className="grid 2xl:grid-cols-8 lg:grid-cols-4 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0">
+      <div
+        className={`grid 2xl:grid-cols-8 lg:grid-cols-${props.cols} xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0`}
+      >
         {elements.map(
           (item: {
             title: any;

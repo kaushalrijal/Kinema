@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import logo from "./img/logo.png";
 import Hero from "./components/hero";
@@ -6,7 +8,7 @@ import HCardDiv from "./components/cardCollectionH";
 import Footer from "./components/footer";
 import VCardDiv from "./components/cardCollectionV";
 import Link from "next/link";
-// import ViewAPI from "./components/api";
+import Warning from "./components/warning";
 
 const data = [
   {
@@ -78,23 +80,18 @@ const data = [
 export default function Home() {
   return (
     <main className="">
-      <div className="flex items-center justify-between p-2 text-sm w-full text-yellow-200  bg-primary">
-        <div className="" role="alert">
-          <span className="font-medium">ATTENTION PLEASE!</span> This site is
-          currently under development, so most features aren&apos;t working,
-          check back soon :)
-        </div>
-        <div className="text-white px-1 border-2 rounded-full border-white">
-          X
-        </div>
-      </div>
+      <Warning />
       <Hero></Hero>
       <HCardDiv></HCardDiv>
       <div className="flex">
         <div>
-          <CardsFullDiv section="New Releases" data={data}></CardsFullDiv>
-          <CardsFullDiv section="Movies" data={data}></CardsFullDiv>
-          <CardsFullDiv section="Shows" data={data}></CardsFullDiv>
+          <CardsFullDiv
+            section="New Releases"
+            data={data}
+            cols={4}
+          ></CardsFullDiv>
+          <CardsFullDiv section="Movies" data={data} cols={4}></CardsFullDiv>
+          <CardsFullDiv section="Shows" data={data} cols={4}></CardsFullDiv>
         </div>
         <div className="hidden lg:flex">
           <VCardDiv></VCardDiv>
