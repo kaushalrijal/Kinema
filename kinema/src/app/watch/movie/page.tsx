@@ -164,7 +164,9 @@ const Movie = () => {
         <div className="basis-1/4">
           <button
             className="bg-primary px-4 py-3 text-white object-cover w-full rounded-md"
-            onClick={() => console.log(data)}
+            onClick={() => {
+              setVisible(true);
+            }}
           >
             Watch Now
           </button>
