@@ -13,7 +13,9 @@ const HCardDiv = async () => {
   const movies = await getTrendingMovies();
   return (
     <div className="m-4 pr-15 md:flex flex-col">
-      <span className="m-3 font-extrabold font-serif text-3xl">Trending</span>
+      <span className="m-3 font-extrabold font-serif text-3xl">
+        Popular Now
+      </span>
       <div className="h-fit w-full overflow-x-scroll no-scrollbar flex pr-6">
         {movies.map((movie) => {
           return (
@@ -26,7 +28,7 @@ const HCardDiv = async () => {
               }
               year={movie.release_date.slice(0, 4)}
               movie={movie.media_type === "movie" ? "Movie" : "Series"}
-              ratings={movie.vote_average}
+              ratings={movie.vote_average.toFixed(1)}
               posterPath={movie.backdrop_path}
             ></HCard>
           );

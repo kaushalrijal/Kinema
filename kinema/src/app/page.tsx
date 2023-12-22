@@ -1,9 +1,9 @@
 import Hero from "./components/hero";
-import CardsFullDiv from "./components/cardCollectionFull";
 import HCardDiv from "./components/cardCollectionH";
 import Footer from "./components/footer";
 import VCardDiv from "./components/cardCollectionV";
 import Warning from "./components/warning";
+import CardsGrid from "./components/cardsGrids";
 
 const data = [
   {
@@ -80,9 +80,7 @@ export default function Home() {
       <HCardDiv></HCardDiv>
       <div className="flex">
         <div>
-          <CardsFullDiv section="New Releases" data={data}></CardsFullDiv>
-          <CardsFullDiv section="Movies" data={data}></CardsFullDiv>
-          <CardsFullDiv section="Shows" data={data}></CardsFullDiv>
+          <CardsGrid />
         </div>
         <div className="hidden lg:flex">
           <VCardDiv customStyle=""></VCardDiv>

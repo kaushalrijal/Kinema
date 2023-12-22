@@ -24,7 +24,12 @@ export const getTrendingMovies = async () => {
     const data = await res.json();
     return data.results;
   }
-
+  export const getTopRatedMovies = async () => {
+    const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+  }
+  
   export const getPopularMovies = async() => {
     // const res = await fetch(`${BASE_URL}/movie/popular?api_key={$API_KEY}`)
     // const data = await res.json();

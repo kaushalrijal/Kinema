@@ -58,7 +58,7 @@ const Card = (props: {
           ></Image>
 
           <Image
-            src={props.Img}
+            src={`http://image.tmdb.org/t/p/w500/${props.Img}`}
             alt="labalaba"
             width={196}
             height={196}

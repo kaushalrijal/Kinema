@@ -6,7 +6,9 @@ const VCardDiv = async (props: { customStyle: any }) => {
   const movies = await getTrendingMovies();
   return (
     <div className={`p-4 ${props.customStyle}`}>
-      <span className="m-3 font-extrabold font-serif text-2xl">Trending</span>
+      <span className="m-3 font-extrabold font-serif text-2xl">
+        New Releases
+      </span>
       <div>
         {movies.map((movie) => {
           return (
@@ -19,7 +21,7 @@ const VCardDiv = async (props: { customStyle: any }) => {
               }
               year={movie.release_date.slice(0, 4)}
               movie={movie.media_type === "movie" ? "Movie" : "Series"}
-              ratings={movie.vote_average}
+              ratings={movie.vote_average.toFixed(1)}
               poster={movie.poster_path}
             ></VCard>
           );
