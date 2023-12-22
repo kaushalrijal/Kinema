@@ -2,7 +2,49 @@ import { ButtonBase } from "@mui/material";
 import Image from "next/image";
 import React from "react";
 
-const VCard = (props) => {
+const VCard = (props: {
+  poster: any;
+  title:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | React.PromiseLikeOfReactNode
+    | null
+    | undefined;
+  year:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | React.PromiseLikeOfReactNode
+    | null
+    | undefined;
+  movie:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | React.PromiseLikeOfReactNode
+    | null
+    | undefined;
+  ratings:
+    | string
+    | number
+    | boolean
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | Iterable<React.ReactNode>
+    | React.ReactPortal
+    | React.PromiseLikeOfReactNode
+    | null
+    | undefined;
+}) => {
   return (
     <div className="flex flex-nowrap m-2 max-h-36 w-auto max-w-[320px] items-center bg-slate-100 rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out">
       <div className="static group">
