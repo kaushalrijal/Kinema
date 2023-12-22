@@ -1,7 +1,3 @@
-"use client";
-
-import Image from "next/image";
-import logo from "./img/logo.png";
 import Hero from "./components/hero";
 import CardsFullDiv from "./components/cardCollectionFull";
 import HCardDiv from "./components/cardCollectionH";
