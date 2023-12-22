@@ -11,6 +11,7 @@ const VCardDiv = async (props: { customStyle: any }) => {
         {movies.map((movie) => {
           return (
             <VCard
+              key={movie.id}
               title={
                 movie.original_title.length > 15
                   ? movie.original_title.slice(0, 15) + "..."
