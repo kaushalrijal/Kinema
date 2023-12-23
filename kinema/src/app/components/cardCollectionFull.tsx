@@ -26,7 +26,7 @@ const CardsFullDiv = async (props: {
         className={`grid 2xl:grid-cols-8 lg:grid-cols-4 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0`}
       >
         {elements.map((item) => (
-          <Link key={item.id} href="/watch/movie">
+          <Link key={item.id} href={`/watch/movie/` + item.id}>
             <Card
               Title={
                 item.original_title!.length > 18
@@ -34,7 +34,7 @@ const CardsFullDiv = async (props: {
                   : item.original_title
               }
               Img={item.poster_path}
-              Type={item.media_type === "movie" ? "Movie" : "Series"}
+              Type={item.media_type === "series" ? "Series" : "Movie"}
               Date={item.release_date.slice(0, 4)}
               RunTime={item.vote_average.toFixed(1)}
               key={item.id}

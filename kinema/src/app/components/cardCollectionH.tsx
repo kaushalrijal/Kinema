@@ -16,7 +16,7 @@ const HCardDiv = async () => {
       <span className="m-3 font-extrabold font-serif text-3xl">
         Popular Now
       </span>
-      <div className="h-fit w-full overflow-x-scroll no-scrollbar flex pr-6">
+      <div className="h-fit w-full overflow-x-scroll flex pr-6">
         {movies.map((movie) => {
           return (
             <HCard

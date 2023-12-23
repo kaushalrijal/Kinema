@@ -21,13 +21,9 @@ const Navbar = () => {
   const pathname = usePathname();
   return (
     <div className="flex flex-col w-full md:h-16 h-auto bg-slate-100 md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
-      <div className="flex flex-row items-center justify-between">
+      <div className="flex flex-row items-center justify-between ">
         <Link href="/">
-          <Image
-            src={logo}
-            alt="kinema logo"
-            className={"h-[40px] w-auto md:basis-1/4"}
-          />
+          <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
         </Link>
         <div
           className="md:hidden"
@@ -39,11 +35,11 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`py-4 md:visible ${
+        className={`py-4 md:flex ${
           isOpen ? "visible" : "hidden"
-        } duration-75 ease-in-out delay-75`}
+        } duration-75 ease-in-out delay-75 `}
       >
-        <ul className="items-center md:pl-48 text-black gap-2 flex flex-col w-full md:flex-row">
+        <ul className="items-center lg:pl-48 text-black gap-2 flex flex-col w-full md:flex-row">
           {navLinks.map((navItem) => {
             const isActive =
               pathname === navItem.path && pathname.startsWith(navItem.path);
@@ -65,9 +61,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div
-        className={`flex justify-center items-center gap-2 md:basis-1/4 my-2 mb-4 md:m-0 ${
+        className={`flex justify-center items-center gap-2 my-2 mb-4 md:m-0 ${
           isOpen ? "visible" : "hidden"
-        } md:visible`}
+        } md:flex`}
       >
         <input
           type="search"
