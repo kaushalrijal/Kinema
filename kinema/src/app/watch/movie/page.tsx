@@ -3,8 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import SubDetails from "./subdetails";
-// import CardsFullDiv from "@/app/components/cardCollectionFull";
-// import VCardDiv from "@/app/components/cardCollectionV";
 
 const subdetails = [
   { title: "Year", detail: "1994-09-23" },
@@ -172,10 +170,6 @@ const Movie = () => {
           </button>
         </div>
       </div>
-      {/* <div className="flex">
-        <CardsFullDiv section="You may also like" data={data}></CardsFullDiv>
-        <VCardDiv customStyle="hidden md:block float-left"></VCardDiv>
-      </div> */}
     </div>
   );
 };
