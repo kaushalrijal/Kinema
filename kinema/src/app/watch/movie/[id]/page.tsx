@@ -72,7 +72,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
           </div>
         </div>
 
-        <div className="basis-1/4 relative">
+        <div className="basis-1/4 relative hidden md:flex">
           <VCardDiv customStyle={undefined} />
         </div>
       </div>
