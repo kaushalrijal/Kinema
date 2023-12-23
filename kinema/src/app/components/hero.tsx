@@ -1,6 +1,7 @@
 import { getPopularMovies } from "@/utils/request";
 import bg from "../../../public/collage.jpg";
 import { PlayArrow } from "@mui/icons-material";
+import Link from "next/link";
 
 export default async function Hero() {
   const suggested = await getPopularMovies();
@@ -26,18 +27,20 @@ export default async function Hero() {
             {random.overview}
           </p>
 
-          <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center mx-8 py-auto flex-wrap">
-            <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-slate-100">
-              <PlayArrow />
-              Watch Now
-            </button>
+          <Link href={`/watch/movie/${random.id}`}>
+            <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center mx-8 py-auto flex-wrap">
+              <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-slate-100">
+                <PlayArrow />
+                Watch Now
+              </button>
 
-            <input
-              type="button"
-              value="Read More"
-              className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#1100b3] shadow-sm hover:shadow-black  focus:outline-none focus:ring sm:w-auto"
-            />
-          </div>
+              <input
+                type="button"
+                value="Read More"
+                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-[#1100b3] shadow-sm hover:shadow-black  focus:outline-none focus:ring sm:w-auto"
+              />
+            </div>
+          </Link>
         </div>
       </div>
     </section>
