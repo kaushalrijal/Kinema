@@ -32,7 +32,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
   return (
     <div>
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
-      <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
+      <div className="flex 3xl:flex-col-reverse md:flex-row p-6 py-8 gap-6">
         <div className="hidden md:flex basis-1/4">
           <Image
             src={`https://www.themoviedb.org/t/p/original/${Movie.poster_path}`}
