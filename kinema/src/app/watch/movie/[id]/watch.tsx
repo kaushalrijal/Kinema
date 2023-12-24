@@ -16,8 +16,8 @@ const WatchMovie = (props) => {
         className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
       ></Image>
       <iframe
-        // src={`https://v2.vidsrc.me/embed/${tmdb_id}/color-1000B3`}
-        src={`https://vidsrc.to/embed/movie/${props.tmdb_id}`}
+        src={`https://v2.vidsrc.me/embed/${props.tmdb_id}/color-1000B3`}
+        // src={`https://vidsrc.to/embed/movie/${props.tmdb_id}`}
         className={`w-full h-full content-strech z-50 ${
           visible ? "block" : "hidden"
         } absolute`}

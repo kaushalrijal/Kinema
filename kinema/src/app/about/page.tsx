@@ -5,10 +5,12 @@ import Link from "next/link";
 const Page = () => {
   return (
     <>
-      <div className="w-fit h-auto bg-white flex justify-center flex-col p-8 mx-4">
-        <div className="items-center justify-center flex flex-col my-24">
-          <h1 className="font-bold text-5xl">About</h1>
-          <p className="text-xl p-8 text-justify text-[#6b788b]">
+      <div className="w-fit h-auto bg-white flex justify-center flex-col p-1 md:p-3 lg:p-8 mx-4 md:mx-2">
+        <div className="items-center justify-center flex flex-col md:my-24">
+          <h1 className="font-bold text-3xl md:text-5xl my-8 md:my-auto">
+            About
+          </h1>
+          <p className="text-md md:text-xl p-1 md:p-6 lg:p-8 text-justify text-[#6b788b]">
             Welcome to Kinema, your ultimate cinematic escape where the magic of
             film unfolds. Immerse yourself in a curated collection ranging from
             timeless classics to the latest releases, all offered in a spectrum
@@ -23,8 +25,8 @@ const Page = () => {
             magic of film awaits.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 w-fit justify-between gap-2 p-6">
-          <div className="border py-4 px-8 rounded-md ">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-fit justify-between py-6 gap-2 md:p-6">
+          <div className="border py-4 px-2 md:px-3 lg:px-8 rounded-md ">
             <h1 className="text-2xl font-semibold text-center my-8">
               About the Creator
             </h1>
@@ -43,7 +45,7 @@ const Page = () => {
                 </div>
               </div>
             </Link>
-            <p className="text-lg text-justify my-8">
+            <p className="text-base md:text-sm lg:text-base text-justify my-8">
               Meet Kaushal Rijal, a creative mind who wears many hats. Whether
               he&apos;s simplifying your note-taking experience with Kodepad,
               automating your WhatsApp messages for convenience, or bringing
@@ -59,7 +61,7 @@ const Page = () => {
               time.
             </p>
           </div>
-          <div className="border py-4 px-8 rounded-md">
+          <div className="border py-4 px-2 md:px-8 rounded-md">
             <h1 className="text-2xl font-semibold text-center my-8">
               Get in Touch
             </h1>

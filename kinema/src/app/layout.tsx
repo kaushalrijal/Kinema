@@ -35,7 +35,6 @@ export default function RootLayout({
         ></link>
       </head>
       <body className="bg-white text-black font-['Roboto Condensed']">
-        <Navbar />
         {children}
       </body>
     </html>

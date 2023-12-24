@@ -32,7 +32,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
   return (
     <div>
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
-      <div className="flex 3xl:flex-col-reverse md:flex-row p-6 py-8 gap-6">
+      <div className="flex flex-col md:flex-row p-6 py-8 gap-6">
         <div className="hidden md:flex basis-1/4">
           <Image
             src={`https://www.themoviedb.org/t/p/original/${Movie.poster_path}`}
@@ -52,7 +52,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
               {Movie.spoken_languages[0].english_name}
             </span>
             <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
-              {Movie.production_countries[0].name}
+              {Movie.production_countries[0].iso_3166_1}
             </span>
             <span className="px-3 py-1 rounded-md bg-primary text-white items-center justify-center">
               TMDB: {Movie.vote_average.toFixed(1)}

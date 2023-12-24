@@ -30,6 +30,11 @@ export const getTrendingMovies = async () => {
     return data.results;
   }
   
+  export const discoverMovies = async () => {
+    const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+  }
   export const getPopularMovies = async() => {
     // const res = await fetch(`${BASE_URL}/movie/popular?api_key={$API_KEY}`)
     // const data = await res.json();
@@ -48,3 +53,9 @@ export const getTrendingMovies = async () => {
 
   }
   
+  export const getAddedMovies = async () => {
+    const res = await fetch("https://vidsrc.xyz/movies/latest/page-1.json")
+    const data = await res.json();
+    return data.result
+  }
+
