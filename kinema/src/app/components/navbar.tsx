@@ -20,7 +20,7 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const pathname = usePathname();
   return (
-    <div className="flex flex-col w-full md:h-16 h-auto bg-slate-100 md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
+    <div className="flex flex-col w-full md:h-16 h-auto bg-secondary md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
       <div className="flex flex-row items-center justify-between ">
         <Link href="/">
           <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
@@ -67,7 +67,7 @@ const Navbar = () => {
       >
         <input
           type="search"
-          className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-slate-100 placeholder:text-xs"
+          className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary placeholder:text-xs"
           placeholder="Enter a movie/series title"
         />
         <Search className="p-2 w-9 h-9 bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black" />

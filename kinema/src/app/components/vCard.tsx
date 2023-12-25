@@ -46,7 +46,7 @@ const VCard = (props: {
     | undefined;
 }) => {
   return (
-    <div className="flex flex-nowrap m-2 max-h-36 w-auto max-w-[320px] items-center bg-slate-100 rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out">
+    <div className="flex flex-nowrap m-2 max-h-36 w-auto max-w-[320px] items-center bg-secondary rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out">
       <div className="static group">
         <Image
           src={`http://image.tmdb.org/t/p/w500/${props.poster}`}

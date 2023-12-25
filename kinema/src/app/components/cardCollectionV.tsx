@@ -1,29 +1,30 @@
 import React from "react";
 import VCard from "./vCard";
-import { getTrendingMovies } from "@/utils/request";
+import { getTrendingSeries } from "@/utils/request";
+import Link from "next/link";
 
 const VCardDiv = async (props: { customStyle: any }) => {
-  const movies = await getTrendingMovies();
+  const series = await getTrendingSeries();
   return (
     <div className={`p-4 ${props.customStyle}`}>
       <span className="m-3 font-extrabold font-serif text-2xl">
-        New Releases
+        Trending Series
       </span>
       <div>
-        {movies.map((movie) => {
+        {series.map((tv) => {
           return (
-            <VCard
-              key={movie.id}
-              title={
-                movie.original_title.length > 15
-                  ? movie.original_title.slice(0, 15) + "..."
-                  : movie.original_title
-              }
-              year={movie.release_date.slice(0, 4)}
-              movie={movie.media_type === "movie" ? "Movie" : "Series"}
-              ratings={movie.vote_average.toFixed(1)}
-              poster={movie.poster_path}
-            ></VCard>
+            <Link key={tv.id} href={`/watch/series/${tv.id}`}>
+              <VCard
+                key={tv.id}
+                title={
+                  tv.name.length > 15 ? tv.name.slice(0, 15) + "..." : tv.name
+                }
+                year={tv.first_air_date.slice(0, 4)}
+                movie="Series"
+                ratings={tv.vote_average.toFixed(1)}
+                poster={tv.poster_path}
+              ></VCard>
+            </Link>
           );
         })}
       </div>

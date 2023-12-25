@@ -37,7 +37,7 @@ const Page = () => {
                   alt="Image of Kaushal The Great"
                   height={48}
                   width={48}
-                  className="bg-slate-100 contents-center rounded-full border-slate-500 border-2 group-hover:border-primary"
+                  className="bg-secondary contents-center rounded-full border-slate-500 border-2 group-hover:border-primary"
                 ></Image>
                 <div>
                   <h1 className="text-xl font-medium">Kaushal Rijal</h1>

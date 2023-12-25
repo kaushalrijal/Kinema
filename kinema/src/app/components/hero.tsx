@@ -29,7 +29,7 @@ export default async function Hero() {
 
           <Link href={`/watch/movie/${random.id}`}>
             <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center mx-8 py-auto flex-wrap">
-              <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-slate-100">
+              <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary">
                 <PlayArrow />
                 Watch Now
               </button>
