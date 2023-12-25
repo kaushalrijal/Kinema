@@ -76,7 +76,9 @@ const Series = ({ params }) => {
           className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
         ></Image>
         <iframe
-          src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedValue}-${episode}`}
+          // src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedValue}-${episode}`}
+          // src={`https://vidsrc.me/embed/tv?tmdb=${params.id}&season=${selectedValue}&episode=${episode}`}
+          src="https://vidsrc.me/embed/tv?tmdb=84105&season=2&episode=3"
           className={`w-full h-full z-50 object-contain ${
             visible ? "block" : "hidden"
           }`}
@@ -190,11 +192,11 @@ const Series = ({ params }) => {
                   ],
                 }}
               >
-                {movie.seasons.map((season) => {
-                  if (season.season_number != 0) {
+                {episodesData.map((season) => {
+                  if (season.season != 0) {
                     return (
-                      <DropdownItem key={season.season_number.toString()}>
-                        {season.name}
+                      <DropdownItem key={season.season.toString()}>
+                        Season {season.season}
                       </DropdownItem>
                     );
                   }
@@ -213,11 +215,12 @@ const Series = ({ params }) => {
                     item.episode_number === episode
                       ? "bg-primary text-white"
                       : "bg-none text-black"
-                  } border-none cursor-pointer`}
+                  } border-none cursor-pointer lg:flex md:grid md:grid-cols-2`}
                   onClick={() => {
                     setEpisode(item.episode_number);
                     setVisible(true);
                   }}
+                  key={item.episode_number}
                 >
                   Episode {item.episode_number}: {item.title}
                 </div>
