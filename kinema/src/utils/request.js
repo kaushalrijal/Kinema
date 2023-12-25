@@ -71,4 +71,20 @@ export const getTrendingMovies = async () => {
     return data.result
   }
 
+  export const getEpisodes = async(id)=> {
+    const url = `https://movies-api14.p.rapidapi.com/show/${id}`;
+        const options = {
+          method: "GET",
+          headers: {
+            "X-RapidAPI-Key":
+              "252739274bmsheb338140961d5e9p1853f0jsne1fd1d2dba6e",
+            "X-RapidAPI-Host": "movies-api14.p.rapidapi.com",
+          },
+        };
+
+    const res = await fetch(url, options)
+    const data = await res.json();
+    return data.seasons;
+  }
+
 

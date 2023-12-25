@@ -13,7 +13,7 @@ import {
   Button,
 } from "@nextui-org/react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
-import { getSeriesDetails } from "@/utils/request";
+import { getEpisodes, getSeriesDetails } from "@/utils/request";
 import { error } from "console";
 
 const subdetails = [
@@ -33,6 +33,7 @@ const Series = ({ params }) => {
   const [movie, setMovie] = useState(null);
   const [selectedSeason, setSelectedSeason] = useState(new Set(["1"]));
   const [episode, setEpisode] = useState(1);
+  const [episodesData, setEpisodesData] = useState(null);
 
   const selectedValue = React.useMemo(
     () => Array.from(selectedSeason).join(", ").replaceAll("_", " "),
@@ -49,9 +50,14 @@ const Series = ({ params }) => {
       .catch((error) => {
         console.log(error);
       });
+
+    getEpisodes(params.id).then((result) => {
+      const data = result;
+      setEpisodesData(data);
+    });
   }, []);
 
-  if (!movie) return <div>Loading...</div>;
+  if (!movie || !episodesData) return <div>Loading...</div>;
 
   const productions = String(
     movie.production_companies.map((producer) => {
@@ -63,15 +69,17 @@ const Series = ({ params }) => {
     <div>
       <div className="w-full h-60 md:h-96 flex items-center justify-center bg-primary p-0 relative overflow-hidden">
         <Image
-          src="https://www.themoviedb.org/t/p/original/vFxjuhENDjEKzWXUGKmRFct15bA.jpg"
+          src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
           alt="cover"
           height={512}
           width={512}
           className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
         ></Image>
         <iframe
-          src={`https://vidsrc.xyz/embed/tv?tmdb=${params.id}&season${selectedSeason}&episode=${episode}`}
-          className={`w-full h-full z-50 ${visible ? "block" : "hidden"}`}
+          src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedValue}-${episode}`}
+          className={`w-full h-full z-50 object-contain ${
+            visible ? "block" : "hidden"
+          }`}
           allow="fullscreen"
         />
         <Image
@@ -90,11 +98,11 @@ const Series = ({ params }) => {
       <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
         <div className="hidden md:flex basis-1/4">
           <Image
-            src="https://www.themoviedb.org/t/p/original/3xnWaLQjelJDDF7LT1WBo6f4BRe.jpg"
+            src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
             alt="movie poster"
-            height={80}
-            width={80}
-            className="h-full w-auto"
+            height={96}
+            width={180}
+            className="w-auto h-auto object-contain"
           ></Image>
         </div>
         <div className="flex-col flex basis-1/2 gap-2">
@@ -119,22 +127,30 @@ const Series = ({ params }) => {
               Value={movie.first_air_date}
             ></SubDetails>
             <SubDetails
-              Title="Genre(s)"
-              Value={movie.genres.map((genre) => {
-                return genre.name + " ";
-              })}
-            ></SubDetails>
-            <SubDetails
               Title="Last Aired"
               Value={movie.last_episode_to_air.air_date}
             ></SubDetails>
             <SubDetails
               Title="Seasons"
-              Value={movie.number_of_seasons}
+              Value={
+                movie.number_of_seasons != undefined
+                  ? movie.number_of_seasons
+                  : ""
+              }
             ></SubDetails>
             <SubDetails
-              Title="Created by"
-              Value={"movie.created_by[0].name ? movie.created_by[0].name : "}
+              Title="Episodes"
+              Value={
+                movie.number_of_episodes != undefined
+                  ? movie.number_of_episodes
+                  : ""
+              }
+            ></SubDetails>
+            <SubDetails
+              Title="Genre(s)"
+              Value={movie.genres.map((genre) => {
+                return genre.name + " ";
+              })}
             ></SubDetails>
             <SubDetails
               Title="Production"
@@ -174,31 +190,39 @@ const Series = ({ params }) => {
                   ],
                 }}
               >
-                <DropdownItem key="1">Season 1</DropdownItem>
-                <DropdownItem key="2">Season 2</DropdownItem>
+                {movie.seasons.map((season) => {
+                  if (season.season_number != 0) {
+                    return (
+                      <DropdownItem key={season.season_number.toString()}>
+                        {season.name}
+                      </DropdownItem>
+                    );
+                  }
+                })}
+                {/* <DropdownItem key="1">Season 1</DropdownItem>
+                <DropdownItem key="2">Season 2</DropdownItem> */}
               </DropdownMenu>
             </Dropdown>
             <TriangleDownIcon />
           </div>
           <div className="flex flex-col w-64 mx-4 my-1 bg-secondary">
-            <div className="border-2 border-secondary p-2 rounded-sm">
-              Episode 1: Pilot
-            </div>
-            <div className="border-2 border-secondary p-2 rounded-sm bg-primary border-none text-white">
-              Episode 1: Pilot
-            </div>
-            <div className="border-2 border-secondary p-2 rounded-sm">
-              Episode 1: Pilot
-            </div>
-            <div className="border-2 border-secondary p-2 rounded-sm">
-              Episode 1: Pilot
-            </div>
-            <div className="border-2 border-secondary p-2 rounded-sm">
-              Episode 1: Pilot
-            </div>
-            <div className="border-2 border-secondary p-2 rounded-sm">
-              Episode 1: Pilot
-            </div>
+            {episodesData[parseInt(selectedValue) - 1].episodes.map((item) => {
+              return (
+                <div
+                  className={`border-2 border-secondary p-2 rounded-sm ${
+                    item.episode_number === episode
+                      ? "bg-primary text-white"
+                      : "bg-none text-black"
+                  } border-none cursor-pointer`}
+                  onClick={() => {
+                    setEpisode(item.episode_number);
+                    setVisible(true);
+                  }}
+                >
+                  Episode {item.episode_number}: {item.title}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
