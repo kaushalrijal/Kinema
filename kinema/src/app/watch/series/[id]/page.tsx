@@ -42,20 +42,16 @@ const Series = ({ params }) => {
 
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    getSeriesDetails(params.id)
-      .then((result) => {
-        const data = result;
-        setMovie(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getSeriesDetails(params.id).then((result) => {
+      const data = result;
+      setMovie(data);
+    });
 
     getEpisodes(params.id).then((result) => {
       const data = result;
       setEpisodesData(data);
     });
-  }, []);
+  }, [params.id]);
 
   if (!movie || !episodesData) return <div>Loading...</div>;
 
