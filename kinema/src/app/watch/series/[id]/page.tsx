@@ -156,6 +156,7 @@ const Series = ({ params }) => {
             ></SubDetails>
           </div>
         </div>
+        {/* dropdown */}
         <div className="basis-1/4 flex items-center flex-col bg-secondary p-4">
           <div className="bg-primary flex items-center text-white p-2 rounded-lg">
             <Dropdown content="border-2 border-black">
