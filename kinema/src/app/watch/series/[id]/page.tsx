@@ -41,10 +41,18 @@ const Series = ({ params }) => {
   );
 
   const [visible, setVisible] = useState(false);
+  const [productions, setProductions] = useState("");
   useEffect(() => {
     getSeriesDetails(params.id).then((result) => {
       const data = result;
       setMovie(data);
+      setProductions(
+        String(
+          data.production_companies.map((producer) => {
+            return ` ${producer.name}`;
+          })
+        )
+      );
     });
 
     getEpisodes(params.id).then((result) => {
@@ -54,12 +62,6 @@ const Series = ({ params }) => {
   }, [params.id]);
 
   if (!movie || !episodesData) return <div>Loading...</div>;
-
-  const productions = String(
-    movie.production_companies.map((producer) => {
-      return ` ${producer.name}`;
-    })
-  );
 
   return (
     <div>

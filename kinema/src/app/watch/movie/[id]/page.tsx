@@ -52,7 +52,9 @@ const Watch = async ({ params }: { params: { id: number } }) => {
               {Movie.spoken_languages[0].english_name}
             </span>
             <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
-              {Movie.production_countries[0].iso_3166_1}
+              {Movie.production_countries.length > 0
+                ? Movie.production_countries[0].iso_3166_1
+                : ""}
             </span>
             <span className="px-3 py-1 rounded-md bg-primary text-white items-center justify-center">
               TMDB: {Movie.vote_average.toFixed(1)}
