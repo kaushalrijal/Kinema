@@ -171,8 +171,10 @@ const Series = ({ params }) => {
                   color="primary"
                   disallowEmptySelection
                   selectionMode="single"
-                  selectedKeys={selectedSeason}
-                  onSelectionChange={() => setSelectedSeason}
+                  selectedKeys={selectedValue}
+                  onSelectionChange={(selectedSeason) =>
+                    setSelectedSeason(selectedSeason.valueOf.apply)
+                  }
                   itemClasses={{
                     base: [
                       "rounded-sm",
