@@ -191,7 +191,7 @@ const Series = ({ params }) => {
                 >
                   {movie.seasons.map((season) => {
                     return (
-                      <DropdownItem key={season.season_number}>
+                      <DropdownItem key={String(season.season_number)}>
                         {season.name}
                       </DropdownItem>
                     );
