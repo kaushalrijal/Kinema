@@ -26,12 +26,16 @@ const Navbar = () => {
           <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
         </Link>
         <div
-          className="md:hidden"
+          className="md:hidden p-2.5 "
           onClick={() => {
             setOpen(!isOpen);
           }}
         >
-          {isOpen ? <CloseSharp className="text-sm" /> : <HamburgerMenuIcon />}
+          {isOpen ? (
+            <CloseSharp className="text-lg" />
+          ) : (
+            <HamburgerMenuIcon className="text-lg" />
+          )}
         </div>
       </div>
       <div
@@ -63,14 +67,14 @@ const Navbar = () => {
       <div
         className={`flex justify-center items-center gap-2 my-2 mb-4 md:m-0 ${
           isOpen ? "visible" : "hidden"
-        } md:flex`}
+        } md:flex text-sm`}
       >
         <input
           type="search"
           className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary placeholder:text-xs"
           placeholder="Enter a movie/series title"
         />
-        <Search className="p-2 w-9 h-9 bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black" />
+        <Search className="p-[6px] lg:p-2 w-9 h-9 bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black" />
       </div>
     </div>
   );

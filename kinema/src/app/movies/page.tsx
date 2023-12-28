@@ -23,9 +23,19 @@ const Movie = async () => {
               <Card
                 Img={data.poster_path}
                 Type="Movie"
-                Title={data.original_title}
-                Date={data.release_date}
-                RunTime={data.vote_average}
+                Title={
+                  data.title
+                    ? data.title.length > 16
+                      ? data.title.slice(0, 16) + "..."
+                      : data.title
+                    : "Title"
+                }
+                Date={
+                  data.release_date ? data.release_date.slice(0, 4) : "Year"
+                }
+                RunTime={
+                  data.vote_average ? data.vote_average.toFixed(1) : "Rating"
+                }
               />
             </Link>
           );

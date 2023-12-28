@@ -74,7 +74,11 @@ const data = [
 export default function Home() {
   return (
     <main className="">
-      <Warning />
+      <Warning
+        message="This site is
+        currently under development, so most features aren't working, check
+        back soon :)"
+      />
       <Hero></Hero>
       <HCardDiv></HCardDiv>
       <div className="flex">
