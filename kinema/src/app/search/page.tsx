@@ -1,33 +1,61 @@
 import React from "react";
 import Card from "../components/card";
-import { getMovies } from "@/utils/request";
+import { getSearch } from "@/utils/request";
 import Link from "next/link";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 
 const Search = async ({ searchParams }) => {
   const searchText = searchParams.query;
-  const data = await getMovies(searchText);
+  const data = await getSearch(searchText);
+  console.log(data);
   return (
     <div className="p-6">
       <p className="text-2xl m-2">
-        Search Results for &apos;{searchText}&apos;
+        Search results for &apos;{searchText}&apos;
       </p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
-        {data.map((movie) => {
-          return (
-            <Link href={`/watch/movie/${movie.id}`} key={movie.id}>
-              <Card
-                Img={movie.poster_path}
-                Type={"MOVIE"}
-                Title={
-                  movie.title.length > 15
-                    ? movie.title.slice(0, 15)
-                    : movie.title
-                }
-                Date={movie.release_date.slice(0, 4)}
-                RunTime={movie.vote_average.toFixed(1)}
-              />
-            </Link>
-          );
+        {data.map((item) => {
+          if (item.media_type === "movie") {
+            return (
+              <Link href={`/watch/movie/${item.id}`} key={item.id}>
+                <Card
+                  Img={item.poster_path}
+                  Type={"MOVIE"}
+                  Title={
+                    item.title
+                      ? item.title.length > 15
+                        ? item.title.slice(0, 15) + "..."
+                        : item.title
+                      : ""
+                  }
+                  Date={item.release_date ? item.release_date.slice(0, 4) : ""}
+                  RunTime={item.vote_average.toFixed(1)}
+                />
+              </Link>
+            );
+          } else if (item.media_type === "tv") {
+            return (
+              <Link href={`/watch/series/${item.id}`} key={item.id}>
+                <Card
+                  Img={item.poster_path}
+                  Type={"SERIES"}
+                  Title={
+                    item.name
+                      ? item.name.length > 15
+                        ? item.name.slice(0, 15) + "..."
+                        : item.name
+                      : ""
+                  }
+                  Date={
+                    item.first_air_date ? item.first_air_date.slice(0, 4) : ""
+                  }
+                  RunTime={item.vote_average.toFixed(1)}
+                />
+              </Link>
+            );
+          } else {
+            return "";
+          }
         })}
       </div>
     </div>

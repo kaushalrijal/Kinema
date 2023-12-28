@@ -19,12 +19,18 @@ export const getTrendingMovies = async () => {
       return data.results
     }
 
-  export const getMovies = async (query) => {
-    const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
-    const data = await res.json();
-    return data.results;
-  }
-  
+    export const getMovies = async (query) => {
+      const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
+      const data = await res.json();
+      return data.results;
+    }
+    
+    export const getSearch = async (query) => {
+      const res = await fetch(`${BASE_URL}/search/multi?api_key=${API_KEY}&query=${query}`);
+      const data = await res.json();
+      return data.results;
+    }
+    
   export const getMovieDetails = async (id) => {
     const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
     const data = await res.json();
