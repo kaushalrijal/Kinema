@@ -115,7 +115,11 @@ const Series = ({ params }) => {
               ></SubDetails>
               <SubDetails
                 Title="Last Aired"
-                Value={movie.last_episode_to_air.air_date}
+                Value={
+                  movie.last_episode_to_air
+                    ? movie.last_episode_to_air.air_date
+                    : ""
+                }
               ></SubDetails>
               <SubDetails
                 Title="Seasons"
@@ -183,8 +187,16 @@ const Series = ({ params }) => {
                 className="flex bg-secondary my-4 text-black w-full justify-center p-2"
                 onClick={() => {
                   setVisible(true);
-                  setSelectedSeason(movie.last_episode_to_air.season_number);
-                  setEpisode(movie.last_episode_to_air.episode_number);
+                  setSelectedSeason(
+                    movie.last_episode_to_air
+                      ? movie.last_episode_to_air.season_number
+                      : 1
+                  );
+                  setEpisode(
+                    movie.last_episode_to_air
+                      ? movie.last_episode_to_air.episode_number
+                      : 1
+                  );
                 }}
               >
                 Watch last episode <ArrowRightCircleIcon className="p-1" />
