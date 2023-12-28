@@ -49,7 +49,9 @@ const Watch = async ({ params }: { params: { id: number } }) => {
           </h1>
           <div className="flex gap-4">
             <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
-              {Movie.spoken_languages[0].english_name}
+              {Movie.spoken_languages.length > 0
+                ? Movie.spoken_languages[0].english_name
+                : ""}
             </span>
             <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
               {Movie.production_countries.length > 0
