@@ -15,6 +15,8 @@ export default interface ShowData {
   backdrop_path: string;
   last_episode_to_air : {
     air_date: string;
+    season_number: number;
+    episode_number: number;
   }
   origin_country : [
     string

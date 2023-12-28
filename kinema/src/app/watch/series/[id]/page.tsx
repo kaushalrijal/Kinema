@@ -4,18 +4,17 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import SubDetails from "../../movie/subdetails";
 
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-  Button,
-} from "@nextui-org/react";
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import { getEpisodes, getSeriesDetails } from "@/utils/request";
 import ShowData from "./types";
 import { error } from "console";
+import Dropdown from "./dropdown";
+import {
+  ArrowBigRightDash,
+  ArrowRight,
+  ArrowRightCircleIcon,
+} from "lucide-react";
+import { maxHeaderSize } from "http";
 
 const subdetails = [
   { title: "Released", detail: "2008-01-20" },
@@ -32,14 +31,9 @@ const subdetails = [
 
 const Series = ({ params }) => {
   const [movie, setMovie] = useState<ShowData | null>(null);
-  const [selectedSeason, setSelectedSeason] = useState(new Set(["1"]));
+  const [selectedSeason, setSelectedSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
   const [episodesData, setEpisodesData] = useState(null);
-
-  const selectedValue = React.useMemo(
-    () => Array.from(selectedSeason).join(", ").replaceAll("_", " "),
-    [selectedSeason]
-  );
 
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -68,9 +62,8 @@ const Series = ({ params }) => {
             className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
           ></Image>
           <iframe
-            // src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedValue}-${episode}`}
+            src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedSeason}-${episode}`}
             // src={`https://vidsrc.me/embed/tv?tmdb=${params.id}&season=${selectedValue}&episode=${episode}`}
-            src="https://vidsrc.me/embed/tv?tmdb=84105&season=2&episode=3"
             className={`w-full h-full z-50 object-contain ${
               visible ? "block" : "hidden"
             }`}
@@ -152,79 +145,50 @@ const Series = ({ params }) => {
               ></SubDetails>
             </div>
           </div>
-          {/* dropdown */}
-          <div className="basis-1/4 flex items-center flex-col bg-secondary p-4">
-            <div className="bg-primary flex items-center text-white p-2 rounded-lg">
-              <Dropdown content="border-2 border-black">
-                <DropdownTrigger>
-                  <Button
-                    variant="solid"
-                    className="capitalize"
-                    color="primary"
-                  >
-                    Season {selectedSeason}
-                  </Button>
-                </DropdownTrigger>
-                <DropdownMenu
-                  aria-label="Single selection example"
-                  variant="solid"
-                  color="primary"
-                  disallowEmptySelection
-                  selectionMode="single"
-                  selectedKeys={selectedValue}
-                  onSelectionChange={(selectedSeason) =>
-                    setSelectedSeason(selectedSeason.valueOf.apply)
-                  }
-                  itemClasses={{
-                    base: [
-                      "rounded-sm",
-                      "text-default-500",
-                      "transition-opacity",
-                      "bg-secondary",
-                      "border-2 border-black",
-                      "data-[hover=true]:text-white",
-                      "data-[hover=true]:bg-primary",
-                      "dark:data-[hover=true]:bg-default-50",
-                      "data-[selectable=true]:focus:bg-default-50",
-                      "data-[pressed=true]:opacity-70",
-                      "data-[focus-visible=true]:ring-default-500",
-                    ],
-                  }}
-                >
-                  {movie.seasons.map((season) => {
-                    return (
-                      <DropdownItem key={String(season.season_number)}>
-                        {season.name}
-                      </DropdownItem>
-                    );
-                  })}
-                  {/* <DropdownItem key="1">Season 1</DropdownItem>
-                <DropdownItem key="2">Season 2</DropdownItem> */}
-                </DropdownMenu>
-              </Dropdown>
-              <TriangleDownIcon />
-            </div>
-            <div className="flex flex-col w-64 mx-4 my-1 bg-secondary">
-              {movie.seasons.map((item) => {
-                let count = 0;
-                count++;
-                return (
-                  <div
-                    className={`border-2 border-secondary p-2 rounded-sm ${
-                      item.episode_count === episode
-                        ? "bg-primary text-white"
-                        : "bg-none text-black"
-                    } border-none cursor-pointer lg:flex md:grid md:grid-cols-2`}
-                    onClick={() => {
-                      setEpisode(count);
-                      setVisible(true);
-                    }}
-                    key={count}
-                  >
-                    Episode {count}
-                  </div>
-                );
-              })}
+          <div>
+            {/* dropdown */}
+            <Dropdown />
+            <div>
+              Season:
+              <input
+                type="number"
+                className="bg-secondary p-2 w-12 rounded-md m-2"
+                placeholder="1"
+                value={selectedSeason}
+                onChange={(event) => {
+                  setSelectedSeason(parseInt(event.target.value));
+                }}
+                max={movie.number_of_seasons}
+              />
+              Episode:
+              <input
+                type="number"
+                className="bg-secondary p-2 w-12 rounded-md m-2"
+                placeholder="1"
+                value={episode}
+                onChange={(event) => {
+                  setEpisode(parseInt(event.target.value));
+                }}
+                max={movie.seasons[selectedSeason - 1].episode_count}
+              />
+              <button
+                className="flex bg-primary text-white w-full justify-center p-2"
+                onClick={() => {
+                  setVisible(true);
+                }}
+              >
+                Watch <ArrowRightCircleIcon className="p-1" />
+              </button>
+              <button
+                className="flex bg-secondary my-4 text-black w-full justify-center p-2"
+                onClick={() => {
+                  setVisible(true);
+                  setSelectedSeason(movie.last_episode_to_air.season_number);
+                  setEpisode(movie.last_episode_to_air.episode_number);
+                }}
+              >
+                Watch last episode <ArrowRightCircleIcon className="p-1" />
+              </button>
             </div>
           </div>
         </div>
