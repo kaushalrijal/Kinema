@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { Close, CloseRounded, CloseSharp, Search } from "@mui/icons-material";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Menu } from "@mui/material";
+import { useRouter } from "next/navigation";
+import { SearchIcon } from "lucide-react";
 
 const navLinks = [
   { key: "1", path: "/", name: "Home" },
@@ -18,7 +20,17 @@ const navLinks = [
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (search.length > 0) {
+      router.push(`/search?query=${search}`);
+    }
+  };
+
   return (
     <div className="flex flex-col w-full md:h-16 h-auto bg-secondary md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
       <div className="flex flex-row items-center justify-between ">
@@ -64,18 +76,28 @@ const Navbar = () => {
           })}
         </ul>
       </div>
-      <div
-        className={`flex justify-center items-center gap-2 my-2 mb-4 md:m-0 ${
-          isOpen ? "visible" : "hidden"
-        } md:flex text-sm`}
-      >
-        <input
-          type="search"
-          className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary placeholder:text-xs"
-          placeholder="Enter a movie/series title"
-        />
-        <Search className="p-[6px] lg:p-2 w-9 h-9 bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black" />
-      </div>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div
+          className={`flex justify-center items-center gap-2 my-2 mb-4 md:m-0 ${
+            isOpen ? "visible" : "hidden"
+          } md:flex text-sm`}
+        >
+          <input
+            type="search"
+            className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary placeholder:text-xs"
+            placeholder="Enter a movie/series title"
+            onChange={(query) => {
+              setSearch(query.target.value);
+            }}
+          />
+          <button
+            type="submit"
+            className="p-[6px] text-xs lg:p-2 w-9 h-9 justify-center items-center flex bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black relative"
+          >
+            <SearchIcon className="h-5 w-5" />
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
