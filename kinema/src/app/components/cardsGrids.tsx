@@ -1,6 +1,6 @@
 import React from "react";
 import CardsFullDiv from "./cardCollectionFull";
-import { getTopRatedMovies, getTrendingMovies } from "@/utils/request";
+import { getTopRatedMovies, getTopRatedSeries } from "@/utils/request";
 
 const CardsGrid = () => {
   return (
@@ -10,8 +10,8 @@ const CardsGrid = () => {
         action={getTopRatedMovies}
       ></CardsFullDiv>
       <CardsFullDiv
-        section="Trending Movies"
-        action={getTrendingMovies}
+        section="Top Rated Series"
+        action={getTopRatedSeries}
       ></CardsFullDiv>
       {/* <CardsFullDiv section="Shows" data={data}></CardsFullDiv> */}
     </div>

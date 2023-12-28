@@ -36,12 +36,19 @@ export const getTrendingMovies = async () => {
     const data = await res.json();
     return data.results;
   }
+
   export const getTopRatedMovies = async () => {
     const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
     const data = await res.json();
     return data.results;
   }
   
+  export const getTopRatedSeries = async () => {
+    const res = await fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+  }
+
   export const discoverMovies = async () => {
     const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}`);
     const data = await res.json();
@@ -70,7 +77,13 @@ export const getTrendingMovies = async () => {
     const data = await res.json();
     return data.result
   }
-
+  
+  export const getAddedSeries = async () => {
+    const res = await fetch("https://vidsrc.xyz/tvshows/latest/page-1.json")
+    const data = await res.json();
+    return data.result
+    print(data.result);
+  }
   export const getEpisodes = async(id)=> {
     const url = `https://movies-api14.p.rapidapi.com/show/${id}`;
         const options = {

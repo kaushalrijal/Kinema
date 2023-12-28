@@ -70,8 +70,12 @@ const Card = (props: {
         </span>
         <strong className="group-hover:text-primary">{props.Title}</strong>
         <div className="flex justify-between">
-          <span key="date">{props.Date}</span>
-          <span key="runtime">{props.RunTime}</span>
+          <span key="date" className="md:text-base text-xs">
+            {props.Date}
+          </span>
+          <span key="runtime" className="md:text-base text-xs">
+            {props.RunTime}
+          </span>
         </div>
       </div>
     </>
