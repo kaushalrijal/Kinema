@@ -76,7 +76,7 @@ export default function Home() {
     <main className="">
       <Warning
         message="This site is
-        currently under development, so most features aren't working, check
+        currently under development, so some features aren't working, check
         back soon :)"
       />
       <Hero></Hero>
