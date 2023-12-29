@@ -7,13 +7,12 @@ import { StaticImport } from "next/dist/shared/lib/get-img-props";
 const Search = async ({ searchParams }) => {
   const searchText = searchParams.query;
   const data = await getSearch(searchText);
-  console.log(data);
   return (
     <div className="p-6">
       <p className="text-2xl m-2">
         Search results for &apos;{searchText}&apos;
       </p>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {data.map((item) => {
           if (item.media_type === "movie") {
             return (

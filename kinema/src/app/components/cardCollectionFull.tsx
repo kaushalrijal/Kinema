@@ -23,7 +23,7 @@ const CardsFullDiv = async (props: {
         {props.section}
       </span>
       <div
-        className={`grid 2xl:grid-cols-8 lg:grid-cols-4 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0`}
+        className={`grid 2xl:grid-cols-5 xl:grid-cols-4 xs:grid-cols-1 md:grid-cols-3 grid-cols-2 gap-0`}
       >
         {elements.map((item) =>
           item.title ? (
