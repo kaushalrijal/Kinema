@@ -15,6 +15,7 @@ import {
   ArrowRightCircleIcon,
 } from "lucide-react";
 import { maxHeaderSize } from "http";
+import Warning from "@/app/components/warning";
 
 const subdetails = [
   { title: "Released", detail: "2008-01-20" },
@@ -54,6 +55,7 @@ const Series = ({ params }) => {
     let seasons = movie.seasons.filter((season) => season.season_number !== 0);
     return (
       <div>
+        <Warning message="Some TV/Web shows are yet to be added and won't load right now. Check back soon :)" />
         <div className="w-full h-60 md:h-96 flex items-center justify-center bg-primary p-0 relative overflow-hidden">
           <Image
             src={`https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`}
@@ -84,7 +86,7 @@ const Series = ({ params }) => {
           ></Image>
         </div>
         <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
-          <div className="hidden md:flex basis-1/4">
+          <div className="hidden md:flex basis-1/4 w-1/4">
             <Image
               src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
               alt="movie poster"
@@ -93,7 +95,7 @@ const Series = ({ params }) => {
               className="w-auto lg:h-80 md:h-56 xl:h-96"
             ></Image>
           </div>
-          <div className="flex-col flex basis-1/2 gap-2">
+          <div className="flex-col flex basis-1/2 gap-2 w-1/2">
             <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">
               {movie.name}
             </h1>

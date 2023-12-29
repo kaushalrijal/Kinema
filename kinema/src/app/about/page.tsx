@@ -11,18 +11,19 @@ const Page = () => {
             About
           </h1>
           <p className="text-md md:text-xl p-1 md:p-6 lg:p-8 text-justify text-[#6b788b]">
-            Welcome to Kinema, your ultimate cinematic escape where the magic of
-            film unfolds. Immerse yourself in a curated collection ranging from
-            timeless classics to the latest releases, all offered in a spectrum
-            of qualities to suit your preferences. Language is no barrier here –
-            subtitles for a multitude of languages ensure everyone can connect
-            with the rich narratives. Our user-friendly platform is designed for
-            seamless navigation, making the exploration of hidden gems a
-            delightful experience. Kinema is not just a destination; it&apos;s a
-            vibrant community where movie enthusiasts converge, sharing
-            recommendations and engaging in discussions. Join us in celebrating
-            the diverse and enchanting world of cinema – your ticket to the
-            magic of film awaits.
+            "Welcome to Kinema! Step into a cinematic wonderland where the magic
+            of movies unfolds. Immerse yourself in a vast collection ranging
+            from timeless classics to the latest blockbuster hits, all available
+            in a spectrum of qualities to suit your preferences. Language is no
+            barrier here – subtitles in numerous languages ensure that everyone
+            can connect with rich narratives. Our user-friendly platform is
+            designed for seamless navigation, making the exploration of hidden
+            gems a delightful experience. Kinema is not merely a destination;
+            it's a vibrant community where movie enthusiasts converge. Share
+            your favorite recommendations, engage in lively discussions, and
+            discover new films that resonate with your taste. Join us in
+            celebrating the diverse and enchanting world of cinema – your ticket
+            to the magic of film awaits at Kinema!"
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 w-fit justify-between py-6 gap-2 md:p-6">

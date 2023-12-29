@@ -6,6 +6,7 @@ import { getMovieDetails, getSimilarMovies } from "@/utils/request";
 import VCardDiv from "@/app/components/cardCollectionV";
 import CardsFullDiv from "@/app/components/cardCollectionFull";
 import { Recommend } from "@mui/icons-material";
+import Warning from "@/app/components/warning";
 
 const Watch = async ({ params }: { params: { id: number } }) => {
   const tmdb_id = params.id;
@@ -31,6 +32,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
 
   return (
     <div>
+      <Warning message="Some movies are yet to be added and won't load. Please check back soon :)" />
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
       <div className="flex flex-col md:flex-row p-6 py-8 gap-6">
         <div className="hidden md:flex basis-1/4">
