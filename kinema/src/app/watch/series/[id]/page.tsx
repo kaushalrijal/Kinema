@@ -51,6 +51,7 @@ const Series = ({ params }) => {
         return ` ${producer.name}`;
       })
     );
+    let seasons = movie.seasons.filter((season) => season.season_number !== 0);
     return (
       <div>
         <div className="w-full h-60 md:h-96 flex items-center justify-center bg-primary p-0 relative overflow-hidden">
@@ -89,7 +90,7 @@ const Series = ({ params }) => {
               alt="movie poster"
               height={96}
               width={180}
-              className="w-auto h-auto object-contain"
+              className="w-auto lg:h-80 md:h-56 xl:h-96"
             ></Image>
           </div>
           <div className="flex-col flex basis-1/2 gap-2">
@@ -149,40 +150,35 @@ const Series = ({ params }) => {
               ></SubDetails>
             </div>
           </div>
-          <div>
+          <div className="lg:w-1/3 justify-center">
             {/* dropdown */}
-            <Dropdown />
+            <Dropdown
+              seasons={seasons}
+              selectedSeason={selectedSeason}
+              setSelectedSeason={setSelectedSeason}
+            />
             <div>
-              Season:
-              <input
-                type="number"
-                className="bg-secondary p-2 w-12 rounded-md m-2"
-                placeholder="1"
-                value={selectedSeason}
-                onChange={(event) => {
-                  setSelectedSeason(parseInt(event.target.value));
-                }}
-                max={movie.number_of_seasons}
-              />
-              Episode:
-              <input
-                type="number"
-                className="bg-secondary p-2 w-12 rounded-md m-2"
-                placeholder="1"
-                value={episode}
-                onChange={(event) => {
-                  setEpisode(parseInt(event.target.value));
-                }}
-                max={movie.seasons[selectedSeason - 1].episode_count}
-              />
-              <button
-                className="flex bg-primary text-white w-full justify-center p-2"
-                onClick={() => {
-                  setVisible(true);
-                }}
-              >
-                Watch <ArrowRightCircleIcon className="p-1" />
-              </button>
+              {selectedSeason && seasons[selectedSeason - 1] && (
+                <ul className="my-4">
+                  {Array.from(
+                    { length: seasons[selectedSeason - 1].episode_count },
+                    (_, index) => (
+                      <li
+                        key={index}
+                        className={`p-2 text-sm md:text-xs rounded-md cursor-pointer ${
+                          episode === index + 1
+                            ? "bg-primary text-white"
+                            : "bg secondary text-black"
+                        }`}
+                        onClick={() => {
+                          setEpisode(index + 1);
+                          setVisible(true);
+                        }}
+                      >{`Episode ${index + 1}`}</li>
+                    )
+                  )}
+                </ul>
+              )}
               <button
                 className="flex bg-secondary my-4 text-black w-full justify-center p-2"
                 onClick={() => {
