@@ -85,7 +85,7 @@ export default function Home() {
         <div>
           <CardsGrid />
         </div>
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex p-4">
           <VCardDiv customStyle=""></VCardDiv>
         </div>
       </div>

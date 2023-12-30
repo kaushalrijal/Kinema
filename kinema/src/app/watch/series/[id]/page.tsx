@@ -5,7 +5,11 @@ import Image from "next/image";
 import SubDetails from "../../movie/subdetails";
 
 import { TriangleDownIcon } from "@radix-ui/react-icons";
-import { getEpisodes, getSeriesDetails } from "@/utils/request";
+import {
+  getEpisodes,
+  getSeriesDetails,
+  getSimilarMovies,
+} from "@/utils/request";
 import ShowData from "./types";
 import { error } from "console";
 import Dropdown from "./dropdown";
@@ -16,6 +20,8 @@ import {
 } from "lucide-react";
 import { maxHeaderSize } from "http";
 import Warning from "@/app/components/warning";
+import Card from "@/app/components/card";
+import Link from "next/link";
 
 const subdetails = [
   { title: "Released", detail: "2008-01-20" },
@@ -34,6 +40,7 @@ const Series = ({ params }) => {
   const [movie, setMovie] = useState<ShowData | null>(null);
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
+
   const [episodesData, setEpisodesData] = useState(null);
 
   const [visible, setVisible] = useState(false);
