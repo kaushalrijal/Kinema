@@ -49,6 +49,12 @@ export const getTrendingMovies = async () => {
     const data = await res.json();
     return data.results;
   }
+  
+  export const getSimilarSeries = async (id) => {
+    const res = await fetch(`${BASE_URL}/tv/${id}/recommendations?api_key=${API_KEY}`);
+    const data = await res.json();
+    return data.results;
+  }
 
   export const getTopRatedMovies = async () => {
     const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);

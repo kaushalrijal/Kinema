@@ -9,6 +9,7 @@ import {
   getEpisodes,
   getSeriesDetails,
   getSimilarMovies,
+  getSimilarSeries,
 } from "@/utils/request";
 import ShowData from "./types";
 import { error } from "console";
@@ -22,6 +23,7 @@ import { maxHeaderSize } from "http";
 import Warning from "@/app/components/warning";
 import Card from "@/app/components/card";
 import Link from "next/link";
+import Recommendations from "./recommendations";
 
 const subdetails = [
   { title: "Released", detail: "2008-01-20" },
@@ -41,7 +43,7 @@ const Series = ({ params }) => {
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
 
-  const [episodesData, setEpisodesData] = useState(null);
+  const [recoms, setRecoms] = useState(null);
 
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -49,9 +51,16 @@ const Series = ({ params }) => {
       const data = result;
       setMovie(data);
     });
+
+    getSimilarSeries(params.id).then((result) => {
+      const data = result;
+      setRecoms(data);
+    });
   }, []);
 
   if (!movie) {
+    return <div>Loading...</div>;
+  } else if (!recoms) {
     return <div>Loading...</div>;
   } else {
     const productions = String(
@@ -93,7 +102,7 @@ const Series = ({ params }) => {
           ></Image>
         </div>
         <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
-          <div className="hidden md:flex basis-1/4 w-1/4">
+          <div className="hidden md:flex md:basis-1/4 w-1/4">
             <Image
               src={`https://www.themoviedb.org/t/p/original/${movie.poster_path}`}
               alt="movie poster"
@@ -102,7 +111,7 @@ const Series = ({ params }) => {
               className="w-auto lg:h-80 md:h-56 xl:h-96"
             ></Image>
           </div>
-          <div className="flex-col flex basis-1/2 gap-2 w-1/2">
+          <div className="flex-col flex md:basis-1/2 gap-2 md:w-1/2">
             <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">
               {movie.name}
             </h1>
@@ -159,6 +168,7 @@ const Series = ({ params }) => {
               ></SubDetails>
             </div>
           </div>
+          {/* Season selector */}
           <div className="lg:w-1/3 justify-center">
             {/* dropdown */}
             <Dropdown
@@ -209,6 +219,7 @@ const Series = ({ params }) => {
             </div>
           </div>
         </div>
+        <Recommendations data={recoms} />
       </div>
     );
   }
