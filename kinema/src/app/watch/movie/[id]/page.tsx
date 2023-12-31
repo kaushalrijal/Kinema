@@ -14,6 +14,26 @@ import SimilarMovies from "./similar";
 const Watch = async ({ params }: { params: { id: number } }) => {
   const tmdb_id = params.id;
   const Movie = await getMovieDetails(tmdb_id);
+
+  let production = "";
+  const productions = Movie.production_companies.map((producer) => {
+    return (production = producer.name + ", " + production);
+  });
+  const subdetails = [
+    { title: "Year", detail: Movie.release_date.slice(0, 4) },
+    {
+      title: "Genre(s)",
+      detail: Movie.genres.map((genre) => {
+        return ` ` + genre.name;
+      }),
+    },
+    { title: "Duration", detail: Movie.runtime + " min" },
+    {
+      title: "Production",
+      detail: production.slice(0, production.length - 2),
+    },
+  ];
+
   const similarMovies = await getSimilarMovies(tmdb_id);
 
   return (
