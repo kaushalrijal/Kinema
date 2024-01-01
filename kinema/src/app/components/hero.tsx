@@ -48,7 +48,7 @@ export default async function Hero() {
             }/${random.id}`}
           >
             <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center mx-8 py-auto flex-wrap">
-              <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary">
+              <button className="block w-full rounded bg-[#1100b3] px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary hover:shadow-sm hover:shadow-black  ">
                 <PlayArrow />
                 Watch Now
               </button>
