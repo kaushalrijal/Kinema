@@ -59,7 +59,7 @@ const Card = (props: {
 
           <Image
             src={`http://image.tmdb.org/t/p/w500/${props.Img}`}
-            alt="labalaba"
+            alt="Movie Poster"
             width={196}
             height={196}
             className="w-80 rounded-md flex"

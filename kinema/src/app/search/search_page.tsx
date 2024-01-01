@@ -13,11 +13,11 @@ const SearchPage = (props) => {
   }, [movies]);
 
   const filterMovies = (filter) => {
-    let sortedMovies = [];
+    let sortedMovies = [null];
     switch (filter) {
       case "Release Date":
         sortedMovies = [...movies].sort(
-          (a, b) => new Date(b.release_date) - new Date(a.release_date)
+          (a, b) => +new Date(b.release_date) - +new Date(a.release_date)
         );
         break;
 
