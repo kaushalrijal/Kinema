@@ -74,7 +74,7 @@ export default function Example(props) {
   const [selected, setSelected] = useState(people[3]);
 
   return (
-    <Listbox value={selected} onChange={props.setSelectedSeason}>
+    <Listbox value={props.selectedSeason} onChange={props.setSelectedSeason}>
       {({ open }) => (
         <>
           <Listbox.Label className="block text-lg font-medium leading-6 text-gray-900">
