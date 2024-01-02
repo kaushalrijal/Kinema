@@ -79,7 +79,7 @@ export default function Home() {
         currently under development, so some features aren't working, check
         back soon :)"
       />
-      <Hero></Hero>
+      <Hero />
       <HCardDiv></HCardDiv>
       <div className="flex">
         <div>
