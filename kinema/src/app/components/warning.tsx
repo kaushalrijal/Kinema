@@ -8,7 +8,7 @@ const Warning = (props) => {
   const [visible, setVisible] = useState("visible");
   return (
     <div
-      className={`flex items-center justify-between p-2 text-sm w-full text-white  bg-[#ff5555] ${visible}`}
+      className={`flex items-center justify-between p-2 text-sm w-full text-white  bg-[#901f1f] ${visible}`}
     >
       <div className="" role="alert">
         <span className="font-medium">ATTENTION PLEASE!</span> {props.message}
