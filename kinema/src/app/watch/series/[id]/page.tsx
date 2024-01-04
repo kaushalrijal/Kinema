@@ -79,6 +79,7 @@ const Series = ({ params }) => {
             height={512}
             width={512}
             className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
+            unoptimized
           ></Image>
           <iframe
             src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedSeason}-${episode}`}
@@ -99,6 +100,7 @@ const Series = ({ params }) => {
             onClick={() => {
               setVisible(true);
             }}
+            unoptimized
           ></Image>
         </div>
         <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
@@ -109,6 +111,7 @@ const Series = ({ params }) => {
               height={96}
               width={180}
               className="w-auto lg:h-80 md:h-56 xl:h-96"
+              unoptimized
             ></Image>
           </div>
           <div className="flex-col flex md:basis-1/2 gap-2 md:w-1/2">

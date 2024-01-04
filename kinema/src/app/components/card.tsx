@@ -55,6 +55,7 @@ const Card = (props: {
             height={196}
             className="w-80 rounded-md absolute hidden group-hover:flex"
             alt="overlay laba"
+            unoptimized
           ></Image>
 
           <Image
@@ -63,6 +64,7 @@ const Card = (props: {
             width={196}
             height={196}
             className="w-80 rounded-md flex"
+            unoptimized
           ></Image>
         </div>
         <span className="border p-0.5 rounded-md group-hover:bg-primary group-hover:text-teal-100 w-fit">

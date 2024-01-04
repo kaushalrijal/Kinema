@@ -14,6 +14,7 @@ const WatchMovie = (props) => {
         height={512}
         width={512}
         className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
+        unoptimized
       ></Image>
       <iframe
         src={`https://v2.vidsrc.me/embed/${props.tmdb_id}/color-1000B3`}
@@ -34,6 +35,7 @@ const WatchMovie = (props) => {
         onClick={() => {
           setVisible(true);
         }}
+        unoptimized
       ></Image>
     </div>
   );

@@ -51,6 +51,8 @@ const Watch = async ({ params }: { params: { id: number } }) => {
                 height={96}
                 width={180}
                 className="w-auto h-80"
+                unoptimized
+                loading="lazy"
               ></Image>
             </div>
 

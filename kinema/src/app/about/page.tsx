@@ -39,6 +39,7 @@ const Page = () => {
                   height={48}
                   width={48}
                   className="bg-secondary contents-center rounded-full border-slate-500 border-2 group-hover:border-primary"
+                  unoptimized
                 ></Image>
                 <div>
                   <h1 className="text-xl font-medium">Kaushal Rijal</h1>

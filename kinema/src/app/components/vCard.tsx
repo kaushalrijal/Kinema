@@ -52,8 +52,9 @@ const VCard = (props: {
           src={`http://image.tmdb.org/t/p/w500/${props.poster}`}
           width={104}
           height={120}
-          alt="soe image"
+          alt="Poster"
           className="max-h-28 w-auto rounded-md min-w-80"
+          unoptimized
         ></Image>
       </div>
       <div>

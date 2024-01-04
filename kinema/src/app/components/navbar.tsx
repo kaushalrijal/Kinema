@@ -35,7 +35,12 @@ const Navbar = () => {
     <div className="flex flex-col w-full md:h-16 h-auto bg-secondary md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
       <div className="flex flex-row items-center justify-between ">
         <Link href="/">
-          <Image src={logo} alt="kinema logo" className={"h-[40px] w-auto"} />
+          <Image
+            src={logo}
+            alt="kinema logo"
+            className={"h-[40px] w-auto"}
+            unoptimized
+          />
         </Link>
         <div
           className="md:hidden p-2.5 "
