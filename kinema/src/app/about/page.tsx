@@ -100,7 +100,7 @@ const Page = () => {
                 />
               </label>
               <button
-                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-black hover:bg-gray-800"
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary "
                 type="submit"
               >
                 Submit
