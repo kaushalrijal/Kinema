@@ -114,6 +114,7 @@ const Movie = () => {
           }}
         ></Image>
       </div>
+      <div>Server</div>
       <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
         <div className="hidden md:flex basis-1/4">
           <Image
