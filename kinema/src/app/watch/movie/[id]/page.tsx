@@ -10,6 +10,7 @@ import Warning from "@/app/components/warning";
 import Link from "next/link";
 import Card from "@/app/components/card";
 import SimilarMovies from "./similar";
+import { Play } from "lucide-react";
 
 const Watch = async ({ params }: { params: { id: number } }) => {
   const tmdb_id = params.id;
@@ -40,12 +41,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
     <div>
       <Warning message="Some movies are yet to be added and won't load. Please check back soon :)" />
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
-      <div className="w-full px-8 py-4 flex itmes-center justify-center">
-        <p>
-          If the current server doesn't work try using a different server...
-          <div className="flex">Server Upcloud</div>
-        </p>
-      </div>
+
       <div className="flex flex-col md:flex-row p-6 py-8 gap-6 ">
         <div className="lg:w-4/5">
           <div className="flex">
