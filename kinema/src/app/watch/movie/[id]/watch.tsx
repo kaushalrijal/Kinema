@@ -35,7 +35,7 @@ const WatchMovie = (props) => {
           alt="cover"
           height={512}
           width={512}
-          className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
+          className="w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
           unoptimized
         ></Image>
         <iframe
@@ -64,7 +64,7 @@ const WatchMovie = (props) => {
         <p>
           If the current server doesn't work try using a different server...
         </p>
-        <div className="flex flex-row gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full my-4">
           {servers.map((server, i) => {
             return (
               <div
@@ -79,7 +79,7 @@ const WatchMovie = (props) => {
                 onClick={() => setSelectedServer(i)}
               >
                 <Play></Play>
-                <div className="flex flex-col fill-primary">
+                <div className="flex flex-row sm:flex-col fill-primary">
                   Server <span>{server.name}</span>
                 </div>
               </div>
