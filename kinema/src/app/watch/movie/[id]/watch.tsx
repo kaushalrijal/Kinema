@@ -26,7 +26,7 @@ const WatchMovie = (props) => {
   ];
   const [visible, setVisible] = useState(false);
   const [selectedServer, setSelectedServer] = useState(0);
-  const [serverUrl, setCurrentUrl] = useState(servers[selectedServer]);
+  let serverUrl = servers[selectedServer].url;
   return (
     <>
       <div className="w-full h-64 md:h-[420px] flex items-center justify-center bg-primary p-0 relative overflow-hidden">
@@ -39,7 +39,7 @@ const WatchMovie = (props) => {
           unoptimized
         ></Image>
         <iframe
-          src={`https://v2.vidsrc.me/embed/${props.tmdb_id}/color-1000B3`}
+          src={serverUrl}
           // src={`https://vidsrc.to/embed/movie/${props.tmdb_id}`}
           className={`w-full h-full content-strech z-50 ${
             visible ? "block" : "hidden"
