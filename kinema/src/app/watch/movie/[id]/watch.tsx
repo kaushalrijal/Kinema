@@ -65,7 +65,7 @@ const WatchMovie = (props) => {
           If the current server doesn't work try using a different server...
         </p>
         <div className="flex flex-row gap-4">
-          {servers.map((server) => {
+          {servers.map((server, i) => {
             return (
               <div
                 className={`flex flex-row items-center justify-center border-2 border-primary p-2 rounded-md gap-4 text-${
@@ -74,7 +74,9 @@ const WatchMovie = (props) => {
                     : "primary"
                 } bg-${
                   servers[selectedServer].name === server.name ? "primary" : ""
-                }`}
+                } cursor-pointer`}
+                key={server.url}
+                onClick={() => setSelectedServer(i)}
               >
                 <Play></Play>
                 <div className="flex flex-col fill-primary">
