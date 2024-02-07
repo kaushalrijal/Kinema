@@ -104,7 +104,8 @@ const Series = ({ params }) => {
             unoptimized
           ></Image>
           <iframe
-            src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedSeason}-${episode}`}
+            src={servers[selectedServer].url}
+            // src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedSeason}-${episode}`}
             // src={`https://vidsrc.me/embed/tv?tmdb=${params.id}&season=${selectedValue}&episode=${episode}`}
             className={`w-full h-full z-50 object-contain ${
               visible ? "block" : "hidden"
