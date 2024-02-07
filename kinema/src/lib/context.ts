@@ -1,5 +1,5 @@
-// import React from "react"
+// A program to demonstrate the use of global context in a program
 
-// const AppContext = React.createContext();
-
-// export default AppContext
+function daysBetweenDates(begin, end){
+    return Math.round((end - begin) / (1000 * 60 * 60 * 24));
+}
