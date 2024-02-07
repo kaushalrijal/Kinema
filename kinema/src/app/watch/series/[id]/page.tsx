@@ -129,7 +129,7 @@ const Series = ({ params }) => {
         {/*A section to select servers */}
         <div className="w-full flex items-center justify-center flex-col pt-4">
           If the current server doesn't work, try using a different server...
-          <div className="grid grid-cols-4 px-6 gap-4 my-4 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-4 my-4 w-full">
             {servers.map((server, i) => {
               return (
                 <div
