@@ -18,6 +18,7 @@ import {
   ArrowBigRightDash,
   ArrowRight,
   ArrowRightCircleIcon,
+  Play,
 } from "lucide-react";
 import { maxHeaderSize } from "http";
 import Warning from "@/app/components/warning";
@@ -43,7 +44,28 @@ const Series = ({ params }) => {
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
 
+  const [selectedServer, setSelectedServer] = useState(0);
+
   const [recoms, setRecoms] = useState(null);
+
+  const servers = [
+    {
+      name: "VidSrc1",
+      url: `https://vidsrc.me/embed/tv?tmdb=${params.id}&season=${selectedSeason}&episode=${episode}`,
+    },
+    {
+      name: "VidSrc2",
+      url: `https://vidsrc.xyz/embed/tv?tmdb=${params.id}&season=${selectedSeason}&episode=${episode}`,
+    },
+    {
+      name: "Superembed",
+      url: `https://multiembed.mov/directstream.php?video_id=${params.id}&tmdb=1&s=${selectedSeason}&e=${episode}`,
+    },
+    {
+      name: "Smashystream",
+      url: `https://embed.smashystream.com/playere.php?tmdb=${params.id}&season=${selectedSeason}&episode=${episode}`,
+    },
+  ];
 
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -102,6 +124,28 @@ const Series = ({ params }) => {
             }}
             unoptimized
           ></Image>
+        </div>
+        {/*A section to select servers */}
+        <div className="w-full flex items-center justify-center flex-col pt-4">
+          If the current server doesn't work, try using a different server...
+          <div className="grid grid-cols-4 px-6 gap-4 my-4 w-full">
+            {servers.map((server, i) => {
+              return (
+                <div
+                  className={`flex items-center justify-center border-2 p-2 rounded-md gap-4 border-primary text-${
+                    selectedServer === i ? "white" : "primary"
+                  } bg-${selectedServer === i ? "primary" : ""} cursor-pointer`}
+                  key={server.url}
+                  onClick={() => setSelectedServer(i)}
+                >
+                  <Play></Play>
+                  <div className="flex flex-col">
+                    Server <span>{server.name}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="flex flex-col-reverse md:flex-row p-6 py-8 gap-6">
           <div className="hidden md:flex md:basis-1/4 w-1/4">
