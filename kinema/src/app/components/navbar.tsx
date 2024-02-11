@@ -94,6 +94,7 @@ const Navbar = () => {
             onChange={(query) => {
               setSearch(query.target.value);
             }}
+            required
           />
           <button
             type="submit"
