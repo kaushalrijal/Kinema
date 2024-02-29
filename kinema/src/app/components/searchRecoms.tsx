@@ -9,7 +9,7 @@ const Recomm = (props) => {
         {props.results.map((result) => {
           return (
             <Link href={`/watch/movie/${result.id}`} key={result.id}>
-              <div className="bg-secondary text-black p-1 rounded-sm  text-xs w-full flex justify-between items-center">
+              <div className="bg-secondary text-black py-2 px-4 rounded-sm  text-xs w-full flex justify-between items-center">
                 <span>
                   {result.media_type == "movie" ? result.title : result.name}
                 </span>
