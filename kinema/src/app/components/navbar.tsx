@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../img/logo.png";
@@ -10,6 +10,8 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { Menu } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "lucide-react";
+import Recomm from "./searchRecoms";
+import { getSearch } from "@/utils/request";
 
 const navLinks = [
   { key: "1", path: "/", name: "Home" },
@@ -21,8 +23,19 @@ const navLinks = [
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+  const [recommendations, setRecommendations] = useState([]);
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    getSearch(search).then((result) => {
+      const filteredResult = result.filter((x) => {
+        return x.media_type == "movie" || x.media_type == "tv";
+      });
+      setRecommendations(filteredResult);
+      console.log(result);
+    });
+  }, [search]);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -83,25 +96,32 @@ const Navbar = () => {
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div
-          className={`flex justify-center items-center gap-2 my-2 mb-4 md:m-0 ${
+          className={`flex flex-col h-fit sm:h-auto  mb-4 md:m-0 relative ${
             isOpen ? "visible" : "hidden"
           } md:flex text-sm`}
         >
-          <input
-            type="search"
-            className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary placeholder:text-xs"
-            placeholder="Enter a movie/series title"
-            onChange={(query) => {
-              setSearch(query.target.value);
-            }}
-            required
-          />
-          <button
-            type="submit"
-            className="p-[6px] text-xs lg:p-2 w-9 h-9 justify-center items-center flex bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black relative"
-          >
-            <SearchIcon className="h-5 w-5" />
-          </button>
+          <div className="flex justify-center items-center gap-2 my-2 mb-4 md:m-0">
+            <input
+              type="search"
+              className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring  placeholder:text-secondary placeholder:text-xs"
+              placeholder="Enter a movie/series title"
+              onChange={(query) => {
+                setSearch(query.target.value);
+              }}
+              required
+            />
+            <button
+              type="submit"
+              className="p-[6px] text-xs lg:p-2 w-9 h-9 justify-center items-center flex bg-primary text-white rounded-md hover:bg-white hover:text-primary cursor-pointer hover:border-2 border-black relative"
+            >
+              <SearchIcon className="h-5 w-5" />
+            </button>
+          </div>
+          {recommendations.length !== 0 && (
+            <div className={`sm:absolute top-10 z-10 w-full`}>
+              <Recomm results={recommendations.slice(0, 5)} />
+            </div>
+          )}
         </div>
       </form>
     </div>
