@@ -41,7 +41,7 @@ const WatchMovie = (props) => {
         <iframe
           src={serverUrl}
           // src={`https://vidsrc.to/embed/movie/${props.tmdb_id}`}
-          className={`w-full h-full content-strech z-50 ${
+          className={`w-full h-full content-strech z-40 ${
             visible ? "block" : "hidden"
           } absolute`}
           allowFullScreen

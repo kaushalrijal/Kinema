@@ -107,7 +107,7 @@ const Series = ({ params }) => {
             src={servers[selectedServer].url}
             // src={`https://vidsrc.xyz/embed/tv/${params.id}/${selectedSeason}-${episode}`}
             // src={`https://vidsrc.me/embed/tv?tmdb=${params.id}&season=${selectedValue}&episode=${episode}`}
-            className={`w-full h-full z-50 object-contain ${
+            className={`w-full h-full z-40 object-contain ${
               visible ? "block" : "hidden"
             }`}
             allow="fullscreen"

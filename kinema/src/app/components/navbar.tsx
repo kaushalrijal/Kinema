@@ -118,7 +118,7 @@ const Navbar = () => {
             </button>
           </div>
           {recommendations.length !== 0 && (
-            <div className={`sm:absolute top-10 z-10 w-full`}>
+            <div className={`sm:absolute top-10 z-50 w-full`}>
               <Recomm results={recommendations.slice(0, 5)} />
             </div>
           )}
