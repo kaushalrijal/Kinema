@@ -8,7 +8,12 @@ const Recomm = (props) => {
       <div className="flex flex-col gap-1">
         {props.results.map((result) => {
           return (
-            <Link href={`/watch/movie/${result.id}`} key={result.id}>
+            <Link
+              href={`/watch/${
+                result.media_type == "movie" ? "movie" : "series"
+              }/${result.id}`}
+              key={result.id}
+            >
               <div className="bg-secondary text-black py-2 px-4 rounded-sm  text-xs w-full flex justify-between items-center">
                 <span>
                   {result.media_type == "movie" ? result.title : result.name}
