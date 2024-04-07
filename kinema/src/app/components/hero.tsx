@@ -4,8 +4,8 @@ import { PlayArrow } from "@mui/icons-material";
 import Link from "next/link";
 
 const Hero = async () => {
-  const suggested = await getTrending();
-  const random = suggested[Math.floor(Math.random() * 20)];
+  let suggested = await getTrending();
+  let random = suggested[Math.floor(Math.random() * 20)];
   return (
     <section
       className={`relative  bg-cover bg-center bg-no-repeat w-full font-medium h-max-screen h-full pb-0 items-center justify-center`}
