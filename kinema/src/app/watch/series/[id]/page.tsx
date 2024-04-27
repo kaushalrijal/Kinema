@@ -6,7 +6,6 @@ import SubDetails from "../../movie/subdetails";
 
 import { TriangleDownIcon } from "@radix-ui/react-icons";
 import {
-  getEpisodes,
   getSeriesDetails,
   getSimilarMovies,
   getSimilarSeries,
