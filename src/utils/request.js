@@ -101,6 +101,5 @@ export const getAddedSeries = async () => {
     cache: "no-store",
   });
   const data = await res.json();
-  console.log(data.result);
   return data.result;
 };
