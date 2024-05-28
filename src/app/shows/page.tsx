@@ -11,7 +11,7 @@ import Link from "next/link";
 
 const Shows = async () => {
   const addedSeries = await getAddedSeries();
-  console.log(addedSeries);
+
   return (
     <div className="p-4">
       <strong className="mx-3 font-extrabold font-serif text-3xl">
