@@ -11,14 +11,16 @@ import Link from "next/link";
 
 const Shows = async () => {
   const addedSeries = await getAddedSeries();
+  console.log(addedSeries);
   return (
     <div className="p-4">
       <strong className="mx-3 font-extrabold font-serif text-3xl">
         Recently Added Series
       </strong>
       <div className="p-1 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-        {addedSeries.map(async (series) => {
+        {addedSeries.items.map(async (series) => {
           const data = await getSeriesDetails(series.tmdb_id);
+          if (!data.name) return null;
           return (
             <Link href={`/watch/series/${series.tmdb_id}`} key={data.id}>
               <Card

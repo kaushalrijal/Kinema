@@ -3,7 +3,8 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const getTrendingMovies = async () => {
   const res = await fetch(
-    `${BASE_URL}/trending/movie/week?language=en-US&api_key=${API_KEY}`
+    `${BASE_URL}/trending/movie/week?language=en-US&api_key=${API_KEY}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data.results;
@@ -11,7 +12,8 @@ export const getTrendingMovies = async () => {
 
 export const getTrendingSeries = async () => {
   const res = await fetch(
-    `${BASE_URL}/trending/tv/day?language=en-US&api_key=${API_KEY}`
+    `${BASE_URL}/trending/tv/day?language=en-US&api_key=${API_KEY}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data.results;
@@ -19,7 +21,8 @@ export const getTrendingSeries = async () => {
 
 export const getTrending = async () => {
   const res = await fetch(
-    `${BASE_URL}/trending/all/day?language=en-US&api_key=${API_KEY}`
+    `${BASE_URL}/trending/all/day?language=en-US&api_key=${API_KEY}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data.results;
@@ -94,8 +97,10 @@ export const getAddedMovies = async () => {
 };
 
 export const getAddedSeries = async () => {
-  const res = await fetch("https://vidsrc.xyz/tvshows/latest/page-1.json");
+  const res = await fetch("https://vidsrc.to/vapi/tv/add", {
+    cache: "no-store",
+  });
   const data = await res.json();
+  console.log(data.result);
   return data.result;
-  print(data.result);
 };
