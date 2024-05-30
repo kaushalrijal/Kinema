@@ -41,6 +41,7 @@ export default function RootLayout({
       </head>
       <body className="bg-white text-black font-['Roboto Condensed']">
         {children}
+        <Analytics />
       </body>
     </html>
   );
