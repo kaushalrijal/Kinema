@@ -11,10 +11,16 @@ import Link from "next/link";
 import Card from "@/app/components/card";
 import SimilarMovies from "./similar";
 import { Play } from "lucide-react";
+import Head from "next/head";
 
 const Watch = async ({ params }: { params: { id: number } }) => {
   const tmdb_id = params.id;
   const Movie = await getMovieDetails(tmdb_id);
+
+  const page_title = `Watch <span class="math-inline">${
+    Movie.title
+  } (${Movie.release_date.slice(0, 4)}) - Kinema`;
+  const page_description = `Watch ${Movie.title} movie stream, ${Movie.title} online movie download, watch ${Movie.title} online, ${Movie.title} watch online, ${Movie.title} free download, ${Movie.title} online streaming`;
 
   let production = "";
   const productions = Movie.production_companies.map((producer) => {
@@ -39,6 +45,10 @@ const Watch = async ({ params }: { params: { id: number } }) => {
 
   return (
     <div>
+      <Head>
+        <title>{page_title}</title>
+        <meta name="description" content={page_description} />
+      </Head>
       <Warning message="Some movies are yet to be added and won't load. Please check back soon :)" />
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
 
