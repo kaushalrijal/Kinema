@@ -79,6 +79,41 @@ const Series = ({ params }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (movie) {
+      document.title = `Watch ${movie.name} (${new Date(
+        movie.first_air_date
+      ).getFullYear()}) - Season: ${selectedSeason} Episode: ${episode} - Kinema`;
+      const metaDescription = document.querySelector(
+        "meta[name='description']"
+      );
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          "content",
+          `${movie.name} series stream,${movie.name} season ${selectedSeason}, ${movie.name} episode {episode}, ${movie.name} season ${selectedSeason} episode ${episode}, ${movie.name} s${selectedSeason}e${episode}, ${movie.name} online series download, watch ${movie.name} online, ${movie.name} watch online, ${movie.name} free download, ${movie.name} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${movie.name} show online`
+        );
+      } else {
+        const meta = document.createElement("meta");
+        meta.name = "description";
+        meta.content = `${movie.name} series stream,${movie.name} season ${selectedSeason}, ${movie.name} episode {episode}, ${movie.name} season ${selectedSeason} episode ${episode}, ${movie.name} s${selectedSeason}e${episode}, ${movie.name} online series download, watch ${movie.name} online, ${movie.name} watch online, ${movie.name} free download, ${movie.name} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${movie.name} show online`;
+        document.head.appendChild(meta);
+      }
+
+      const metaImage = document.querySelector("meta[property='og:image']");
+      if (metaImage) {
+        metaImage.setAttribute(
+          "content",
+          `https://www.themoviedb.org/t/p/original/${movie.poster_path}`
+        );
+      } else {
+        const meta = document.createElement("meta");
+        meta.name = "og:image";
+        meta.content = `https://www.themoviedb.org/t/p/original/${movie.poster_path}`;
+        document.head.appendChild(meta);
+      }
+    }
+  }, [movie, selectedSeason, episode]);
+
   if (!movie) {
     return <div>Loading...</div>;
   } else if (!recoms) {
