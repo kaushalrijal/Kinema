@@ -13,7 +13,7 @@ export async function generateMetadata({
   const { name, release_date } = series;
   const pageTitle = `Watch ${name} (${new Date(
     series.first_air_date
-  ).getFullYear()}) Kinema`;
+  ).getFullYear()}) - Kinema`;
   const pageDescription = `${name} series stream, ${name} online series download, watch ${name} online, ${name} watch online, ${name} free download, ${name} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${name} show online`;
 
   const openGraph = {
