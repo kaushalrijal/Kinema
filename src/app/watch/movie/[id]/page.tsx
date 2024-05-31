@@ -25,9 +25,21 @@ export async function generateMetadata({
   const pageTitle = `Watch ${title} (${year}) - Kinema`;
   const pageDescription = `${title} movie stream, ${title} online movie download, watch ${title} online, ${title} watch online, ${title} free download, ${title} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${title} movie online`;
 
+  const openGraph = {
+    type: "website",
+    url: `https://kinematv.vercel.app/watch/movie/${params.id}`,
+    images: [
+      {
+        url: `https://www.themoviedb.org/t/p/original/${movie.backdrop_path}`,
+        alt: `${movie.title} backdrop`,
+      },
+    ],
+  };
+
   return {
     title: pageTitle,
     description: pageDescription,
+    openGraph,
   };
 }
 
