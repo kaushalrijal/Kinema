@@ -8,6 +8,13 @@ import React from "react";
 import Card from "../components/card";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Movies - Kinema",
+  description: "Catch on the new releases and latest added movies on Kinema",
+};
+
 const Movie = async () => {
   const addedMovies = await getAddedMovies();
   return (
