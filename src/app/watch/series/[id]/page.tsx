@@ -95,7 +95,7 @@ const Series = ({ params }) => {
       } else {
         const meta = document.createElement("meta");
         meta.name = "description";
-        meta.content = `${movie.name} series stream,${movie.name} season ${selectedSeason}, ${movie.name} episode {episode}, ${movie.name} season ${selectedSeason} episode ${episode}, ${movie.name} s${selectedSeason}e${episode}, ${movie.name} online series download, watch ${movie.name} online, ${movie.name} watch online, ${movie.name} free download, ${movie.name} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${movie.name} show online`;
+        meta.content = `${movie.name} series stream,${movie.name} season ${selectedSeason}, ${movie.name} episode ${episode}, ${movie.name} season ${selectedSeason} episode ${episode}, ${movie.name} s${selectedSeason}e${episode}, ${movie.name} online series download, watch ${movie.name} online, ${movie.name} watch online, ${movie.name} free download, ${movie.name} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${movie.name} show online`;
         document.head.appendChild(meta);
       }
 
