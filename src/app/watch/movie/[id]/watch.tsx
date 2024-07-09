@@ -45,6 +45,7 @@ const WatchMovie = (props) => {
             visible ? "block" : "hidden"
           } absolute`}
           allowFullScreen
+          referrerPolicy="origin"
         />
         <Image
           src="/play.png"

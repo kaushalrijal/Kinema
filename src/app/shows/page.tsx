@@ -25,7 +25,7 @@ const Shows = async () => {
         Recently Added Series
       </strong>
       <div className="p-1 grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2">
-        {addedSeries.items.map(async (series) => {
+        {addedSeries.map(async (series) => {
           const data = await getSeriesDetails(series.tmdb_id);
           if (!data.name) return null;
           return (

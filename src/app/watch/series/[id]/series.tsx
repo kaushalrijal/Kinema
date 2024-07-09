@@ -145,6 +145,7 @@ const Series = ({ props }) => {
               visible ? "block" : "hidden"
             }`}
             allow="fullscreen"
+            referrerPolicy="origin"
           />
           <Image
             src="/play.png"

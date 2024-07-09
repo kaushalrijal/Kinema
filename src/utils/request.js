@@ -97,7 +97,7 @@ export const getAddedMovies = async () => {
 };
 
 export const getAddedSeries = async () => {
-  const res = await fetch("https://vidsrc.to/vapi/tv/add", {
+  const res = await fetch("https://vidsrc.xyz/tvshows/latest/page-15.json", {
     cache: "no-store",
   });
   const data = await res.json();
