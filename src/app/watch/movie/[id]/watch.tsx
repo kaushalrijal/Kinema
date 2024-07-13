@@ -9,11 +9,11 @@ const WatchMovie = (props) => {
   const servers = [
     {
       name: "VidSrc1",
-      url: `https://vidsrc.to/embed/movie/${props.tmdb_id}`,
+      url: `https://v2.vidsrc.me/embed/${props.tmdb_id}`,
     },
     {
       name: "VidSrc2",
-      url: `https://v2.vidsrc.me/embed/${props.tmdb_id}`,
+      url: `https://vidsrc.to/embed/movie/${props.tmdb_id}`,
     },
     {
       name: "Superembed",

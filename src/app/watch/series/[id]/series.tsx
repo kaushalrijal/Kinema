@@ -50,7 +50,7 @@ const Series = ({ props }) => {
   const servers = [
     {
       name: "VidSrc1",
-      url: `https://vidsrc.me/embed/tv?tmdb=${props.id}&season=${selectedSeason}&episode=${episode}`,
+      url: `https://vidsrc.to/embed/tv?tmdb=${props.id}&season=${selectedSeason}&episode=${episode}`,
     },
     {
       name: "VidSrc2",
