@@ -42,7 +42,7 @@ const Page = () => {
               <div className="flex items-center gap-4 group">
                 <Image
                   src="/profile.png"
-                  alt="Image of Kaushal The Great"
+                  alt="profile pic of the creator of this site"
                   height={48}
                   width={48}
                   className="bg-secondary contents-center rounded-full border-slate-500 border-2 group-hover:border-primary"
@@ -55,19 +55,15 @@ const Page = () => {
               </div>
             </Link>
             <p className="text-base md:text-sm lg:text-base text-justify my-8">
-              Meet Kaushal Rijal, a creative mind who wears many hats. Whether
-              he&apos;s simplifying your note-taking experience with Kodepad,
-              automating your WhatsApp messages for convenience, or bringing
-              people together through his Android chatting app, Khat,
-              Kaushal&apos;s knack for practical solutions shines through. Not
-              stopping there, he introduces you to Matthew, a digital assistant
-              that not only understands what you&apos;re saying but also tackles
-              those tricky math problems. And if that weren&apos;t enough,
-              Kaushal flexes his artistic muscles with a flair for Photoshop.
-              From coding to design, Kaushal&apos;s all about making things work
-              seamlessly, adding a touch of innovation to your day-to-day. Stick
-              around as he keeps bringing fresh ideas to life, one project at a
-              time.
+              I created this movie streaming site to learn Next.js and put my
+              newfound skills to the test. As a self-taught learner, I've tried
+              watching tutorials, but it wasn't until I built a real project
+              that things clicked. This site is the result of that effort. If
+              you're interested in contributing to the project or have
+              suggestions for improvements, I'd love to hear from you! Please
+              don't ask me to add any movies. Reach out to me to collaborate,
+              report bugs, or offer feedback. I'm open to input and excited to
+              see where this project takes us. Let's make it better together!
             </p>
           </div>
           <div className="border py-4 px-2 md:px-8 rounded-md">
