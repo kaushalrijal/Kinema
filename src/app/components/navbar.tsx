@@ -3,15 +3,14 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../img/logo.png";
 import { usePathname } from "next/navigation";
-import { Close, CloseRounded, CloseSharp, Search } from "@mui/icons-material";
+import {  CloseSharp,  } from "@mui/icons-material";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-import { Menu } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "lucide-react";
 import Recomm from "./searchRecoms";
 import { getSearch } from "@/utils/request";
+import Theme from "./Theme";
 
 const navLinks = [
   { key: "1", path: "/", name: "Home" },
@@ -45,15 +44,14 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-col w-full md:h-16 h-auto bg-secondary md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
+    <div className="flex flex-col w-full md:h-16 h-auto  bg-white dark:bg-[#181818] shadow-md dark:shadow-[#212121] md:flex-row justify-between px-8 md:items-center py-auto flex-wrap">
       <div className="flex flex-row items-center justify-between ">
         <Link href="/">
-          <Image
-            src={logo}
-            alt="kinema logo"
-            className={"h-[40px] w-auto"}
-            unoptimized
-          />
+       
+          <div className="text-lightprimary text-3xl font-bold dark:text-darkprimary">
+
+          KINEMA
+          </div>
         </Link>
         <div
           className="md:hidden p-2.5 "
@@ -62,9 +60,9 @@ const Navbar = () => {
           }}
         >
           {isOpen ? (
-            <CloseSharp className="text-lg" />
+            <CloseSharp className="text-lg text-black dark:text-white" />
           ) : (
-            <HamburgerMenuIcon className="text-lg" />
+            <HamburgerMenuIcon className="text-lg  text-black dark:text-white" />
           )}
         </div>
       </div>
@@ -83,9 +81,9 @@ const Navbar = () => {
                 href={navItem.path}
                 className={`${
                   isActive
-                    ? `bg-primary text-white`
-                    : `hover:bg-primary hover:text-white `
-                } md:px-1 md:py-0.5 p-1 rounded-sm w-full md:w-auto`}
+                    ? `text-white dark:bg-darkprimary bg-lightprimary dark:text-white`
+                    : `dark:hover:bg-darkprimary hover:bg-lightprimary hover:text-white dark:text-white dark:hover:text-white`
+                } md:px-1 md:py-0.5 p-1 rounded-sm  w-full md:w-auto`}
                 key={navItem.key}
               >
                 {navItem.name}
@@ -101,9 +99,11 @@ const Navbar = () => {
           } md:flex text-sm`}
         >
           <div className="flex justify-center items-center gap-2 my-2 mb-4 md:m-0">
+          <Theme />
+
             <input
               type="search"
-              className="block w-full rounded bg-[#1100b3] px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring  placeholder:text-secondary placeholder:text-xs"
+              className="block w-full rounded dark:bg-primary bg-lightprimary dark:bg-darkprimary px-6 py-2 text-sm font-medium text-white shadow focus:outline-none focus:ring  placeholder:text-secondary placeholder:text-xs"
               placeholder="Enter a movie/series title"
               onChange={(query) => {
                 setSearch(query.target.value);

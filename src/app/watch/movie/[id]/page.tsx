@@ -4,13 +4,8 @@ import SubDetails from "../subdetails";
 import WatchMovie from "./watch";
 import { getMovieDetails, getSimilarMovies } from "@/utils/request";
 import VCardDiv from "@/app/components/cardCollectionV";
-import CardsFullDiv from "@/app/components/cardCollectionFull";
-import { Recommend } from "@mui/icons-material";
 import Warning from "@/app/components/warning";
-import Link from "next/link";
-import Card from "@/app/components/card";
 import SimilarMovies from "./similar";
-import { Play } from "lucide-react";
 
 import { Metadata } from "next";
 
@@ -69,7 +64,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
   const similarMovies = await getSimilarMovies(tmdb_id);
 
   return (
-    <div>
+    <div className="bg-lightbg dark:bg-darkbg">
       <Warning message="Some movies are yet to be added and won't load. Please check back soon :)" />
       <WatchMovie tmdb_id={Movie.id} backdrop_path={Movie.backdrop_path} />
 
@@ -91,25 +86,25 @@ const Watch = async ({ params }: { params: { id: number } }) => {
 
             {/* Movie Details */}
             <div className="flex-col flex gap-2 md:w-2/3">
-              <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">
+              <h1 className="font-bold text-xl md:text-2xl lg:text-4xl text-black dark:text-white">
                 {Movie.title}
               </h1>
               <div className="flex gap-4">
-                <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
+                <span className="px-3 py-1 border-primary border-2 rounded-md text-primary text-black dark:text-white">
                   {Movie.spoken_languages.length > 0
                     ? Movie.spoken_languages[0].english_name
                     : ""}
                 </span>
-                <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
+                <span className="px-3 py-1 border-primary border-2 rounded-md text-primary text-black dark:text-white">
                   {Movie.production_countries.length > 0
                     ? Movie.production_countries[0].iso_3166_1
                     : ""}
                 </span>
-                <span className="px-3 py-1 rounded-md bg-primary text-white items-center justify-center">
+                <span className="px-3 py-1 rounded-md bg-primary text-black dark:text-white items-center justify-center">
                   TMDB: {Movie.vote_average.toFixed(1)}
                 </span>
               </div>
-              <p className="text-justify">{Movie.overview}</p>
+              <p className="text-justify text-black dark:text-white">{Movie.overview}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 justify-between">
                 {subdetails.map((detail) => {
                   return (
@@ -124,7 +119,7 @@ const Watch = async ({ params }: { params: { id: number } }) => {
             </div>
           </div>
           <hr className="mt-12" />
-          <SimilarMovies movies={similarMovies} />
+          <SimilarMovies movies={similarMovies}  className="text-black dark:text-white"/>
         </div>
         <div className=" w-1/5 hidden lg:flex">
           <VCardDiv customStyle={undefined} />

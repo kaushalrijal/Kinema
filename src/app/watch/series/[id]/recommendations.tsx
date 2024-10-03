@@ -6,7 +6,7 @@ const Recommendations = (props) => {
   return (
     <div>
       <hr className="mx-4 mb-6" />
-      <span className="text-3xl p-4">You may also like</span>
+      <span className="text-3xl p-4 ">You may also like</span>
       <div className="p-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full">
         {props.data.length === 0
           ? "OOPS No suggestions."

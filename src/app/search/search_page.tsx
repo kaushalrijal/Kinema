@@ -39,9 +39,9 @@ const SearchPage = (props) => {
 
   return (
     <div>
-      <div className="text-2xl m-2 flex justify-between items-center">
+      <div className="text-2xl m-2 flex justify-between items-center text-black dark:text-white">
         Search results for &apos;{props.searchText}&apos;
-        <span className="flex flex-col ">
+        <span className="flex flex-col  text-black dark:text-white">
           <Example setFilter={filterMovies} />
         </span>
       </div>

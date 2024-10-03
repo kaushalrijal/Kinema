@@ -61,7 +61,7 @@ const WatchMovie = (props) => {
           unoptimized
         ></Image>
       </div>
-      <div className="w-full px-8 py-4 flex items-center justify-center flex-col">
+      <div className="w-full px-8 py-4 flex items-center justify-center flex-col text-black dark:text-white">
         <p>
           If the current server doesn't work try using a different server...
         </p>
@@ -80,7 +80,7 @@ const WatchMovie = (props) => {
                 onClick={() => setSelectedServer(i)}
               >
                 <Play></Play>
-                <div className="flex flex-row sm:flex-col fill-primary">
+                <div className="flex flex-row sm:flex-col fill-primary text-black dark:text-white">
                   Server <span>{server.name}</span>
                 </div>
               </div>

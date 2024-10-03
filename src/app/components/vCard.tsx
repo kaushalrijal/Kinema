@@ -46,7 +46,7 @@ const VCard = (props: {
     | undefined;
 }) => {
   return (
-    <div className="flex flex-nowrap m-2 max-h-36 w-auto max-w-[320px] items-center bg-secondary rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out">
+    <div className="flex flex-nowrap m-2 max-h-36 w-auto max-w-[320px] items-center bg-lightbg dark:bg-darkbg rounded-md p-2 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out">
       <div className="static group">
         <Image
           src={`http://image.tmdb.org/t/p/w500/${props.poster}`}
@@ -58,15 +58,15 @@ const VCard = (props: {
         ></Image>
       </div>
       <div>
-        <h1 className="font-bold">{props.title}</h1>
+        <h1 className="font-bold text-black dark:text-white">{props.title}</h1>
         <div className="flex py-3 text-sm gap-2">
-          <span className="bg-primary text-white p-1 rounded-md">
+          <span className="bg-primary ext-black dark:text-white p-1 rounded-md">
             {props.year}
           </span>
-          <span className="bg-primary text-white p-1 rounded-md">
+          <span className="bg-primary ext-black dark:text-white p-1 rounded-md">
             {props.movie}
           </span>
-          <span className="bg-primary text-white p-1 rounded-md">
+          <span className="bg-primary ext-black dark:text-white p-1 rounded-md">
             {props.ratings}
           </span>
         </div>

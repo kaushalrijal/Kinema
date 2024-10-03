@@ -1,13 +1,12 @@
 import Hero from "./components/hero";
 import HCardDiv from "./components/cardCollectionH";
 import VCardDiv from "./components/cardCollectionV";
-import Warning from "./components/warning";
 import CardsGrid from "./components/cardsGrids";
 
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="dark:bg-darkbg bg-lightbg ">
       <Hero />
       <HCardDiv></HCardDiv>
       <div className="flex">
