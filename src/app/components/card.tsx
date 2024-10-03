@@ -47,7 +47,7 @@ const Card = (props: {
 }) => {
   return (
     <>
-      <div className="bg-gray-100  dark:bg-slate-950 md:h-md md:w-56 rounded-md m-2 p-1.5 flex shadow-md flex-col flex-initial gap-1 shadow-black dark:shadow-slate-300 group text-black dark:text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 duration-150 cursor-pointer">
+      <div className="bg-gray-100  dark:bg-slate-950 md:h-md md:w-56 rounded-md m-2 p-1.5 flex shadow-sm flex-col flex-initial gap-1 shadow-black dark:shadow-slate-500 group text-black dark:text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 duration-150 cursor-pointer">
         <div className="overflow-hidden max-w-80 relative">
           <Image
             src="/overlay.png"
