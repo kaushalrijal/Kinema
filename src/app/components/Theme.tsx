@@ -3,15 +3,20 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const Theme = () => {
-  const [theme, setTheme] = useState(() => {
+  const [theme, setTheme] = useState("light");
+
+  useEffect(() => {
     // Check theme from localStorage or system preference
     const savedTheme = localStorage.getItem("hs_theme");
-    if (savedTheme) return savedTheme;
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    return prefersDark ? "dark" : "light";
-  });
+    if (savedTheme) {
+      setTheme(savedTheme);
+    } else {
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      setTheme(prefersDark ? "dark" : "light");
+    }
+  }, []);
 
   useEffect(() => {
     const html = document.documentElement;
