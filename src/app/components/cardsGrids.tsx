@@ -13,7 +13,6 @@ const CardsGrid = () => {
         section="Top Rated Series"
         action={getTopRatedSeries}
       ></CardsFullDiv>
-      {/* <CardsFullDiv section="Shows" data={data}></CardsFullDiv> */}
     </div>
   );
 };

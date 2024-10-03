@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "./card";
 import Link from "next/link";
-import { getTrendingMovies } from "@/utils/request";
 
 const CardsFullDiv = async (props: {
   [x: string]: any;
@@ -19,7 +18,7 @@ const CardsFullDiv = async (props: {
   const elements = await props.action();
   return (
     <div className="p-3 ">
-      <span className="mx-3 font-extrabold font-serif text-3xl">
+      <span className="mx-3 font-extrabold font-serif text-3xl text-black dark:text-white">
         {props.section}
       </span>
       <div

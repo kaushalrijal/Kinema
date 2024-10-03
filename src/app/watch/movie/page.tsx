@@ -87,8 +87,8 @@ const data = [
 const Movie = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <div>
-      <div className="w-full h-60 md:h-96 flex items-center justify-center bg-primary p-0 relative overflow-hidden">
+    <div className="bg-lightbg dark:bg-darkbg">
+      <div className="w-full h-60 md:h-96 flex items-center justify-center bg-lightprimary p-0 relative overflow-hidden">
         <Image
           src="/movieBackground.png"
           alt="cover"

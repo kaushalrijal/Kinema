@@ -160,7 +160,7 @@ const Series = ({ props }) => {
           ></Image>
         </div>
         {/*A section to select servers */}
-        <div className="w-full flex items-center justify-center flex-col pt-4">
+        <div className="w-full flex items-center justify-center flex-col pt-4 text-black dark:text-white">
           If the current server doesn't work, try using a different server...
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 px-6 gap-4 my-4 w-full">
             {servers.map((server, i) => {
@@ -173,7 +173,7 @@ const Series = ({ props }) => {
                   onClick={() => setSelectedServer(i)}
                 >
                   <Play></Play>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col text-black dark:text-white">
                     Server <span>{server.name}</span>
                   </div>
                 </div>
@@ -193,21 +193,21 @@ const Series = ({ props }) => {
             ></Image>
           </div>
           <div className="flex-col flex md:basis-1/2 gap-2 md:w-1/2">
-            <h1 className="font-bold text-xl md:text-2xl lg:text-4xl">
+            <h1 className="font-bold text-xl md:text-2xl lg:text-4xl text-black dark:text-white">
               {movie.name}
             </h1>
             <div className="flex gap-4">
-              <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
+              <span className="px-3 py-1 border-primary border-2 rounded-md text-primary text-black dark:text-white">
                 {movie.original_language.toUpperCase()}
               </span>
               <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
                 {movie.origin_country[0]}
               </span>
-              <span className="px-3 py-1 rounded-md bg-primary text-white items-center justify-center">
+              <span className="px-3 py-1 rounded-md bg-primary items-center justify-center text-black dark:text-white">
                 TMDB: {movie.vote_average.toFixed(1)}
               </span>
             </div>
-            <p className="text-justify">{movie.overview}</p>
+            <p className="text-justify text-black dark:text-white">{movie.overview}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 justify-between">
               <SubDetails
                 Title="Released"
@@ -280,7 +280,7 @@ const Series = ({ props }) => {
                 </ul>
               )}
               <button
-                className="flex bg-secondary my-4 text-black w-full justify-center p-2"
+                className="flex bg-secondary my-4 text-black dark:text-white w-full justify-center p-2"
                 onClick={() => {
                   setVisible(true);
                   setSelectedSeason(

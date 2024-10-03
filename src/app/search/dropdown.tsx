@@ -1,6 +1,7 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import React from "react";
 
 const people = [
   {
@@ -33,17 +34,19 @@ export default function Example(props) {
     <Listbox value={selected} onChange={changeFilter}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block text-sm font-medium leading-6 text-gray-900">
+          <Listbox.Label className="block text-sm font-medium leading-6 text-black dark:text-white">
             Sort By
           </Listbox.Label>
           <div className="relative mt-2">
-            <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6">
+            <Listbox.Button className="relative w-full cursor-default rounded-md bg-lightbg dark:bg-darkbg py-1.5 pl-3 pr-10 text-left ttext-black dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-lightprimary  dark:focus:ring-darkprimary sm:text-sm sm:leading-6">
               <span className="flex items-center">
-                <span className="ml-3 block truncate">{selected.value}</span>
+                <span className="ml-3 block truncate text-black dark:text-white ">
+                  {selected.value}
+                </span>
               </span>
               <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
                 <ChevronsUpDownIcon
-                  className="h-5 w-5 text-gray-400"
+                  className="h-5 w-5 ttext-black dark:text-white"
                   aria-hidden="true"
                 />
               </span>
@@ -62,7 +65,7 @@ export default function Example(props) {
                     key={person.id}
                     className={({ active }) =>
                       classNames(
-                        active ? "bg-indigo-600 text-white" : "text-gray-900",
+                        active ? "bg-lightprimary dark:bg-darkprimary text-black dark:text-white text-white" : "text-gray-900",
                         "relative cursor-default select-none py-2 pl-3 pr-9"
                       )
                     }
@@ -84,11 +87,11 @@ export default function Example(props) {
                         {selected ? (
                           <span
                             className={classNames(
-                              active ? "text-white" : "text-indigo-600",
+                              active ? "text-white" : "text-lightprimary dark:text-darkprimary hover:text-white dark:hover:text-white",
                               "absolute inset-y-0 right-0 flex items-center pr-4"
                             )}
                           >
-                            <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                            <CheckIcon className="h-5 w-5 text-lightprimary dark:text-darkprimary hover:text-white dark:hover:text-white" aria-hidden="true" />
                           </span>
                         ) : null}
                       </>

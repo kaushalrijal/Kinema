@@ -6,8 +6,8 @@ import Link from "next/link";
 const VCardDiv = async (props: { customStyle: any }) => {
   const series = await getTrendingSeries();
   return (
-    <div className={` ${props.customStyle}`}>
-      <span className="m-3 font-extrabold font-serif text-2xl">
+    <div className={` ${props.customStyle} bg-lightbg dark:bg-darkbg` }>
+      <span className="m-3 font-extrabold font-serif text-2xl text-black dark:text-white">
         Trending Series
       </span>
       <div>

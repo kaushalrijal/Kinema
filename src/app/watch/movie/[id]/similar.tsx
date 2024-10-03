@@ -5,7 +5,7 @@ import React from "react";
 const SimilarMovies = (props) => {
   return (
     <div className="mt-8">
-      <span className="text-4xl font-bold">You may also like</span>
+      <span className="text-4xl font-bold text-black dark:text-white">You may also like</span>
       <div className="grid grid-cols-2 md:grid-3 lg:grid-cols-3 xl:grid-cols-4">
         {props.movies.length === 0
           ? "OOPS no suggestions."

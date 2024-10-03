@@ -47,7 +47,7 @@ const VCard = (props: {
 }) => {
   return (
     <div
-      className={`flex flex-nowrap m-2 min-h-[144px] max-h-48 w-auto min-w-[255px] max-w-[320px] relative content-end rounded-md p-0 gap-2 shadow-md shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out`}
+      className={`flex flex-nowrap m-2 min-h-[144px] max-h-48 w-auto min-w-[255px] max-w-[320px] relative content-end rounded-md p-0 gap-2 shadow-md  shadow-black group hover:bg-slate-300 cursor-pointer hover:scale-105 duration-75 delay-75 ease-in-out`}
     >
       <img
         src={`https://www.themoviedb.org/t/p/original/${props.posterPath}`}

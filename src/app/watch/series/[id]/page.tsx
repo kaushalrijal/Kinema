@@ -36,7 +36,7 @@ export async function generateMetadata({
 
 const page = ({ params }) => {
   return (
-    <div>
+    <div className="bg-lightbg dark:bg-darkbg">
       <Series props={params} />
     </div>
   );

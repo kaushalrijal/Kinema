@@ -3,9 +3,9 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="w-full h-lg justify-center items-center p-4 pr-8">
-      <b>Disclaimer</b>
-      <p className="text-justify">
+    <div className="w-full h-lg justify-center items-center p-4 pr-8 bg-white dark:bg-darkbg">
+      <b className="text-black dark:text-white">Disclaimer</b>
+      <p className="text-justify text-black dark:text-white">
         Kinema operates strictly within the bounds of legality, serving solely
         as a platform that provides links to external sites. We do not host any
         films or media files on our servers. As such, Kinema disclaims
@@ -15,7 +15,7 @@ const Footer = () => {
         relevant media file owners or hosting sites for resolution
       </p>
       <br />
-      Kinema | &copy; 2023 Kaushal Rijal
+      <p className="text-black dark:text-white">Kinema | &copy; 2023 Kaushal Rijal</p>
     </div>
   );
 };

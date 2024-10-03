@@ -1,11 +1,5 @@
-import {
-  Key,
-  PromiseLikeOfReactNode,
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-} from "react";
+
+
 import HCard from "./hCard";
 import { getTrendingMovies } from "@/utils/request";
 import Link from "next/link";
@@ -14,10 +8,10 @@ const HCardDiv = async () => {
   const movies = await getTrendingMovies();
   return (
     <div className="m-4 pr-15 md:flex flex-col">
-      <span className="m-3 font-extrabold font-serif text-3xl">
+      <span className="m-3 font-extrabold font-serif text-3xl text-black dark:text-white">
         Popular Now
       </span>
-      <div className="h-fit w-full overflow-x-scroll flex pr-6">
+      <div className="h-fit w-full overflow-x-scroll flex pr-6  ">
         {movies.map((movie) => {
           return (
             <Link key={movie.id} href={`watch/movie/${movie.id}`}>
