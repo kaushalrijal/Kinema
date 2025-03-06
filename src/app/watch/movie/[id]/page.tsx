@@ -9,11 +9,21 @@ import SimilarMovies from "./similar";
 
 import { Metadata } from "next";
 
+const UNAVAILABLE_MOVIES = [1144681, 1064486];
+
 export async function generateMetadata({
   params,
 }: {
   params: { id: number };
 }): Promise<Metadata> {
+  // Check if movie is unavailable first
+  if (UNAVAILABLE_MOVIES.includes(Number(params.id))) {
+    return {
+      title: "Content Not Available - Kinema",
+      description: "This content is currently not available on Kinema",
+    };
+  }
+
   const movie = await getMovieDetails(params.id);
   const { title, release_date } = movie;
   const year = release_date ? release_date.split("-")[0] : "";
@@ -39,7 +49,31 @@ export async function generateMetadata({
 }
 
 const Watch = async ({ params }: { params: { id: number } }) => {
-  const tmdb_id = params.id;
+  // Convert params.id to number for proper comparison
+  const tmdb_id = Number(params.id);
+  
+  // Check if movie is unavailable
+  if (UNAVAILABLE_MOVIES.includes(tmdb_id)) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-lightbg dark:bg-darkbg">
+        <div className="text-center p-8 max-w-lg mx-auto">
+          <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">
+            Content Not Available
+          </h1>
+          <p className="text-gray-600 dark:text-gray-400 mb-4">
+            We apologize, but this content is currently not available on our platform.
+          </p>
+          <a 
+            href="/"
+            className="text-primary dark:text-gray-50 hover:text-primary/80 underline"
+          >
+            Return to Home
+          </a>
+        </div>
+      </div>
+    );
+  }
+
   const Movie = await getMovieDetails(tmdb_id);
 
   let production = "";
