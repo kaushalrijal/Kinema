@@ -46,7 +46,7 @@ const Card: React.FC<CardProps> = ({ Img, Type, Title, Date, RunTime, onClick })
 
         {/* Poster Image */}
         <Image
-          src={`http://image.tmdb.org/t/p/w500/${Img}`}
+          src={`https://image.tmdb.org/t/p/w500/${Img}`}
           alt={`Poster for ${Title}`}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"

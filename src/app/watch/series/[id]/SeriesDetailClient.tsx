@@ -3,22 +3,26 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Card from "@/app/components/card";
+import Card from "@/components/ui/cards/card";
 import { Play } from "lucide-react";
+import { Show, Movie, SimilarResponse } from "@/types";
 
 // Assuming you have a type definition for Series data, or use `any` for now
 // import type { SeriesData } from "./types";
 
 interface SeriesDetailClientProps {
-  series: any; // Replace 'any' with actual type if available
-  similarSeries?: any; // Replace 'any' with actual type if available
+  series: Show & { seasons?: { season_number: number; episode_count: number; id: number }[]; genres?: { name: string }[]; production_companies?: { name: string }[]; spoken_languages?: { english_name: string }[]; origin_country?: string[]; number_of_seasons?: number; number_of_episodes?: number; };
+  similarSeries?: SimilarResponse; // Reverted type to expect SimilarResponse object
 }
 
 export default function SeriesDetailClient({
   series,
   similarSeries,
 }: SeriesDetailClientProps) {
-  const [selectedSeason, setSelectedSeason] = useState(series.seasons?.find((s: any) => s.season_number > 0)?.season_number || 1);
+
+  const [selectedSeason, setSelectedSeason] = useState(
+    series.seasons?.find((s) => s.season_number > 0)?.season_number || 1
+  );
   const [selectedEpisode, setSelectedEpisode] = useState(1);
   const [selectedServer, setSelectedServer] = useState(0);
   const [playerVisible, setPlayerVisible] = useState(false);
@@ -46,11 +50,11 @@ export default function SeriesDetailClient({
   }, [series, selectedSeason, selectedEpisode]);
 
   // Format genres and production companies
-  const genres = series.genres?.map((genre: any) => genre.name).join(", ") || "N/A";
-  const productionCompanies = series.production_companies?.map((producer: any) => producer.name).join(", ") || "N/A";
+  const genres = series.genres?.map((genre) => genre.name).join(", ") || "N/A";
+  const productionCompanies = series.production_companies?.map((producer) => producer.name).join(", ") || "N/A";
 
   // Filter out season 0 (specials) for typical season selection
-  const displaySeasons = series.seasons?.filter((season: any) => season.season_number > 0) || [];
+  const displaySeasons = series.seasons?.filter((season) => season.season_number > 0) || [];
 
   return (
     <div className="container py-8 space-y-12 min-h-screen">
@@ -114,7 +118,7 @@ export default function SeriesDetailClient({
                 }}
                 className="block w-32 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-lightprimary dark:focus:ring-darkprimary focus:border-lightprimary dark:focus:border-darkprimary sm:text-sm"
               >
-                {displaySeasons.map((season: any) => (
+                {displaySeasons.map((season) => (
                   <option key={season.id} value={season.season_number}>
                     Season {season.season_number}
                   </option>
@@ -135,7 +139,7 @@ export default function SeriesDetailClient({
                 className="block w-32 px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-md shadow-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-lightprimary dark:focus:ring-darkprimary focus:border-lightprimary dark:focus:border-darkprimary sm:text-sm"
               >
                 {/* Render options based on selected season's episode count */}
-                {Array.from({ length: series.seasons?.find((s: any) => s.season_number === selectedSeason)?.episode_count || 0 }, (_, i) => i + 1).map(episodeNum => (
+                {Array.from({ length: series.seasons?.find((s) => s.season_number === selectedSeason)?.episode_count || 0 }, (_, i) => i + 1).map(episodeNum => (
                   <option key={episodeNum} value={episodeNum}>
                     Episode {episodeNum}
                   </option>
@@ -164,13 +168,18 @@ export default function SeriesDetailClient({
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-darktext">{series.name}</h1>
           
           <div className="flex items-center flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <span>{series.first_air_date ? new Date(series.first_air_date).getFullYear() : "Year"}</span>
-            <span>•</span>
-            <span>{series.number_of_seasons ? `${series.number_of_seasons} Seasons` : "N/A"}</span>
-             <span>•</span>
-            <span>{series.number_of_episodes ? `${series.number_of_episodes} Episodes` : "N/A"}</span>
-             <span>•</span>
-            <span>{series.vote_average ? `TMDB: ${series.vote_average.toFixed(1)}` : "Rating N/A"}</span>
+            {series.first_air_date && (
+               <span className="badge">{new Date(series.first_air_date).getFullYear()}</span>
+            )}
+            {series.number_of_seasons && (
+               <span className="badge">{`${series.number_of_seasons} Seasons`}</span>
+            )}
+             {series.number_of_episodes && (
+               <span className="badge">{`${series.number_of_episodes} Episodes`}</span>
+            )}
+            {series.vote_average && (
+               <span className="badge">{`TMDB: ${series.vote_average.toFixed(1)}`}</span>
+            )}
           </div>
           
           <p className="text-lg text-gray-900 dark:text-darktext leading-relaxed">{series.overview}</p>
@@ -186,12 +195,12 @@ export default function SeriesDetailClient({
                    <span className="font-semibold">Production: </span>{productionCompanies}
                 </div>
              )}
-             {series.spoken_languages?.length > 0 && (
+             {series.spoken_languages && series.spoken_languages.length > 0 && (
                  <div>
-                   <span className="font-semibold">Language: </span>{series.spoken_languages[0].english_name}
+                   <span className="font-semibold">Language: </span>{series.spoken_languages[0]?.english_name}
                  </div>
              )}
-             {series.origin_country?.length > 0 && (
+             {series.origin_country && series.origin_country.length > 0 && (
                  <div>
                    <span className="font-semibold">Country: </span>{series.origin_country[0]}
                  </div>
@@ -201,21 +210,32 @@ export default function SeriesDetailClient({
       </section>
 
       {/* Similar Series */}
-      {similarSeries && similarSeries.results && similarSeries.results.length > 0 && (
+      {similarSeries?.results && similarSeries.results.length > 0 && (
          <section>
-            <h2 className="section-title">More Like This</h2>
+            <h2 className="section-title">You May Also Like</h2>
              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-               {similarSeries.results.map((similarShow: any) => (
-                  <Link href={`/watch/series/${similarShow.id}`} key={similarShow.id}>
+               {similarSeries.results.map((similarItem) => {
+                const mediaType = (similarItem as any).media_type === 'movie' ? 'movie' : 'series';
+                const href = `/watch/${mediaType}/${similarItem.id}`;
+                // Use optional chaining and default values for potentially missing properties
+                const title = (similarItem as Movie).title || (similarItem as Show).name || 'N/A';
+                const date = (similarItem as Movie).release_date || (similarItem as Show).first_air_date;
+                const year = date ? new Date(date).getFullYear() : "Year";
+                const runtime = similarItem.vote_average ? similarItem.vote_average.toFixed(1) + " Rating" : "Rating";
+                const cardTitle = title?.length > 24 ? title.slice(0, 24) + "…" : title;
+                 
+                return (
+                  <Link href={href} key={similarItem.id}>
                      <Card
-                        Img={similarShow.poster_path}
-                        Type="Series"
-                        Title={similarShow.name?.length > 24 ? similarShow.name.slice(0, 24) + "…" : similarShow.name}
-                        Date={similarShow.first_air_date ? new Date(similarShow.first_air_date).getFullYear() : "Year"}
-                        RunTime={similarShow.vote_average ? similarShow.vote_average.toFixed(1) + " Rating" : "Rating"}
+                        Img={similarItem.poster_path}
+                        Type={mediaType === 'movie' ? 'Movie' : 'Series'}
+                        Title={cardTitle}
+                        Date={year}
+                        RunTime={runtime}
                      />
                   </Link>
-               ))}
+                );
+              })}
             </div>
          </section>
       )}

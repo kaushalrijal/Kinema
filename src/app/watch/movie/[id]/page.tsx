@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getMovieDetails, getSimilarMovies } from "@/utils/request";
-import Card from "@/app/components/card";
+import Card from "@/components/ui/cards/card";
 import MoviePlayerClient from "./MoviePlayerClient";
+import { Movie, Show, MovieDetails, SimilarResponse } from "@/types";
 
 import { Metadata } from "next";
 
@@ -67,10 +68,17 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
   }
 
   // Fetch movie details and similar movies in parallel
-  const [movie, similarMovies] = await Promise.all([
-    getMovieDetails(tmdb_id),
-    getSimilarMovies(tmdb_id)
-  ]);
+  let movie: MovieDetails | undefined = undefined;
+  let similarMovies: SimilarResponse | undefined = undefined;
+
+  try {
+    [movie, similarMovies] = await Promise.all([
+      getMovieDetails(tmdb_id),
+      getSimilarMovies(tmdb_id)
+    ]);
+  } catch (error) {
+    console.error(`Error fetching movie details or similar content for ID ${tmdb_id}:`, error);
+  }
 
   if (!movie) {
      return (
@@ -87,37 +95,45 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
   }
 
   // Format production companies and genres
-  const productionCompanies = movie.production_companies.map((producer: any) => producer.name).join(", ");
-  const genres = movie.genres.map((genre: any) => genre.name).join(", ");
+  const productionCompanies = movie.production_companies?.map((producer: { name: string }) => producer.name).join(", ") || '';
+  const genres = movie.genres?.map((genre: { name: string }) => genre.name).join(", ") || '';
 
   return (
     <div className="container py-8 space-y-12 min-h-screen">
       {/* Player */}
-      <MoviePlayerClient tmdbId={movie.id} backdropPath={movie.backdrop_path} />
+      {movie.id && movie.backdrop_path && (
+         <MoviePlayerClient tmdbId={movie.id} backdropPath={movie.backdrop_path} />
+      )}
 
       {/* Main Content Area (Details) */}
       <div className="flex flex-col md:flex-row gap-8">
         {/* Poster */}
-        <div className="md:col-span-1 hidden md:flex justify-center relative w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] mx-auto md:mx-0 aspect-[2/3]">
-          <Image
-            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            alt={`${movie.title} poster`}
-            fill
-            className="object-cover rounded-lg shadow-lg"
-            priority
-          />
-        </div>
+        {movie.poster_path && (
+           <div className="md:col-span-1 hidden md:flex justify-center relative w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] mx-auto md:mx-0 aspect-[2/3]">
+            <Image
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={`${movie.title} poster`}
+              fill
+              className="object-cover rounded-lg shadow-lg"
+              priority
+            />
+          </div>
+        )}
 
         {/* Info */}
         <div className="md:col-span-2 space-y-6">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-darktext">{movie.title}</h1>
           
           <div className="flex items-center flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <span>{movie.release_date ? new Date(movie.release_date).getFullYear() : "Year"}</span>
-            <span>•</span>
-            <span>{movie.runtime ? `${movie.runtime} min` : "N/A"}</span>
-             <span>•</span>
-            <span>{movie.vote_average ? `TMDB: ${movie.vote_average.toFixed(1)}` : "Rating N/A"}</span>
+            {movie.release_date && (
+               <span className="badge">{new Date(movie.release_date).getFullYear()}</span>
+            )}
+            {movie.runtime && (
+               <span className="badge">{`${movie.runtime} min`}</span>
+            )}
+            {movie.vote_average && (
+               <span className="badge">{`TMDB: ${movie.vote_average.toFixed(1)}`}</span>
+            )}
           </div>
           
           <p className="text-lg text-gray-900 dark:text-darktext leading-relaxed">{movie.overview}</p>
@@ -133,12 +149,12 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
                    <span className="font-semibold">Production: </span>{productionCompanies}
                 </div>
              )}
-             {movie.spoken_languages.length > 0 && (
+             {movie.spoken_languages && movie.spoken_languages.length > 0 && (
                  <div>
                    <span className="font-semibold">Language: </span>{movie.spoken_languages[0].english_name}
                  </div>
              )}
-             {movie.production_countries.length > 0 && (
+             {movie.production_countries && movie.production_countries.length > 0 && (
                  <div>
                    <span className="font-semibold">Country: </span>{movie.production_countries[0].name}
                  </div>
@@ -148,21 +164,32 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
       </div>
 
       {/* Similar Movies */}
-      {similarMovies && similarMovies.results && similarMovies.results.length > 0 && (
+      {Array.isArray(similarMovies) && similarMovies.length > 0 && (
          <section>
-            <h2 className="section-title">More Like This</h2>
+            <h2 className="section-title">You May Also Like</h2>
              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-               {similarMovies.results.map((similarMovie: any) => (
-                  <Link href={`/watch/movie/${similarMovie.id}`} key={similarMovie.id}>
-                     <Card
-                        Img={similarMovie.poster_path}
-                        Type="Movie"
-                        Title={similarMovie.title?.length > 24 ? similarMovie.title.slice(0, 24) + "…" : similarMovie.title}
-                        Date={similarMovie.release_date ? new Date(similarMovie.release_date).getFullYear() : "Year"}
-                        RunTime={similarMovie.vote_average ? similarMovie.vote_average.toFixed(1) + " Rating" : "Rating"}
-                     />
-                  </Link>
-               ))}
+               {similarMovies.map((similarItem) => {
+                 const mediaType = (similarItem as any).media_type === 'tv' ? 'series' : 'movie';
+                 const href = `/watch/${mediaType}/${similarItem.id}`;
+                 // Use optional chaining and default values for potentially missing properties
+                 const title = (similarItem as Movie).title || (similarItem as Show).name || 'N/A';
+                 const date = (similarItem as Movie).release_date || (similarItem as Show).first_air_date;
+                 const year = date ? new Date(date).getFullYear() : "Year";
+                 const runtime = similarItem.vote_average ? similarItem.vote_average.toFixed(1) + " Rating" : "Rating";
+                 const cardTitle = title?.length > 24 ? title.slice(0, 24) + "…" : title;
+                 
+                 return (
+                   <Link href={href} key={similarItem.id}>
+                      <Card
+                         Img={similarItem.poster_path}
+                         Type={mediaType === 'movie' ? 'Movie' : 'Series'}
+                         Title={cardTitle}
+                         Date={year}
+                         RunTime={runtime}
+                      />
+                   </Link>
+                 );
+               })}
             </div>
          </section>
       )}

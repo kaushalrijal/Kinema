@@ -7,9 +7,9 @@ import { CloseSharp } from "@mui/icons-material";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/navigation";
 import { SearchIcon } from "lucide-react";
-import Recomm from "./searchRecoms";
+import Recomm from "@/components/carousel/searchRecoms";
 import { getSearch } from "@/utils/request";
-import Theme from "./Theme";
+import Theme from "@/components/ui/theme/Theme";
 
 const navLinks = [
   { key: "1", path: "/", name: "Home" },
@@ -22,19 +22,41 @@ const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [recommendations, setRecommendations] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    getSearch(search).then((result) => {
-      const filteredResult = result.filter((x) => {
-        return x.media_type == "movie" || x.media_type == "tv";
-      });
-      setRecommendations(filteredResult);
-    });
+    const fetchSearchResults = async () => {
+      if (!search.trim()) {
+        setRecommendations([]);
+        return;
+      }
+
+      try {
+        setIsSearching(true);
+        const result = await getSearch(search);
+        if (result) {
+          const filteredResult = result.filter((x) => {
+            return x.media_type === "movie" || x.media_type === "tv";
+          });
+          setRecommendations(filteredResult);
+        } else {
+          setRecommendations([]);
+        }
+      } catch (error) {
+        console.error('Search error:', error);
+        setRecommendations([]);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(fetchSearchResults, 300);
+    return () => clearTimeout(debounceTimer);
   }, [search]);
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (search.length > 0) {
       router.push(`/search?query=${search}`);
@@ -77,7 +99,7 @@ const Navbar = () => {
                   <li key={navItem.key}>
                     <Link
                       href={navItem.path}
-                      className={`block px-1.5 md:px-2 py-1 md:py-0.5 rounded-lg transition-colors ${
+                      className={`block px-1.5 md:px-2 py-1 md:py-0.5 rounded-lg transition-colors font-medium ${
                         isActive
                           ? "bg-lightprimary dark:bg-darkprimary text-white"
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"

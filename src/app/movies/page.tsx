@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { getAddedMovies, getMovieDetails } from "@/utils/request";
-import Card from "../components/card";
+import Card from "@/components/ui/cards/card";
 import Link from "next/link";
-import SkeletonCard from "../components/SkeletonCard";
+import SkeletonCard from "@/components/ui/cards/SkeletonCard";
+import { Movie } from "@/types";
 
 export default function MoviesPage() {
-  const [movies, setMovies] = useState<any[]>([]);
+  const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function MoviesPage() {
       const addedMovies = await getAddedMovies();
       // Fetch all details in parallel
       const details = await Promise.all(
-        addedMovies.map((movie: any) => getMovieDetails(movie.tmdb_id))
+        addedMovies.map((movie: { tmdb_id: number }) => getMovieDetails(movie.tmdb_id))
       );
       setMovies(details.filter(Boolean));
       setLoading(false);

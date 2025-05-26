@@ -1,6 +1,6 @@
-import Hero from "./components/hero";
-import CardGrid from "./components/cardsGrids";
-import HorizontalCardCarousel from "./components/HorizontalCardCarousel";
+import Hero from "@/components/carousel/hero";
+import CardGrid from "@/components/grid/cardsGrids";
+import HorizontalCardCarousel from "@/components/carousel/HorizontalCardCarousel";
 import { getTrendingMovies, getTrendingSeries } from "@/utils/request";
 
 export default async function Home() {

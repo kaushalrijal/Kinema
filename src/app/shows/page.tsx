@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { getAddedSeries, getSeriesDetails } from "@/utils/request";
-import Card from "../components/card";
+import Card from "@/components/ui/cards/card";
 import Link from "next/link";
-import SkeletonCard from "../components/SkeletonCard";
+import SkeletonCard from "@/components/ui/cards/SkeletonCard";
+import { Show } from "@/types";
 
 export default function ShowsPage() {
-  const [series, setSeries] = useState<any[]>([]);
+  const [series, setSeries] = useState<Show[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +17,7 @@ export default function ShowsPage() {
       const addedSeries = await getAddedSeries();
       // Fetch all details in parallel
       const details = await Promise.all(
-        addedSeries.map((show: any) => getSeriesDetails(show.tmdb_id))
+        addedSeries.map((show: { tmdb_id: number }) => getSeriesDetails(show.tmdb_id))
       );
       setSeries(details.filter(data => data && data.id !== undefined));
       setLoading(false);

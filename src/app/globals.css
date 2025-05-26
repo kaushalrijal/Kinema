@@ -9,6 +9,15 @@
   .btn-primary:hover {
     @apply bg-[#00006a] dark:bg-[#d97c13];
   }
+
+  .badge {
+    @apply inline-block px-2 py-1 text-xs font-semibold rounded-full;
+    @apply bg-gray-200 text-gray-800;
+  }
+
+  .dark .badge {
+    @apply bg-gray-700 text-gray-200;
+  }
 }
 
 :root {

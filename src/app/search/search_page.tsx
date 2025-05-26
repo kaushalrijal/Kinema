@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import Card from "../components/card";
+import Card from "@/components/ui/cards/card";
 import Example from "./dropdown";
+import { SearchResult } from "@/types";
 
-const SearchPage = (props) => {
+const SearchPage = (props: { results: SearchResult[]; searchText: string }) => {
   const movies = props.results;
-  const [filteredMovies, setFilteredMovies] = useState(movies);
+  const [filteredMovies, setFilteredMovies] = useState<SearchResult[]>(movies);
 
   useEffect(() => {
     setFilteredMovies(movies);

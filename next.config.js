@@ -14,12 +14,32 @@ const nextConfig = {
                 ]
             }
         ]
-    }
-}
-
-module.exports = {
-    images: {
-      domains: ['image.tmdb.org', 'www.themoviedb.org'],
     },
-  };
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'image.tmdb.org',
+                pathname: '/t/p/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'image.tmdb.org',
+                pathname: '/t/p/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'www.themoviedb.org',
+                pathname: '/t/p/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'www.themoviedb.org',
+                pathname: '/t/p/**',
+            }
+        ],
+    },
+};
+
+module.exports = nextConfig;
   

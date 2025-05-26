@@ -20,8 +20,8 @@ import {
   Play,
 } from "lucide-react";
 import { maxHeaderSize } from "http";
-import Warning from "@/app/components/warning";
-import Card from "@/app/components/card";
+import Warning from "@/components/ui/feedback/warning";
+import Card from "@/components/ui/cards/card";
 import Link from "next/link";
 import Recommendations from "./recommendations";
 

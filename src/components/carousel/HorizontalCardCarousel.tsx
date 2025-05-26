@@ -5,16 +5,17 @@ import React, { useRef, useEffect, useState } from 'react';
 // import Card from './card';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Movie, Show } from "@/types";
 
 interface HorizontalCardCarouselProps {
   title: string;
-  items: any[]; // Replace any with a more specific type if you have one for movies/series
+  items: (Movie | Show)[];
 }
 
 const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, items }) => {
     // Determine the field names based on the type
-    const titleField = (item: any) => item.media_type === 'movie' ? 'title' : 'name';
-    const dateField = (item: any) => item.media_type === 'movie' ? 'release_date' : 'first_air_date';
+    const titleField = (item: Movie | Show) => 'title' in item ? 'title' : 'name';
+    const dateField = (item: Movie | Show) => 'release_date' in item ? 'release_date' : 'first_air_date';
 
     // Scroll indicator logic
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -45,18 +46,19 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
           ref={scrollRef}
           className="flex overflow-x-auto space-x-4 pb-4 hide-scrollbar"
         >
-          {items.map((item) => (
+          {items.map((item, index) => (
             <Link
               href={`/watch/${item.media_type === 'movie' ? 'movie' : 'series'}/${item.id}`}
               key={item.id}
               className="flex-shrink-0 w-56 h-40 sm:w-64 sm:h-44 md:w-72 md:h-48 group block relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path || item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${item.backdrop_path || item.poster_path}`}
                 alt={`Poster for ${item[titleField(item)]}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
+                priority={index < 3}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-3 text-white space-y-1 flex flex-col justify-end h-full">
