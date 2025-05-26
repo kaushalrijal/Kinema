@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { Sun, Moon } from "lucide-react";
 
 const Theme = () => {
   const [theme, setTheme] = useState("light");
@@ -34,25 +33,18 @@ const Theme = () => {
   };
 
   return (
-    <div>
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="p-2 rounded-lg transition-colors bg-lightprimary dark:bg-darkprimary text-white hover:bg-blue-700 dark:hover:bg-[#d97c13]"
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+    >
       {theme === "light" ? (
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className="hover:text-lightprimary dark:hover:text-darkprimary text-black relative dark:text-white after:bg-lightprimary after:absolute after:h-1 after:w-0 after:-bottom-3 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer active:scale-95 transition transform duration-300"
-        >
-          <LightModeIcon />
-        </button>
+        <Moon className="h-5 w-5 text-white transition-colors" />
       ) : (
-        <button
-          type="button"
-          onClick={toggleTheme}
-          className="hover:text-lightprimary dark:hover:text-darkprimary text-black relative dark:text-white dark:after:bg-darkprimary after:absolute after:h-1 after:w-0 after:-bottom-3 after:left-0 hover:after:w-full after:transition-all after:duration-300 cursor-pointer active:scale-95 transition transform duration-300"
-        >
-          <DarkModeIcon />
-        </button>
+        <Sun className="h-5 w-5 text-white transition-colors" />
       )}
-    </div>
+    </button>
   );
 };
 

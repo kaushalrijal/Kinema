@@ -1,68 +1,76 @@
-import { getTrending } from "@/utils/request";
-import { PlayArrow } from "@mui/icons-material";
+"use client";
+
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { getTrendingMovies } from "@/utils/request";
 
-const Hero = async () => {
-  let suggested = await getTrending();
-  let random = suggested[Math.floor(Math.random() * 20)];
+export default function Hero() {
+  const [featured, setFeatured] = useState<any>(null);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      const movies = await getTrendingMovies();
+      if (movies && movies.length > 0) {
+        const randomIndex = Math.floor(Math.random() * movies.length);
+        setFeatured(movies[randomIndex]); // Get a random trending movie
+      }
+    };
+    fetchFeatured();
+  }, []);
+
+  if (!featured) return null;
+
   return (
-    <section
-      className={`relative  bg-cover bg-center bg-no-repeat w-full font-medium h-max-screen h-full pb-0 items-center justify-center`}
-      style={{
-        backgroundImage: `url(https://www.themoviedb.org/t/p/original/${random.backdrop_path})`,
-      }}
-    >
-      <div className={`absolute inset-0 dark:bg-black/50 bg-white/50`}></div>
+    <div className="relative w-full h-[60vh] md:aspect-[21/9] rounded-2xl overflow-hidden group">
+      {/* Background Image */}
+      <Image
+        src={`https://image.tmdb.org/t/p/original${featured.backdrop_path}`}
+        alt={featured.title}
+        fill
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        priority
+      />
 
-      <div className="relative mx-auto max-w-full-xl px-4 py-32 sm:px-6 lg:flex lg:h-fit lg:items-center lg:px-8 ">
-        <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-          <h1 className="text-4xl font-extrabold md:text-5xl text-black">
-            <strong className="block font-extrabold text-lightprimary dark:text-darkprimary font-[oswald]">
-              {random.media_type === "movie" ? random.title : random.name}
-            </strong>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+
+      {/* Content */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 lg:p-12">
+        <div className="max-w-3xl space-y-4">
+          <h1 className="text-4xl md:text-6xl font-bold text-white">
+            {featured.title}
           </h1>
-          <p className="flex justify-center gap-3 my-6">
-            <span className="items-center justify-center py-auto flex p-2 text-sm rounded-xl bg-lightprimary dark:bg-darkprimary dark:border-darkprimary border-lightprimary text-white dark:text-black">
-              {random.media_type.toUpperCase()}
-            </span>
-            <span className="items-center justify-center p-2 text-sm rounded-xl border-2 border-primary dark:border-darkprimary border-lightprimary text-lightprimary dark:text-darkprimary">
-              {random.media_type === "movie"
-                ? random.release_date.slice(0, 4)
-                : random.first_air_date.slice(0, 4)}
-            </span>
-            <span className="items-center justify-center p-2 text-sm rounded-xl border-2 border-primary dark:border-darkprimary border-lightprimary text-lightprimary dark:text-darkprimary">
-              {random.original_language.toUpperCase()}
-            </span>
-            <span className="items-center justify-center p-2 text-sm rounded-xl border-2 border-light dark:border-darkprimary border-lightprimary text-lightprimary dark:text-darkprimary">
-              {random.vote_average.toFixed(1)}
-            </span>
-          </p>
-          <p className="mt-4 max-w-lg sm:text-md/relaxed text-justify mx-auto dark:border-darkprimary border-lightprimary text-black dark:text-white">
-            {random.overview}
+          
+          {/* Metadata Pills */}
+          <div className="flex items-center flex-wrap gap-2">
+            <span className="px-3 py-1 rounded-full bg-lightprimary dark:bg-darkprimary text-white text-xs font-semibold">MOVIE</span>
+            <span className="px-3 py-1 rounded-full border border-white text-white text-xs">{new Date(featured.release_date).getFullYear()}</span>
+            {featured.spoken_languages && featured.spoken_languages.length > 0 && (
+              <span className="px-3 py-1 rounded-full border border-white text-white text-xs">{featured.spoken_languages[0].english_name}</span>
+            )}
+            <span className="px-3 py-1 rounded-full border border-white text-white text-xs">{featured.vote_average.toFixed(1)} Rating</span>
+          </div>
+
+          {/* Overview */}
+          <p className="text-lg md:text-xl text-gray-200 line-clamp-3">
+            {featured.overview}
           </p>
 
-          <Link
-            href={`/watch/${
-              random.media_type === "movie" ? "movie" : "series"
-            }/${random.id}`}
-          >
-            <div className="mt-8 flex gap-4 text-center justify-center gap:2 items-center mx-8 py-auto flex-wrap">
-              <button className="block w-full rounded bg-lightprimary dark:bg-darkprimary px-12 py-3 mt-3 lg:my-0 text-sm font-medium text-white dark:text-white shadow focus:outline-none focus:ring sm:w-auto placeholder:text-secondary hover:shadow-sm hover:shadow-black  ">
-                <PlayArrow />
-                Watch Now
-              </button>
-
-              <input
-                type="button"
-                value="Read More"
-                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-lightprimary dark:text-darkprimary shadow-sm hover:shadow-black  focus:outline-none focus:ring sm:w-auto"
-              />
-            </div>
-          </Link>
+          {/* Action Buttons */}
+          <div className="flex gap-4 mt-6">
+            <Link
+              href={`/watch/movie/${featured.id}`}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-lightprimary dark:bg-darkprimary hover:bg-blue-700 dark:hover:bg-[#d97c13] text-white rounded-lg transition-colors duration-200"
+            >
+              <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+              </svg>
+              Watch Now
+            </Link>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-};
-
-export default Hero;
+}

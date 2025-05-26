@@ -13,14 +13,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
-
       colors: {
+        // Light theme colors
         lightbg: "#ffffff",
-        darkbg: "#181818",
-        darkprimary: '#f2932c',
+        lightprimary: "#2563eb",
         secondary: "#e2e8f0",
-        lightprimary: "#000080",
-    },
+        
+        // Dark theme colors
+        darkbg: "#181818",
+        darkbgSecondary: "#212121",
+        darkprimary: "#f2932c",
+        darktext: "#f4f4f4",
+        darktextSecondary: "#a3a3a3",
+        darkborder: "#333333",
+        
+        // Common colors
+        accent: "#f2932c",
+      },
     },
     plugins: [nextui()],  
     variants: {
