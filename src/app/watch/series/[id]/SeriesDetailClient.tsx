@@ -215,11 +215,10 @@ export default function SeriesDetailClient({
             <h2 className="section-title">You May Also Like</h2>
              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
                {similarSeries.results.map((similarItem) => {
-                const mediaType = (similarItem as any).media_type === 'movie' ? 'movie' : 'series';
-                const href = `/watch/${mediaType}/${similarItem.id}`;
-                // Use optional chaining and default values for potentially missing properties
-                const title = (similarItem as Movie).title || (similarItem as Show).name || 'N/A';
-                const date = (similarItem as Movie).release_date || (similarItem as Show).first_air_date;
+                const mediaType = 'media_type' in similarItem ? similarItem.media_type : 'tv'; // Assume 'tv' if media_type is missing
+                const href = `/watch/${mediaType === 'movie' ? 'movie' : 'series'}/${similarItem.id}`;
+                const title = 'title' in similarItem ? similarItem.title : similarItem.name;
+                const date = 'release_date' in similarItem ? similarItem.release_date : similarItem.first_air_date;
                 const year = date ? new Date(date).getFullYear() : "Year";
                 const runtime = similarItem.vote_average ? similarItem.vote_average.toFixed(1) + " Rating" : "Rating";
                 const cardTitle = title?.length > 24 ? title.slice(0, 24) + "…" : title;

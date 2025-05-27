@@ -17,13 +17,10 @@ export default function CardGrid() {
     const fetchContent = async () => {
       try {
         setIsLoading(true);
-        const [moviesData, seriesData] = await Promise.all([
-          getTopRatedMovies(),
-          getTopRatedSeries()
-        ]);
-
-        console.log('Movies Data (after fetch):', moviesData, 'Type:', typeof moviesData, 'isArray:', Array.isArray(moviesData));
-        console.log('Series Data (after fetch):', seriesData, 'Type:', typeof seriesData, 'isArray:', Array.isArray(seriesData));
+      const [moviesData, seriesData] = await Promise.all([
+        getTopRatedMovies(),
+        getTopRatedSeries()
+      ]);
 
         if (!Array.isArray(moviesData) || !Array.isArray(seriesData)) {
            console.error('Validation failed: Data is not an array', { movies: moviesData, series: seriesData });
@@ -34,8 +31,8 @@ export default function CardGrid() {
             throw new Error('Fetched data is undefined.');
          }
 
-        setMovies(moviesData);
-        setSeries(seriesData);
+      setMovies(moviesData);
+      setSeries(seriesData);
       } catch (err) {
         console.error('Error fetching content:', err);
         setError('Failed to fetch content. Please try again later.');

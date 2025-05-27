@@ -43,8 +43,8 @@ export default function ShowsPage() {
                 Img={data.poster_path}
                 Type="Series"
                 Title={data.name?.length > 24 ? data.name.slice(0, 24) + "…" : data.name}
-                Date={data.number_of_seasons ? `${data.number_of_seasons} SS` : "Seasons"}
-                RunTime={data.number_of_episodes ? `${data.number_of_episodes} Eps` : "Episodes"}
+                Date={data.first_air_date ? new Date(data.first_air_date).getFullYear() : "Year"}
+                RunTime={data.vote_average ? data.vote_average.toFixed(1) + " Rating" : "Rating"}
               />
             </Link>
           ))}

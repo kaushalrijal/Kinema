@@ -5,17 +5,17 @@ import React, { useRef, useEffect, useState } from 'react';
 // import Card from './card';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Movie, Show } from "@/types";
+import { Movie, Show, SearchResult } from "@/types";
 
 interface HorizontalCardCarouselProps {
   title: string;
-  items: (Movie | Show)[];
+  items: SearchResult[];
 }
 
 const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, items }) => {
     // Determine the field names based on the type
     const titleField = (item: Movie | Show) => 'title' in item ? 'title' : 'name';
-    const dateField = (item: Movie | Show) => 'release_date' in item ? 'release_date' : 'first_air_date';
+    const dateField = (item: Movie | Show | SearchResult) => 'release_date' in item ? 'release_date' : 'first_air_date';
 
     // Scroll indicator logic
     const scrollRef = useRef<HTMLDivElement>(null);
@@ -53,8 +53,8 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
               className="flex-shrink-0 w-56 h-40 sm:w-64 sm:h-44 md:w-72 md:h-48 group block relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w500${item.backdrop_path || item.poster_path}`}
-                alt={`Poster for ${item[titleField(item)]}`}
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={`Poster for ${item.title || item.name}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
@@ -63,14 +63,19 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-3 text-white space-y-1 flex flex-col justify-end h-full">
                 <div className="flex items-center flex-wrap gap-1 text-xs font-semibold">
-                  <span className="px-2 py-0.5 rounded-md bg-lightprimary dark:bg-darkprimary text-white">{(item[dateField(item)]) ? new Date(item[dateField(item)]).getFullYear() : 'N/A'}</span>
+                  {/* Display year if release_date or first_air_date exists */}
+                  {item.release_date || item.first_air_date ? (
+                    <span className="px-2 py-0.5 rounded-md bg-lightprimary dark:bg-darkprimary text-white">{new Date(item.release_date ? item.release_date : item.first_air_date!).getFullYear()}</span>
+                  ) : (
+                    <span className="px-2 py-0.5 rounded-md bg-lightprimary dark:bg-darkprimary text-white">N/A</span>
+                  )}
                   <span className="px-2 py-0.5 rounded-md bg-lightprimary dark:bg-darkprimary text-white">{item.media_type === 'movie' ? 'Movie' : 'Series'}</span>
                   {typeof item.vote_average === 'number' && (
                     <span className="px-2 py-0.5 rounded-md bg-lightprimary dark:bg-darkprimary text-white">{item.vote_average > 0 ? item.vote_average.toFixed(1) : 'N/A'}</span>
                   )}
                 </div>
                 <h3 className="text-sm font-bold line-clamp-2">
-                  {item[titleField(item)]}
+                  {item.title || item.name}
                 </h3>
               </div>
             </Link>

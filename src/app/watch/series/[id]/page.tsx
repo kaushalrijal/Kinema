@@ -22,6 +22,14 @@ export async function generateMetadata({
   }
 
   const series = await getSeriesDetails(Number(params.id));
+  
+  if (!series) {
+    return {
+      title: "Series Not Found - Kinema",
+      description: "Details for this series could not be loaded.",
+    };
+  }
+
   const { name, first_air_date } = series;
   const year = first_air_date ? new Date(first_air_date).getFullYear() : "";
   const pageTitle = `Watch ${name} (${year}) - Kinema`;

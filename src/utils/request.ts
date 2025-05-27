@@ -46,27 +46,26 @@ export const getSearch = async (query) => {
   return data.results;
 };
 
-export const getMovieDetails = async (id: number): Promise<MovieDetails> => {
+export const getMovieDetails = async (id: number): Promise<MovieDetails | null> => {
   try {
     const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
     if (!res.ok) {
       console.error(`HTTP error fetching movie ${id}! status: ${res.status}`);
-      return undefined as any; // Return undefined or null on HTTP error
+      return null;
     }
     const data = await res.json();
-    // Add a check here if the data structure is not as expected
     if (!data || typeof data.id !== 'number') {
-        console.error(`Invalid data structure for movie ID ${id}:`, data);
-        return undefined as any; // Return undefined or null on invalid data
+      console.error(`Invalid data structure for movie ID ${id}:`, data);
+      return null;
     }
     return data;
   } catch (error) {
     console.error(`Error in getMovieDetails for ID ${id}:`, error);
-    return undefined as any; // Return undefined or null on other errors
+    return null;
   }
 };
 
-export const getSeriesDetails = async (id: number): Promise<ShowDetails> => {
+export const getSeriesDetails = async (id: number): Promise<ShowDetails | null> => {
   const res = await fetch(`${BASE_URL}/tv/${id}?api_key=${API_KEY}`);
   const data = await res.json();
   return data;
@@ -86,11 +85,11 @@ export const getSimilarSeries = async (id: number): Promise<SimilarResponse> => 
 
 export const getTopRatedMovies = async (): Promise<Movie[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
+  const res = await fetch(`${BASE_URL}/movie/top_rated?api_key=${API_KEY}`);
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-    const data = await res.json();
+  const data = await res.json();
      if (!Array.isArray(data.results)) {
       console.error('Unexpected API response for top rated movies:', data);
       throw new Error('API response for top rated movies does not contain a results array');
@@ -104,11 +103,11 @@ export const getTopRatedMovies = async (): Promise<Movie[]> => {
 
 export const getTopRatedSeries = async (): Promise<Show[]> => {
   try {
-    const res = await fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`);
+  const res = await fetch(`${BASE_URL}/tv/top_rated?api_key=${API_KEY}`);
     if (!res.ok) {
       throw new Error(`HTTP error! status: ${res.status}`);
     }
-    const data = await res.json();
+  const data = await res.json();
      if (!Array.isArray(data.results)) {
       console.error('Unexpected API response for top rated series:', data);
       throw new Error('API response for top rated series does not contain a results array');

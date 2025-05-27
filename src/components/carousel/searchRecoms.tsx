@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 const Recomm = (props) => {
-  console.log(props);
   return (
     <div className="w-full">
       <div className="flex flex-col gap-1">

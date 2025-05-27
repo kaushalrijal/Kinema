@@ -10,7 +10,7 @@ import {
   getSimilarMovies,
   getSimilarSeries,
 } from "@/utils/request";
-import ShowData from "./types";
+import { ShowDetails, SimilarResponse } from "@/types";
 import { error } from "console";
 import Dropdown from "./dropdown";
 import {
@@ -39,13 +39,13 @@ const subdetails = [
 ];
 
 const Series = ({ props }) => {
-  const [movie, setMovie] = useState<ShowData | null>(null);
+  const [movie, setMovie] = useState<ShowDetails | null>(null);
   const [selectedSeason, setSelectedSeason] = useState(1);
   const [episode, setEpisode] = useState(1);
 
   const [selectedServer, setSelectedServer] = useState(0);
 
-  const [recoms, setRecoms] = useState(null);
+  const [recoms, setRecoms] = useState<SimilarResponse | null>(null);
 
   const servers = [
     {
@@ -74,10 +74,9 @@ const Series = ({ props }) => {
     });
 
     getSimilarSeries(props.id).then((result) => {
-      const data = result;
-      setRecoms(data);
+      setRecoms(result);
     });
-  }, []);
+  }, [props.id]);
 
   useEffect(() => {
     if (movie) {
@@ -200,9 +199,11 @@ const Series = ({ props }) => {
               <span className="px-3 py-1 border-primary border-2 rounded-md text-primary text-black dark:text-white">
                 {movie.original_language.toUpperCase()}
               </span>
-              <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
-                {movie.origin_country[0]}
-              </span>
+              {movie.origin_country && movie.origin_country.length > 0 && (
+                <span className="px-3 py-1 border-primary border-2 rounded-md text-primary">
+                  {movie.origin_country[0]}
+                </span>
+              )}
               <span className="px-3 py-1 rounded-md bg-primary items-center justify-center text-black dark:text-white">
                 TMDB: {movie.vote_average.toFixed(1)}
               </span>

@@ -25,7 +25,15 @@ export async function generateMetadata({
   }
 
   const movie = await getMovieDetails(params.id);
-  const { title, release_date } = movie;
+  
+  if (!movie) {
+    return {
+      title: "Movie Not Found - Kinema",
+      description: "Details for this movie could not be loaded.",
+    };
+  }
+
+  const { title, release_date, backdrop_path } = movie;
   const year = release_date ? release_date.split("-")[0] : "";
   const pageTitle = `Watch ${title} (${year}) - Kinema`;
   const pageDescription = `${title} movie stream, ${title} online movie download, watch ${title} online, ${title} watch online, ${title} free download, ${title} online streaming, kinema, kinematv, kinema tv, kinema hd, kinematv hd, watch ${title} movie online`;
@@ -35,8 +43,8 @@ export async function generateMetadata({
     url: `https://kinematv.vercel.app/watch/movie/${params.id}`,
     images: [
       {
-        url: `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`,
-        alt: `${movie.title} backdrop`,
+        url: `https://image.tmdb.org/t/p/original/${backdrop_path}`,
+        alt: `${title} backdrop`,
       },
     ],
   };
@@ -68,14 +76,14 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
   }
 
   // Fetch movie details and similar movies in parallel
-  let movie: MovieDetails | undefined = undefined;
-  let similarMovies: SimilarResponse | undefined = undefined;
+  let movie: MovieDetails | null = null;
+  let similarMovies: SimilarResponse | null = null;
 
   try {
     [movie, similarMovies] = await Promise.all([
-      getMovieDetails(tmdb_id),
-      getSimilarMovies(tmdb_id)
-    ]);
+    getMovieDetails(tmdb_id),
+    getSimilarMovies(tmdb_id)
+  ]);
   } catch (error) {
     console.error(`Error fetching movie details or similar content for ID ${tmdb_id}:`, error);
   }
@@ -102,22 +110,22 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
     <div className="container py-8 space-y-12 min-h-screen">
       {/* Player */}
       {movie.id && movie.backdrop_path && (
-         <MoviePlayerClient tmdbId={movie.id} backdropPath={movie.backdrop_path} />
+      <MoviePlayerClient tmdbId={movie.id} backdropPath={movie.backdrop_path} />
       )}
 
       {/* Main Content Area (Details) */}
       <div className="flex flex-col md:flex-row gap-8">
         {/* Poster */}
         {movie.poster_path && (
-           <div className="md:col-span-1 hidden md:flex justify-center relative w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] mx-auto md:mx-0 aspect-[2/3]">
-            <Image
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              alt={`${movie.title} poster`}
-              fill
-              className="object-cover rounded-lg shadow-lg"
-              priority
-            />
-          </div>
+        <div className="md:col-span-1 hidden md:flex justify-center relative w-full max-w-[150px] sm:max-w-[200px] md:max-w-[250px] mx-auto md:mx-0 aspect-[2/3]">
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            alt={`${movie.title} poster`}
+            fill
+            className="object-cover rounded-lg shadow-lg"
+            priority
+          />
+        </div>
         )}
 
         {/* Info */}
@@ -164,30 +172,29 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
       </div>
 
       {/* Similar Movies */}
-      {Array.isArray(similarMovies) && similarMovies.length > 0 && (
+      {similarMovies?.results && similarMovies.results.length > 0 && (
          <section>
             <h2 className="section-title">You May Also Like</h2>
              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-               {similarMovies.map((similarItem) => {
-                 const mediaType = (similarItem as any).media_type === 'tv' ? 'series' : 'movie';
+               {similarMovies.results.map((similarItem) => {
+                 const mediaType = 'media_type' in similarItem && similarItem.media_type === 'tv' ? 'series' : 'movie';
                  const href = `/watch/${mediaType}/${similarItem.id}`;
-                 // Use optional chaining and default values for potentially missing properties
-                 const title = (similarItem as Movie).title || (similarItem as Show).name || 'N/A';
-                 const date = (similarItem as Movie).release_date || (similarItem as Show).first_air_date;
+                 const title = 'title' in similarItem ? similarItem.title : similarItem.name;
+                 const date = 'release_date' in similarItem ? similarItem.release_date : similarItem.first_air_date;
                  const year = date ? new Date(date).getFullYear() : "Year";
                  const runtime = similarItem.vote_average ? similarItem.vote_average.toFixed(1) + " Rating" : "Rating";
                  const cardTitle = title?.length > 24 ? title.slice(0, 24) + "…" : title;
                  
                  return (
                    <Link href={href} key={similarItem.id}>
-                      <Card
+                     <Card
                          Img={similarItem.poster_path}
                          Type={mediaType === 'movie' ? 'Movie' : 'Series'}
                          Title={cardTitle}
                          Date={year}
                          RunTime={runtime}
-                      />
-                   </Link>
+                     />
+                  </Link>
                  );
                })}
             </div>

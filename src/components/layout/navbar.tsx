@@ -37,10 +37,10 @@ const Navbar = () => {
         setIsSearching(true);
         const result = await getSearch(search);
         if (result) {
-          const filteredResult = result.filter((x) => {
+      const filteredResult = result.filter((x) => {
             return x.media_type === "movie" || x.media_type === "tv";
-          });
-          setRecommendations(filteredResult);
+      });
+      setRecommendations(filteredResult);
         } else {
           setRecommendations([]);
         }

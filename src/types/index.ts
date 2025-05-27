@@ -40,7 +40,14 @@ export interface ShowDetails extends Show {
   genres: { id: number; name: string }[];
   production_companies: { id: number; name: string }[];
   spoken_languages: { english_name: string; iso_639_1: string }[];
-  origin_country: string[];
+  origin_country?: string[];
+  original_language: string;
+  last_air_date?: string;
+  last_episode_to_air?: {
+    air_date: string;
+    season_number: number;
+    episode_number: number;
+  };
 }
 
 export interface SearchResult {
@@ -49,6 +56,7 @@ export interface SearchResult {
   name?: string;
   media_type: 'movie' | 'tv';
   poster_path: string;
+  backdrop_path?: string;
   overview: string;
   release_date?: string;
   first_air_date?: string;
