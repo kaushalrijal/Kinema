@@ -124,6 +124,7 @@ export default async function WatchMoviePage({ params }: { params: { id: string 
             fill
             className="object-cover rounded-lg shadow-lg"
             priority
+            unoptimized
           />
         </div>
         )}

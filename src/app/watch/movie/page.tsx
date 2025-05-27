@@ -95,6 +95,7 @@ const Movie = () => {
           height={512}
           width={512}
           className="md:w-full h-full md:h-auto object-cover absolute z-0 top-0 left-0"
+          unoptimized
         ></Image>
         <iframe
           src="https://vidsrc.to/embed/movie/tt0111161"
@@ -112,6 +113,7 @@ const Movie = () => {
           onClick={() => {
             setVisible(true);
           }}
+          unoptimized
         ></Image>
       </div>
       <div>Server</div>
@@ -123,6 +125,7 @@ const Movie = () => {
             height={128}
             width={240}
             className="h-full w-auto"
+            unoptimized
           ></Image>
         </div>
         <div className="flex-col flex basis-1/2 gap-2">

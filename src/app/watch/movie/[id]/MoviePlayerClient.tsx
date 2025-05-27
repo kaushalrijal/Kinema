@@ -44,6 +44,7 @@ export default function MoviePlayerClient({
               alt="Movie backdrop"
               fill
               className="object-cover opacity-50"
+              unoptimized
             />
              <button
                 onClick={() => setPlayerVisible(true)}

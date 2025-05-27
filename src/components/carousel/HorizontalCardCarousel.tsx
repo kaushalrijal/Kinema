@@ -59,6 +59,7 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                 sizes="(max-width: 640px) 256px, (max-width: 768px) 288px, 320px"
                 priority={index < 3}
+                unoptimized
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-3 text-white space-y-1 flex flex-col justify-end h-full">

@@ -160,6 +160,7 @@ export default function SeriesDetailClient({
             fill
             className="object-cover rounded-lg shadow-lg"
             priority
+            unoptimized
           />
         </div>
 

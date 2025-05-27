@@ -26,7 +26,7 @@ export default function AboutPage() {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {/* About the Creator */}
         <div className="rounded-xl border border-gray-200 dark:border-darkborder bg-white dark:bg-darkbg p-8 flex flex-col space-y-6 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-2 text-lightprimary dark:text-darkprimary text-left">About the Creator</h2>
+          <h2 className="text-2xl font-semibold mb-2 text-textprimary dark:text-darktext text-center">About the Creator</h2>
           <Link href="https://kaushalrijal.com.np" target="_blank" className="flex items-center gap-4 group text-left">
             <Image
               src="/profile.png"
@@ -41,13 +41,13 @@ export default function AboutPage() {
               <p className="text-md text-gray-500 dark:text-gray-400">Founder, Kinema</p>
             </div>
           </Link>
-          <p className="text-base text-gray-900 dark:text-darktext text-left text-justify">
+          <p className="text-base text-gray-900 dark:text-darktext text-justify">
             I created this movie streaming site to learn Next.js and put my newfound skills to the test. As a self-taught learner, I've tried watching tutorials, but it wasn't until I built a real project that things clicked. This site is the result of that effort. If you're interested in contributing to the project or have suggestions for improvements, I'd love to hear from you! Please don't ask me to add any movies. Reach out to me to collaborate, report bugs, or offer feedback. I'm open to input and excited to see where this project takes us. Let's make it better together!
           </p>
         </div>
         {/* Contact Form */}
         <div className="rounded-xl border border-gray-200 dark:border-darkborder bg-white dark:bg-darkbg p-8 shadow-sm">
-          <h2 className="text-2xl font-semibold mb-6 text-lightprimary dark:text-darkprimary text-center">Get in Touch</h2>
+          <h2 className="text-2xl font-semibold mb-6 text-textprimary dark:text-darktext text-center">Get in Touch</h2>
           <form className="space-y-4">
             <label className="block text-left">
               <span className="text-md text-gray-900 dark:text-darktext">Name</span>
