@@ -16,7 +16,7 @@ export default function AboutPage() {
       <section className="w-full space-y-6">
         <h1 className="section-title text-center">About Kinema</h1>
         <div>
-          <p className="text-lg text-gray-900 dark:text-darktext text-left text-justify">
+          <p className="text-lg text-gray-900 dark:text-darktext text-justify">
             Welcome to <span className="font-bold text-lightprimary dark:text-darkprimary">Kinema</span>! Step into a cinematic wonderland where the magic of movies unfolds. Immerse yourself in a vast collection ranging from timeless classics to the latest blockbuster hits, all available in a spectrum of qualities to suit your preferences. Subtitles in numerous languages ensure everyone can connect with rich narratives. Our user-friendly platform is designed for seamless navigation, making the exploration of hidden gems a delightful experience. Kinema is not merely a destination; it's a vibrant community where movie enthusiasts converge. Share your favorite recommendations, engage in lively discussions, and discover new films that resonate with your taste. Join us in celebrating the diverse and enchanting world of cinema – your ticket to the magic of film awaits at Kinema!
           </p>
         </div>
