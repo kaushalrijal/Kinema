@@ -14,6 +14,11 @@ export interface MovieDetails extends Movie {
   production_companies: { id: number; name: string }[];
   spoken_languages: { english_name: string; iso_639_1: string }[];
   production_countries: { name: string; iso_3166_1: string }[];
+  vote_count: number;
+  credits?: {
+    cast: { name: string }[];
+    crew: { name: string; job: string }[];
+  };
 }
 
 export interface Show {
