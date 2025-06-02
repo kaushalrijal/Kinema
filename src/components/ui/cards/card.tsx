@@ -3,6 +3,7 @@
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import React from "react";
+import PlayButton from "@/components/ui/PlayButton";
 
 interface CardProps {
   Img: string | StaticImport;
@@ -36,24 +37,26 @@ const Card: React.FC<CardProps> = ({ Img, Type, Title, Date, RunTime, onClick })
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
         
         {/* Play Button */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          <div className="w-16 h-16 rounded-full bg-lightprimary dark:bg-darkprimary shadow-lg flex items-center justify-center">
-            <svg className="w-12 h-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-            </svg>
-          </div>
+        <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <PlayButton onClick={onClick} />
         </div>
 
-        {/* Poster Image */}
-        <Image
-          src={`https://image.tmdb.org/t/p/w500/${Img}`}
-          alt={`Poster for ${Title}`}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={false}
-          unoptimized
-        />
+        {/* Poster Image or Placeholder */}
+        {Img ? (
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${Img}`}
+            alt={`Poster for ${Title}`}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            unoptimized
+          />
+        ) : (
+          <div className="flex items-center justify-center w-full h-full bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 text-center p-4">
+            No Image Available
+          </div>
+        )}
       </div>
 
       {/* Content */}

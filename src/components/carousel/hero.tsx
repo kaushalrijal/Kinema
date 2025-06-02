@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getTrendingMovies } from "@/utils/request";
+import HeroSkeleton from "./HeroSkeleton";
 
 export default function Hero() {
   const [featured, setFeatured] = useState<any>(null);
@@ -19,7 +20,7 @@ export default function Hero() {
     fetchFeatured();
   }, []);
 
-  if (!featured) return null;
+  if (!featured) return <HeroSkeleton />;
 
   return (
     <div className="relative w-full h-[60vh] md:aspect-[21/9] rounded-2xl overflow-hidden group">

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Play } from "lucide-react";
+import PlayButton from "@/components/ui/PlayButton";
 
 interface MoviePlayerClientProps {
   tmdbId: number;
@@ -46,12 +47,7 @@ export default function MoviePlayerClient({
               className="object-cover opacity-50"
               unoptimized
             />
-             <button
-                onClick={() => setPlayerVisible(true)}
-                className="z-20 p-4 rounded-full bg-lightprimary dark:bg-darkprimary hover:bg-blue-700 dark:hover:bg-[#d97c13] transition-colors text-white"
-              >
-                <Play size={48} />
-              </button>
+             <PlayButton onClick={() => setPlayerVisible(true)} />
           </div>
         )}
 

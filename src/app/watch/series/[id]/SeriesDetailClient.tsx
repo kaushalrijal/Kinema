@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/ui/cards/card";
 import { Play } from "lucide-react";
+import PlayButton from "@/components/ui/PlayButton";
 import { Show, Movie, SimilarResponse } from "@/types";
 
 // Assuming you have a type definition for Series data, or use `any` for now
@@ -63,12 +64,7 @@ export default function SeriesDetailClient({
         <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
           {!playerVisible && (
             <div className="absolute inset-0 flex items-center justify-center z-10 bg-black/70">
-              <button
-                onClick={() => setPlayerVisible(true)}
-                className="z-20 p-4 rounded-full bg-lightprimary dark:bg-darkprimary hover:bg-blue-700 dark:hover:bg-[#d97c13] transition-colors text-white"
-              >
-                <Play size={48} />
-              </button>
+              <PlayButton onClick={() => setPlayerVisible(true)} />
             </div>
           )}
           <iframe

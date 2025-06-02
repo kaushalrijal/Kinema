@@ -64,7 +64,7 @@ export default function CardGrid() {
     <div className="space-y-16">
       {/* Top Rated Movies */}
       <section>
-        <h2 className="section-title">Top Rated Movies</h2>
+        <h2 className="section-title mb-6">Top Rated Movies</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
           {movies?.map((movie) => (
             <Link href={`/watch/movie/${movie.id}`} key={movie.id} passHref legacyBehavior>
@@ -84,7 +84,7 @@ export default function CardGrid() {
 
       {/* Top Rated Series */}
       <section>
-        <h2 className="section-title">Top Rated Series</h2>
+        <h2 className="section-title mb-6">Top Rated Series</h2>
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8">
           {series?.map((show) => (
             <Link href={`/watch/series/${show.id}`} key={show.id} passHref legacyBehavior>

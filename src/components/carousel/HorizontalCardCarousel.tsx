@@ -53,7 +53,7 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
               className="flex-shrink-0 w-56 h-40 sm:w-64 sm:h-44 md:w-72 md:h-48 group block relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <Image
-                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                 alt={`Poster for ${item.title || item.name}`}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -84,7 +84,7 @@ const HorizontalCardCarousel: React.FC<HorizontalCardCarouselProps> = ({ title, 
         </div>
         {/* Scroll indicator: right fade + chevron */}
         {showIndicator && !atEnd && (
-          <div className="pointer-events-none absolute inset-y-0 right-0 h-full w-16 flex items-center justify-end">
+          <div className="pointer-events-none absolute inset-y-0 right-0 h-40 sm:h-44 md:h-48 w-16 flex items-center justify-end">
             <div className="h-full w-full bg-gradient-to-l from-white/90 to-transparent rounded-r-lg" />
             <div className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 animate-bounce-x">
               {/* Chevron Right SVG */}
