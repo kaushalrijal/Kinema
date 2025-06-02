@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Recomm = (props) => {
+const Recomm = (props: { results: any[]; setSearch: (value: string) => void }) => {
   return (
     <div className="w-full">
       <div className="flex flex-col gap-1">
@@ -12,8 +12,9 @@ const Recomm = (props) => {
                 result.media_type == "movie" ? "movie" : "series"
               }/${result.id}`}
               key={result.id}
+              onClick={() => props.setSearch("")}
             >
-              <div className="bg-secondary text-black py-2 px-4 rounded-sm  text-xs w-full flex justify-between items-center">
+              <div className="text-gray-900 dark:text-darktext py-2 px-4 rounded-sm text-xs w-full flex justify-between items-center">
                 <span>
                   {result.media_type == "movie" ? result.title : result.name}
                 </span>

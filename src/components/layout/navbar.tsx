@@ -37,10 +37,10 @@ const Navbar = () => {
         setIsSearching(true);
         const result = await getSearch(search);
         if (result) {
-      const filteredResult = result.filter((x) => {
+          const filteredResult = result.filter((x) => {
             return x.media_type === "movie" || x.media_type === "tv";
-      });
-      setRecommendations(filteredResult);
+          });
+          setRecommendations(filteredResult);
         } else {
           setRecommendations([]);
         }
@@ -60,6 +60,7 @@ const Navbar = () => {
     e.preventDefault();
     if (search.length > 0) {
       router.push(`/search?query=${search}`);
+      setSearch("");
     }
   };
 
@@ -129,8 +130,8 @@ const Navbar = () => {
                   required
                 />
                 {recommendations.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-1">
-                    <Recomm results={recommendations.slice(0, 5)} />
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-darkbg shadow-md rounded-lg">
+                    <Recomm results={recommendations.slice(0, 5)} setSearch={setSearch} />
                   </div>
                 )}
               </div>

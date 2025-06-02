@@ -62,6 +62,9 @@ export interface SearchResult {
   first_air_date?: string;
   vote_average: number;
   popularity: number;
+  genre_ids?: number[];
+  origin_country?: string[];
+  original_language?: string;
 }
 
 export interface ApiResponse<T> {
