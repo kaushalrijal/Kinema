@@ -3,6 +3,7 @@ import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next"
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -13,6 +14,15 @@ const poppins = Poppins({
 export const metadata = {
   title: "Kinema — Cinema as it should be",
   description: "Discover, explore, and fall in love with movies and series. A beautiful, modern streaming experience.",
+  openGraph: {
+    title: "Kinema — Cinema as it should be",
+    description: "Discover, explore, and fall in love with movies and series. A beautiful, modern streaming experience.",
+    url: "https://kinematv.vercel.app",
+    siteName: "Kinema",
+    locale: "en_US",
+    type: "website",
+  },
+  canonical: "https://kinematv.vercel.app",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -45,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <Footer />
       </body>
+      <Analytics />
     </html>
   );
 }
