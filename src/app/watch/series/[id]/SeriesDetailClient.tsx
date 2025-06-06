@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "@/components/ui/cards/card";
@@ -27,6 +27,7 @@ export default function SeriesDetailClient({
   const [selectedEpisode, setSelectedEpisode] = useState(1);
   const [selectedServer, setSelectedServer] = useState(0);
   const [playerVisible, setPlayerVisible] = useState(false);
+  const isMounted = useRef(false);
 
   // Example servers - you may want to fetch these or manage differently
   const servers = [
@@ -47,6 +48,10 @@ export default function SeriesDetailClient({
 
   // Effect to update document title (optional, but good for UX)
   useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+      return;
+    }
     document.title = `Watch ${series.name} - S${selectedSeason}E${selectedEpisode} - Kinema`;
   }, [series, selectedSeason, selectedEpisode]);
 
@@ -67,12 +72,14 @@ export default function SeriesDetailClient({
               <PlayButton onClick={() => setPlayerVisible(true)} />
             </div>
           )}
-          <iframe
-            src={playerVisible ? servers[selectedServer].url : ''}
-            allowFullScreen
-            title={`${series.name} Season ${selectedSeason} Episode ${selectedEpisode}`}
-            className={`w-full h-full ${playerVisible ? 'block' : 'hidden'}`}
-          ></iframe>
+          {playerVisible && (
+            <iframe
+              src={servers[selectedServer].url}
+              allowFullScreen
+              title={`${series.name} Season ${selectedSeason} Episode ${selectedEpisode}`}
+              className="w-full h-full"
+            />
+          )}
         </div>
       </section>
 
