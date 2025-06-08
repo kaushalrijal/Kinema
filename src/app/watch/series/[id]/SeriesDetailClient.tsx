@@ -25,7 +25,7 @@ export default function SeriesDetailClient({
     series.seasons?.find((s) => s.season_number > 0)?.season_number || 1
   );
   const [selectedEpisode, setSelectedEpisode] = useState(1);
-  const [selectedServer, setSelectedServer] = useState(0);
+  const [selectedServer, setSelectedServer] = useState(1);
   const [playerVisible, setPlayerVisible] = useState(false);
   const isMounted = useRef(false);
 

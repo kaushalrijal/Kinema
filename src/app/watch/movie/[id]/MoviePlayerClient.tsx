@@ -31,7 +31,7 @@ export default function MoviePlayerClient({
   ];
 
   const [playerVisible, setPlayerVisible] = useState(false);
-  const [selectedServer, setSelectedServer] = useState(0);
+  const [selectedServer, setSelectedServer] = useState(1);
   const serverUrl = servers[selectedServer].url;
 
   return (
